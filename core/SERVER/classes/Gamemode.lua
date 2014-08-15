@@ -103,10 +103,6 @@ function Gamemode:addPlayer (player)
 			-- Player
 			player:setGamemode(self)
 			player:setDimension(self.Dimension)
-			setElementVisibleTo(player, getRootElement(), false)
-			for _, v in pairs(self.Players) do
-				setElementVisibleTo(player, v, true)
-			end
 			
 			-- Gamemode
 			self.Players[player] = {}
