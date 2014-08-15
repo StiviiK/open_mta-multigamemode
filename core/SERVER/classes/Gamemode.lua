@@ -47,18 +47,6 @@ setmetatable(Gamemode, {
 })
 
 -- Globale Methode (aufrufbar via alle Gamemodes)
-function Gamemode:getFreeDimension ()
-	if (self == Gamemode) then
-		for i = 1, 500 do
-			if (self.registeredGamemodes[i] == nil) then
-				return i;
-			end
-		end
-	end
-	
-	return false;
-end
-
 function Gamemode:unregister ()
 	Gamemode.registeredGamemodes[self.ID] = nil; -- remove the gamemode in the registeredGamemodes Table
 	outputDebugString(("[Gamemodemanager] Unregistered Gamemode: %s (ID: %d)"):format(self.Name, self.ID))
@@ -83,6 +71,18 @@ function Gamemode:unregister ()
 	
 	return {}; 
 	-- return a emtpy table because if you overide the gamemode varriable with the return of this function all gamemode functions also will be removed!
+end
+
+function Gamemode:getFreeDimension ()
+	if (self == Gamemode) then
+		for i = 1, 500 do
+			if (self.registeredGamemodes[i] == nil) then
+				return i;
+			end
+		end
+	end
+	
+	return false;
 end
 
 function Gamemode:getGamemodeFromID (id)
