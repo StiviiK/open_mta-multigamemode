@@ -19,19 +19,20 @@ setmetatable(Gamemode, {
 					ID = properties[1] or #Gamemode.registeredGamemodes + 1,
 					Name = properties[2] or "[WARNING] No Name given!",
 					Description = properties[3] or "No Description given!",
-					Dimension = properties[4] or Gamemode:getFreeDimension(),
+					Author = properties[4],
+					Dimension = properties[5] or Gamemode:getFreeDimension(),
 					Players = {},
-					maxPlayers = properties[5] or 16,
-					minPlayers = properties[6] or 1,
+					maxPlayers = properties[6] or 16,
+					minPlayers = properties[7] or 1,
 					PlayerCount = 0,
-					Blip = createBlip(unpack(properties[7])) or false,
-					Marker = createMarker(unpack(properties[8])) or false
+					Blip = createBlip(unpack(properties[8])) or false,
+					Marker = createMarker(unpack(properties[9])) or false
 				}, {__index = Gamemode}
 			)
 		
 			Gamemode.registeredGamemodes[obj.Dimension] = obj;
 			
-			outputDebugString(("[Gamemodemanager] Registered a new Gamemode: %s (ID: %d)"):format(obj.Name, obj.ID))
+			outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
 			
 			addEventHandler("onMarkerHit", obj.Marker, function (hitelement)
 			end)
