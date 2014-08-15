@@ -5,12 +5,12 @@
 	
 	<!-- Core -->
 		<!-- Server -->
-		<script src="core/SERVER/include/classlib.lua" type="server"/>
 		<script src="core/SERVER/classes/Player.lua" type="server"/>
 		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
 		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
 		
 		<!-- Client -->
+		<script src="core/SHARED/include/classlib.lua" type="server"/>
 		
 		<!-- Shared -->
 		
