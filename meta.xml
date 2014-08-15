@@ -3,8 +3,27 @@
 
 	<oop>true</oop>
 	
-	<script src="SERVER/include/classlib.lua" type="server"/>
-	<script src="SERVER/classes/Player.lua" type="server"/>
-	<script src="SERVER/classes/Playermanager.lua" type="server"/>
-	<script src="SERVER/classes/Gamemode.lua" type="server"/>
+	<!-- Core -->
+		<!-- Server -->
+		<script src="core/SERVER/include/classlib.lua" type="server"/>
+		<script src="core/SERVER/classes/Player.lua" type="server"/>
+		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
+		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
+		
+		<!-- Client -->
+		
+		<!-- Shared -->
+		
+		<!-- Files -->
+	<!-- --->
+	
+	<!-- TestGamemode -->
+		<!-- Server -->
+		<script src="mytestgamemode/init.lua" type="server"/>
+		
+		<!-- Client -->
+		
+		<!-- Shared -->
+		
+		<!-- Files -->
 </meta>
