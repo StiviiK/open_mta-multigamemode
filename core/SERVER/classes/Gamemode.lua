@@ -8,7 +8,7 @@
 -- This is the gamemode manager class for a MultiGamemode
 Gamemode = {
 	registeredGamemodes = {},
-	maxAllowedGamemodes = 2
+	maxAllowedGamemodes = 16
 };
 
 setmetatable(Gamemode, {
