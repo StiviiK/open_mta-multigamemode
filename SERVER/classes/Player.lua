@@ -1,8 +1,8 @@
 -- #######################################
--- ## Project: 	Test's		    		##
+-- ## Project:  MultiGamemode           ##
 -- ## Name: 	PlayerClass Extension   ##
--- ## Author:	StiviK					##
--- ## Version: 	1.0						##
+-- ## Author:	StiviK                  ##
+-- ## Version: 	1.0                     ##
 -- #######################################
 
 -- This is the player (extend the normal player class) class for a MultiGamemode

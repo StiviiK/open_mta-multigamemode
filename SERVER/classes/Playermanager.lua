@@ -1,8 +1,8 @@
 -- #######################################
--- ## Project: 	Test's		    		##
--- ## Name: 	PlayerClass Extension   ##
--- ## Author:	StiviK					##
--- ## Version: 	1.0						##
+-- ## Project:  MultiGamemode           ##
+-- ## Name: 	Playermanager           ##
+-- ## Author:	StiviK                  ##
+-- ## Version: 	1.0                     ##
 -- #######################################
 
 -- This is the playermanager class for a MultiGamemode
