@@ -168,6 +168,7 @@ function Gamemode:getInfo (key)
 		ID = self.ID,
 		Name = self.Name,
 		Description = self.Description,
+		Author = self.Author,
 		maxPlayers = self.maxPlayers,
 		minPlayers = self.minPlayers,
 		PlayerCount = self.PlayerCount,
