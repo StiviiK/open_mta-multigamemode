@@ -4,26 +4,26 @@
 	<oop>true</oop>
 	
 	<!-- Core -->
+		<!-- Shared -->
+		<script src="core/SHARED/include/classlib.lua" type="shared"/>
+	
 		<!-- Server -->
 		<script src="core/SERVER/classes/Player.lua" type="server"/>
 		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
 		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
 		
 		<!-- Client -->
-		<script src="core/SHARED/include/classlib.lua" type="server"/>
-		
-		<!-- Shared -->
 		
 		<!-- Files -->
 	<!-- --->
 	
 	<!-- TestGamemode -->
+		<!-- Shared -->
+		
 		<!-- Server -->
 		<script src="mytestgamemode/init.lua" type="server"/>
 		
 		<!-- Client -->
-		
-		<!-- Shared -->
 		
 		<!-- Files -->
 </meta>
