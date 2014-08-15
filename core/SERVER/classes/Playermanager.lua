@@ -10,7 +10,7 @@ Playermanager = {};
 
 function Playermanager:constructor ()
 	-- add da events
-	--addEventHandler("onPlayerJoin", root, bind(self.playerJoin, self))
+	--addEventHandler("onPlayerJoin", root, bind(self.onJoin, self))
 	addEventHandler("onPlayerQuit", root, bind(self.onQuit, self))
 	addEventHandler("onPlayerChat", root, bind(self.onChat, self))
 end
