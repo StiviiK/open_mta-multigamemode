@@ -13,5 +13,3 @@ end
 function Player:setGamemode (gamemode)
 	self.Gamemode = gamemode;
 end
-
-f
