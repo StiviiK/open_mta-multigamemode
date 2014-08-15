@@ -118,7 +118,8 @@ function Gamemode:removePlayer (player)
 
 	if (player:getGamemode() == self) then
 		-- Player
-		player:setGamemode(nil);
+		player:setGamemode(nil)
+		player:setDimension(0)
 		
 		-- Gamemode
 		self.Players[player] = nil;
@@ -126,7 +127,8 @@ function Gamemode:removePlayer (player)
 	else
 		-- Player
 		local gamemode = player:getGamemode()
-		player:setGamemode(nil);
+		player:setGamemode(nil)
+		player:setDimension(0)
 		
 		-- Gamemode
 		gamemode.Players[player] = nil;
