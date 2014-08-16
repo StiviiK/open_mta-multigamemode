@@ -104,45 +104,6 @@ function Gamemode:createColTube (...)
 	end
 end
 
-function Gamemode:createEffect (...)
-	local element = createEffect(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		table.insert(self.Elements["Effect"], element)
-		return element;
-	else
-		return false;
-	end
-end
-
---function Gamemode:createElement (...)
---end
-
-function Gamemode:createExplosion (...)
-	local element = createExplosion(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		--table.insert(self.Elements[""], element) // It's just a boolean as retun!
-		return element;
-	else
-		return false;
-	end
-end
-
-function Gamemode:createFire (...)
-	local element = createFire(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		--table.insert(self.Elements[""], element) // It's just a boolean as retun!
-		return element;
-	else
-		return false;
-	end
-end
-
 function Gamemode:createMarker (...)
 	local element = createMarker(...)
 	setElementDimension(element, self.Dimension)
@@ -191,20 +152,8 @@ function Gamemode:createPickup (...)
 	end
 end
 
-function Gamemode:createProjectile (...)
-	local element = createProjectile(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		table.insert(self.Elements["Projectile"], element)
-		return element;
-	else
-		return false;
-	end
-end
-
 function Gamemode:createRadarArea (...)
-	local element = createRadarAreaRadarArea(...)
+	local element = createRadarArea(...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
@@ -213,10 +162,6 @@ function Gamemode:createRadarArea (...)
 	else
 		return false;
 	end
-end
-
-function Gamemode:createSWATRope (...)
-	return error("Bad Argument @ Gamemode.createSWATRope! [createSWATRope does not work currently Serverside!]");
 end
 
 function Gamemode:createVehicle (...)
@@ -229,20 +174,4 @@ function Gamemode:createVehicle (...)
 	else
 		return false;
 	end
-end
-
-function Gamemode:createWater (...)
-	local element = createWater(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		table.insert(self.Elements["Water"], element)
-		return element;
-	else
-		return false;
-	end
-end
-
-function Gamemode:createWeapon (...)
-	return error("Bad Argument @ Gamemode.createWeapon! [createWeapon does not work currently Serverside!]");
 end

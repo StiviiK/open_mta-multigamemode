@@ -36,10 +36,7 @@ setmetatable(Gamemode, {
 						["ColShape"] = {},
 						["Blip"] = {},
 						["Ped"] = {},
-						["RadarArea"] = {},
-						["Projectile"] = {},
-						["Effect"] = {},
-						["Water"] = {}
+						["RadarArea"] = {}
 					}
 				}, {__index = Gamemode}
 			)
