@@ -215,9 +215,6 @@ function Gamemode:createRadarArea (...)
 	end
 end
 
---function Gamemode:createResource (...)
---end
-
 function Gamemode:createSWATRope (...)
 	return error("Bad Argument @ Gamemode.createSWATRope! [createSWATRope does not work currently Serverside!]");
 end
