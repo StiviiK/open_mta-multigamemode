@@ -12,9 +12,10 @@
 		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
 		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
 		<script src="core/SERVER/classes/Elementmanager.lua" type="server"/>
+		<script src="core/SERVER/classes/Permissionmanager.lua" type="server"/>
 		
 		<!-- Client -->
-		
+		<script src="core/CLIENT/gameplay/infobox" type="client" cache="false"/>
 		<!-- Files -->
 	<!-- --->
 	

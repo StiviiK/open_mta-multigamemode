@@ -25,7 +25,7 @@ function Permissions:onCommand(_, player, command)
 			if getElementData(player, "adminlevel") >= adminlevel then
 				return true
 			else
-			--	return infobox:new("Command Error: You're not allowed to use this command")
+			--	return infobox:add("Command Error: You're not allowed to use this command", 2)
 				return false
 			end
 		end
