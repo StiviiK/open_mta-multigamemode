@@ -26,7 +26,21 @@ setmetatable(Gamemode, {
 					minPlayers = properties[7] or 1,
 					PlayerCount = 0,
 					Blip = createBlip(unpack(properties[8])) or false,
-					Marker = createMarker(unpack(properties[9])) or false
+					Marker = createMarker(unpack(properties[9])) or false,
+					Elements = {
+						["Ped"] = {},
+						["Vehicle"] = {},
+						["Object"] = {},
+						["Pickup"] = {},
+						["Marker"] = {},
+						["ColShape"] = {},
+						["Blip"] = {},
+						["Ped"] = {},
+						["RadarArea"] = {},
+						["Projectile"] = {},
+						["Effect"] = {},
+						["Water"] = {}
+					}
 				}, {__index = Gamemode}
 			)
 		
