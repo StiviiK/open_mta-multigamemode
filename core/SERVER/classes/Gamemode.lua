@@ -1,10 +1,3 @@
--- #######################################
--- ## Project:  MultiGamemode           ##
--- ## Name: 	Gamemodemanager         ##
--- ## Author:	StiviK                  ##
--- ## Version: 	1.0                     ##
--- #######################################
-
 -- This is the gamemode manager class for a MultiGamemode
 Gamemode = {
 	registeredGamemodes = {},

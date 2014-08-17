@@ -1,10 +1,3 @@
--- #######################################
--- ## Project:  MultiGamemode           ##
--- ## Name: 	PlayerClass Extension   ##
--- ## Author:	StiviK                  ##
--- ## Version: 	1.0                     ##
--- #######################################
-
 -- This is the player (extend the normal MTA player class) class for a MultiGamemode
 function Player:getGamemode ()
 	return self.Gamemode;

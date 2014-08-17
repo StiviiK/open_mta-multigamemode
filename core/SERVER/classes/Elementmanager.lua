@@ -1,10 +1,3 @@
--- #######################################
--- ## Project:  MultiGamemode           ##
--- ## Name: 	Elementmanager          ##
--- ## Author:	StiviK                  ##
--- ## Version: 	1.0                     ##
--- #######################################
-
 -- This is the Elementmanager for a MultiGamemode
 -- (it needs to be a part of the Gamemode-Class)
 

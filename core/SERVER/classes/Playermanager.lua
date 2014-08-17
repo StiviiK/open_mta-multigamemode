@@ -1,10 +1,3 @@
--- #######################################
--- ## Project:  MultiGamemode           ##
--- ## Name: 	Playermanager           ##
--- ## Author:	StiviK                  ##
--- ## Version: 	1.0                     ##
--- #######################################
-
 -- This is the playermanager class for a MultiGamemode
 Playermanager = {};
 
