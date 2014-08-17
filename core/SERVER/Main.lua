@@ -1,10 +1,3 @@
--- #######################################
--- ## Project:  MultiGamemode           ##
--- ## Name: 	Main.lua                ##
--- ## Author:	StiviK                  ##
--- ## Version: 	1.0                     ##
--- #######################################
-
 addEventHandler("onResourceStop", resourceRoot, function ()
 	for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
 		gamemode:unregister()
@@ -16,5 +9,5 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 end)
 
 addEventHandler("onResourceStart", resourceRoot, function ()
-	Database:connect("127.0.0.1", "root", "", "multi-sa", "share=1")
+	Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)
 end)
