@@ -1,8 +1,8 @@
 -- #######################################
--- ## Project: MTA Ekonomie				##
--- ## Name: dxClass.lua					##
--- ## Author: StiviK					##
--- ## Version: 1.0						##
+-- ## Project: MTA Ekonomie		##
+-- ## Name: dxClass.lua			##
+-- ## Author: StiviK			##
+-- ## Version: 1.0			##
 -- #######################################
 
 -- CLASS TABLE --
