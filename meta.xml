@@ -15,7 +15,7 @@
 		<script src="core/SERVER/classes/Permissionmanager.lua" type="server"/>
 		
 		<!-- Client -->
-		<script src="core/CLIENT/gameplay/infobox" type="client" cache="false"/>
+		<script src="core/CLIENT/gameplay/infobox.lua" type="client" cache="false"/>
 		<!-- Files -->
 	<!-- --->
 	
