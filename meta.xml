@@ -8,6 +8,7 @@
 		<script src="core/SHARED/include/classlib.lua" type="shared"/>
 	
 		<!-- Server -->
+		<script src="core/SERVER/classes/Database.lua" type="server"/>
 		<script src="core/SERVER/classes/Player.lua" type="server"/>
 		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
 		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
@@ -34,6 +35,7 @@
 	<!-- -->
 	
 	<aclrequest>
-		<right name="function.restartResource" access="true" />
+		<right name="function.restartResource" access="true"/>
+		<right name="function.stopResource" access="true"/>
 	</aclrequest>
 </meta>
