@@ -192,9 +192,9 @@ end
 
 function Gamemode:unregisterAll ()
 	if (self == Gamemode) then
-		for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
+		for _, gamemode in ipairs(self.registeredGamemodes) do
 			gamemode:unregister()
 		end
 	end
 end
-addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), Gamemode.unregisterAll)
+addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), bind(Gamemode.unregisterAll, Gamemode))
