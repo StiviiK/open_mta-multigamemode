@@ -16,6 +16,8 @@
 		
 		<!-- Client -->
 		<script src="core/CLIENT/gameplay/infobox.lua" type="client" cache="false"/>
+		<script src="core/CLIENT/classes/dxElements.lua" type="client" cache="false"/>
+		
 		<!-- Files -->
 	<!-- --->
 	
