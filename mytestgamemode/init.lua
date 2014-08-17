@@ -15,4 +15,3 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 		end
 	end
 end)
-
