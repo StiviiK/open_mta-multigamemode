@@ -28,4 +28,9 @@
 		<!-- Client -->
 		
 		<!-- Files -->
+	<!-- -->
+	
+	<aclrequest>
+		<right name="function.restartResource" access="true" />
+	</aclrequest>
 </meta>

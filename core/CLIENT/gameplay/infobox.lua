@@ -16,12 +16,12 @@ function infobox:add(_, text, typ)
 		addEventHandler("onClientRender", getRootElement(), function()
 			self:draw()
 		end)
-		self.timer = setTimer(removeEventHandler, 7500, 1, "onClientRender", getRootElement(), self:draw)
+		self.timer = setTimer(removeEventHandler, 7500, 1, "onClientRender", getRootElement(), bind(self.draw, self))
 	else
 		if isTimer(self.timer) then
 			killTimer(self.timer)
 		end
-		self.timer = setTimer(removeEventHandler, 7500, 1, "onClientRender", getRootElement(), self:draw)
+		self.timer = setTimer(removeEventHandler, 7500, 1, "onClientRender", getRootElement(), bind(self.draw, self))
 	end
 end
 
@@ -31,8 +31,9 @@ function infobox:draw()
 	elseif self.typ == 2 then
 		self.color = {{125, 0, 0, 255}, {255, 255, 255, 255}} -- {{bgcolor}, {textcolor}}
 	else
-		if isTimer(self.timer)
-		return self:add("infobox error - contact the administration", 2)
+		if isTimer(self.timer) then
+			return self:add("infobox error - contact the administration", 2)
+		end
 	end
 	-- Draw
 	dxDrawRectangle(0, 0, 0, 0, tocolor(unpack(self.color)), true)

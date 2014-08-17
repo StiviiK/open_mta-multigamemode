@@ -189,3 +189,12 @@ function Gamemode:sendMessage (msg, r, g, b, cc)
 		outputChatBox(msg, value, r, g, b, cc)
 	end
 end
+
+function Gamemode:unregisterAll ()
+	if (self == Gamemode) then
+		for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
+			gamemode:unregister()
+		end
+	end
+end
+addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), Gamemode.unregisterAll)
