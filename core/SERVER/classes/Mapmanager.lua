@@ -17,14 +17,12 @@ function Mapmanager:loadMap (gm, mapfile)
 	local self = setmetatable({}, {__index = Mapmanager})
 	self.GamemodeID = gm:getInfo("ID")
 	self.Objects = {};
-	self.Map = {};
 	self.MapFile = xmlLoadFile(mapfile)
 	for i, _ in ipairs(xmlNodeGetChildren(self.MapFile)) do
 		local child = xmlFindChild(self.MapFile, "object", i - 1)
 		if child then
 			local xmlData = xmlNodeGetAttributes(child)
 			table.insert(self.Objects, {
-				["map"] = mapfile,
 				["model"] = xmlData["model"],
 				["posX"] = xmlData["posX"],
 				["posY"] = xmlData["posY"],
@@ -68,14 +66,7 @@ function Mapmanager:createObjects ()
 				setElementInterior(self.tmpObject, v["interior"])
 			end
 			
-			self.Objects[i] = nil
-			
-			if (not self.Map) then
-				self.Map = {};
-			end
-			
-			table.insert(self.Map, self.tmpObject)
-
+			self.Objects[i] = self.tmpObject
 			self.tmpCounter = self.tmpCounter + 1	
 			
 			if (self.tmpCounter == 1000) then
@@ -85,25 +76,27 @@ function Mapmanager:createObjects ()
 			end
 		end
 		
-		outputDebugString("[Mapmanager] Finished creating "..#self.Map.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
+		outputChatBox(#gamemode.Elements["Object"])
+		
+		outputDebugString("[Mapmanager] Finished creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
 	end
 end
 
 function Mapmanager:unloadMap ()
-	if (type(self.Map) == "table") then
-		if (table.getn(self.Map) > 0) then
+	if (type(self.Objects) == "table") then
+		if (table.getn(self.Objects) > 0) then
 			self.removeFunction = function ()
-				local ObjCount = #self.Map
+				local ObjCount = #self.Objects
 				
-				outputDebugString("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("Name").." (ID: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("Name")..")")
+				outputDebugString("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("Name").." (ID: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("ID")..")")
 				
 				self.startTick = getTickCount()
 				self.tmpCounter = 0
 			
-				for i, v in ipairs(self.Map) do
+				for i, v in ipairs(self.Objects) do
 					destroyElement(v)
 					
-					self.Map[i] = nil
+					self.Objects[i] = nil
 					self.tmpCounter = self.tmpCounter + 1
 					
 					if (self.tmpCounter == 1000) then
@@ -123,6 +116,6 @@ function Mapmanager:unloadMap ()
 			error("Bad Argument @ Mapmanager.unloadMap [got empty MapTable]", 2)
 		end
 	else
-		error("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Map).."]", 2)
+		error("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Objects).."]", 2)
 	end
 end
