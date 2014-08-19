@@ -15,3 +15,8 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 		end
 	end
 end)
+
+local Map = Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
+addCommandHandler("testa", function ()
+	Map:unloadMap()
+end)

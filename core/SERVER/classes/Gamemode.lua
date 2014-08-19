@@ -77,6 +77,18 @@ function Gamemode:unregister ()
 	-- return a emtpy table because if you overide the gamemode varriable with the return of this function all gamemode functions also will be removed!
 end
 
+function Gamemode:isValid (gamemode)
+	if (self == Gamemode) then
+		for _, v in pairs(self.registeredGamemodes) do
+			if (v == gamemode) then
+				return true;
+			end
+		end
+	end
+	
+	return false;
+end
+
 function Gamemode:getFreeDimension ()
 	if (self == Gamemode) then
 		for i = 1, 500 do
