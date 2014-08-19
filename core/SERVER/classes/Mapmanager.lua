@@ -76,8 +76,6 @@ function Mapmanager:createObjects ()
 			end
 		end
 		
-		outputChatBox(#gamemode.Elements["Object"])
-		
 		outputDebugString("[Mapmanager] Finished creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
 	end
 end
@@ -101,7 +99,6 @@ function Mapmanager:unloadMap ()
 					
 					if (self.tmpCounter == 1000) then
 						self.tmpCounter = 0
-						outputDebugString("stop")
 						setTimer(function () coroutine.resume(self.coroutine) end, 50, 1)
 						coroutine.yield(self.coroutine)
 					end
