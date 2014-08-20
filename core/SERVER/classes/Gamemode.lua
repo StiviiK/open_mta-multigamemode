@@ -30,7 +30,8 @@ setmetatable(Gamemode, {
 						["Blip"] = {},
 						["Ped"] = {},
 						["RadarArea"] = {}
-					}
+					},
+					Maps = {}
 				}, {__index = Gamemode}
 			)
 		

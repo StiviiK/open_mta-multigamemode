@@ -3,9 +3,11 @@ Mapmanager = {}
 
 function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
-		error("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 2)
+		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
+		return;
 	elseif (not fileExists(mapfile)) then
-		error("Bad Argument @ Mapmanager.loadMap [Expectet Mapfile at Argument 2]", 2)
+		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expectet Mapfile at Argument 2]", 1)
+		return;
 	end
 	
 	local file = fileOpen(mapfile)
@@ -14,9 +16,15 @@ function Mapmanager:loadMap (gm, mapfile)
 	end
 	fileClose(file)
 	
+	if (gm.Maps[mapfile] ~= nil) then
+		outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
+		return;
+	end
+	
 	local self = setmetatable({}, {__index = Mapmanager})
 	self.GamemodeID = gm:getInfo("ID")
 	self.Objects = {};
+	self.MapName = mapfile
 	self.MapFile = xmlLoadFile(mapfile)
 	for i, _ in ipairs(xmlNodeGetChildren(self.MapFile)) do
 		local child = xmlFindChild(self.MapFile, "object", i - 1)
@@ -31,17 +39,23 @@ function Mapmanager:loadMap (gm, mapfile)
 				["rotY"] = xmlData["rotY"],
 				["rotZ"] = xmlData["rotZ"],
 				["id"] = xmlData["id"],
-				["collisions"] = (xmlData["collisions"] == "true" and true) or (xmlData["collisions"] == "false" and false),
+				["collisions"] = (xmlData["collisions"] == "false" and false or true),
 				["alpha"] = xmlData["alpha"],
 				["doublesided"] = (xmlData["doublesided"] == "true" and true) or (xmlData["doublesided"] == "false" and false),
 				["scale"] = xmlData["scale"],
 				["interior"] = xmlData["interior"]
 			})
+			
+			gm.Maps[self.MapName] = self.Objects
 		end
 	end
 	
 	self.coroutine = coroutine.create(bind(self.createObjects, self))
 	coroutine.resume(self.coroutine)
+	
+	for i in pairs(gm.Maps) do
+		outputChatBox(i)
+	end
 	
 	return self;
 end
@@ -50,7 +64,7 @@ function Mapmanager:createObjects ()
 	--assert(#self.Objects == 0, "Attempt to create 0 Objects @ Mapmanager.createObjects")
 	local gamemode = Gamemode:getGamemodeFromID(self.GamemodeID)
 	if (gamemode) then
-		outputDebugString("[Mapmanager] Creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (ID: "..gamemode:getInfo("ID")..")")
+		outputDebugString("[Mapmanager] Creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Map: "..self.MapName..")")
 		self.tmpCounter = 0
 		self.startTick = getTickCount()
 		
@@ -85,8 +99,9 @@ function Mapmanager:unloadMap ()
 		if (table.getn(self.Objects) > 0) then
 			self.removeFunction = function ()
 				local ObjCount = #self.Objects
+				local gamemode = Gamemode:getGamemodeFromID(self.GamemodeID)
 				
-				outputDebugString("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("Name").." (ID: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("ID")..")")
+				outputDebugString("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (ID: "..gamemode:getInfo("ID")..")")
 				
 				self.startTick = getTickCount()
 				self.tmpCounter = 0
@@ -104,15 +119,17 @@ function Mapmanager:unloadMap ()
 					end
 				end
 				
-				outputDebugString("[Mapmanager] Finished removing "..ObjCount.." Objects for Gamemode: "..Gamemode:getGamemodeFromID(self.GamemodeID):getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
+				gamemode.Maps[self.MapName] = nil
+				
+				outputDebugString("[Mapmanager] Finished removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
 			end
 			
 			self.coroutine = coroutine.create(self.removeFunction)
 			coroutine.resume(self.coroutine)
 		else
-			error("Bad Argument @ Mapmanager.unloadMap [got empty MapTable]", 2)
+			outputDebugString("Bad Argument @ Mapmanager.unloadMap [got empty MapTable]", 1)
 		end
 	else
-		error("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Objects).."]", 2)
+		outputDebugString("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Objects).."]", 1)
 	end
 end

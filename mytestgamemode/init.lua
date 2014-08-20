@@ -16,7 +16,7 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	end
 end)
 
-local Map = Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
-addCommandHandler("testa", function ()
-	Map:unloadMap()
-end)
+Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
+Mapmanager:loadMap(TestGamemode, "mytestgamemode/testa.map")
+
+outputChatBox("true")
