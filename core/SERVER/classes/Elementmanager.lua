@@ -13,15 +13,16 @@ function Gamemode:createBlip (...)
 	end
 end
 
-function Gamemode:createBlipAttachedTo (...)
-	local element = createBlipAttachedTo(...)
-	setElementDimension(element, self.Dimension)
-	
-	if (element) then
-		table.insert(self.Elements["Blip"], element)
-		return element;
-	else
-		return false;
+function Gamemode:createBlipAttachedTo (element, ...)
+	if (getElementDimension(element) == self.Dimension) then
+		local element = createBlipAttachedTo(...)
+		
+		if (element) then
+			table.insert(self.Elements["Blip"], element)
+			return element;
+		else
+			return false;
+		end
 	end
 end
 
