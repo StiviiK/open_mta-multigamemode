@@ -1,6 +1,14 @@
 -- This is the mapmanager for a MultiGamemode
 Mapmanager = {}
 
+function Mapmanager:destructor ()
+	for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
+		for _, map in pairs(gamemode.Maps) do
+			map:unloadMap()
+		end
+	end
+end
+
 function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
 		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
@@ -43,7 +51,7 @@ function Mapmanager:loadMap (gm, mapfile)
 				["interior"] = xmlData["interior"]
 			})
 			
-			gm.Maps[self.MapName] = self.Objects
+			gm.Maps[self.MapName] = self
 		end
 	end
 	

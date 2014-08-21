@@ -2,12 +2,35 @@
 Playermanager = {};
 
 function Playermanager:constructor ()
-	-- add da events
-	addEventHandler("onPlayerJoin", root, bind(self.onJoin, self))
-	addEventHandler("onPlayerQuit", root, bind(self.onQuit, self))
-	addEventHandler("onPlayerChat", root, bind(self.onChat, self))
-	addEventHandler("onPlayerGamemodeJoin", root, bind(self.onGamemodeJoin, self))
-	addEventHandler("onPlayerGamemodeLeft", root, bind(self.onGamemodeLeft, self))
+	-- Add the EventHandler Functions
+	self.onJoinFunc = bind(self.onJoin, self)
+	self.onQuitFunc = bind(self.onQuit, self)
+	self.onChatFunc = bind(self.onChat, self)
+	self.onGamemodeJoinFunc = bind(self.onGamemodeJoin, self)
+	self.onGamemodeLeftFunc = bind(self.onGamemodeLeft, self)
+	
+	-- Add the EventHandlers
+	addEventHandler("onPlayerJoin", root, self.onJoinFunc)
+	addEventHandler("onPlayerQuit", root, self.onQuitFunc)
+	addEventHandler("onPlayerChat", root, self.onChatFunc)
+	addEventHandler("onPlayerGamemodeJoin", root, self.onGamemodeJoinFunc)
+	addEventHandler("onPlayerGamemodeLeft", root, self.onGamemodeLeftFunc)
+end
+
+function Playermanager:destructor ()
+	-- Remove the EventHandlers
+	removeEventHandler("onPlayerJoin", root, self.onJoinFunc)
+	removeEventHandler("onPlayerQuit", root, self.onQuitFunc)
+	removeEventHandler("onPlayerChat", root, self.onChatFunc)
+	removeEventHandler("onPlayerGamemodeJoin", root, self.onGamemodeJoinFunc)
+	removeEventHandler("onPlayerGamemodeLeft", root, self.onGamemodeLeftFunc)
+	
+	-- Delete the EventHandler Functions
+	self.onJoinFunc = nil
+	self.onQuitFunc = nil
+	self.onChatFunc = nil
+	self.onGamemodeJoinFunc = nil
+	self.onGamemodeLeftFunc = nil
 end
 
 function Playermanager:onJoin (player, cmd)
@@ -62,3 +85,4 @@ function Playermanager:onGamemodeLeft (info)
 end
 
 Playermanager:constructor()
+--Playermanager:destructor()

@@ -23,4 +23,3 @@ addEventHandler("onPlayerGamemodeJoin", root, function (info)
 end)
 
 --Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
---Mapmanager:loadMap(TestGamemode, "mytestgamemode/testa.map")

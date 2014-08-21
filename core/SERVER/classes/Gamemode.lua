@@ -51,7 +51,12 @@ setmetatable(Gamemode, {
     end
 })
 
--- Globale Methode (aufrufbar via alle Gamemodes)
+function Gamemode:destructor ()
+	for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
+		gamemode:unregister()
+	end
+end
+
 function Gamemode:unregister ()
 	Gamemode.registeredGamemodes[self.ID] = nil; -- remove the gamemode in the registeredGamemodes Table
 	outputDebugString(("[Gamemodemanager] Unregistered Gamemode: %s (ID: %d)"):format(self.Name, self.ID))
@@ -92,9 +97,11 @@ end
 
 function Gamemode:getFreeDimension ()
 	if (self == Gamemode) then
-		for i = 1, 500 do
-			if (self.registeredGamemodes[i] == nil) then
-				return i;
+		for dim = 1, 500 do
+			for i in pairs(self.registeredGamemodes) do
+				if (self.registeredGamemodes[i].Dimension ~= dim) then
+					return dim;
+				end
 			end
 		end
 	end
@@ -203,12 +210,3 @@ function Gamemode:sendMessage (msg, r, g, b, cc)
 		outputChatBox(msg, value, r, g, b, cc)
 	end
 end
-
-function Gamemode:unregisterAll ()
-	if (self == Gamemode) then
-		for _, gamemode in ipairs(self.registeredGamemodes) do
-			gamemode:unregister()
-		end
-	end
-end
-addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), bind(Gamemode.unregisterAll, Gamemode))
