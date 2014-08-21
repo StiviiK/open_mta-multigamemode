@@ -8,3 +8,4 @@ Settings.DATABASE_Settings 	= "share=1"
 -- Custom Events
 addEvent("onPlayerGamemodeJoin", true)
 addEvent("onPlayerGamemodeLeft", true)
+addEvent("onGamemodeMinimumPlayerReached", true)

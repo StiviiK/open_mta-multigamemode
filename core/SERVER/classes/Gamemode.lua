@@ -122,7 +122,7 @@ function Gamemode:getGamemodeFromID (id)
 end
 
 function Gamemode:addPlayer (player)
-	if (self.PlayerCount + 1 < self.maxPlayers) then
+	if (self.PlayerCount + 1 <= self.maxPlayers) then
 		if (player:getGamemode() ~= self) then
 			-- Player
 			player:setGamemode(self)
@@ -132,9 +132,14 @@ function Gamemode:addPlayer (player)
 			self.Players[player] = {}
 			self.PlayerCount = self.PlayerCount + 1
 			
-			self:sendMessage(("#0678ee* #0678ee%s #d9d9d9has joined the Gamemode (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
+			self:sendMessage(("#0678ee* %s #d9d9d9has joined this room (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
 		
+			-- Call some Events
 			triggerEvent("onPlayerGamemodeJoin", player, self:getInfo())
+			
+			if (self.minPlayers == self.PlayerCount) then
+				triggerEvent("onGamemodeMinimumPlayerReached", root, self:getInfo())
+			end
 		end
 	end
 end
@@ -170,7 +175,7 @@ function Gamemode:removePlayer (player)
 		gamemode = nil
 	end
 	
-	self:sendMessage(("#0678ee* #0678ee%s #d9d9d9has left the Gamemode(%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
+	self:sendMessage(("#0678ee* %s #d9d9d9has left this root(%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
 end
 
 function Gamemode:isPlayerInGamemode (player)
