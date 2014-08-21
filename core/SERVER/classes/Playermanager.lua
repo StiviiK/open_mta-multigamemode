@@ -6,12 +6,21 @@ function Playermanager:constructor ()
 	addEventHandler("onPlayerJoin", root, bind(self.onJoin, self))
 	addEventHandler("onPlayerQuit", root, bind(self.onQuit, self))
 	addEventHandler("onPlayerChat", root, bind(self.onChat, self))
+	addEventHandler("onPlayerGamemodeJoin", root, bind(self.onGamemodeJoin, self))
+	addEventHandler("onPlayerGamemodeLeft", root, bind(self.onGamemodeLeft, self))
 end
 
-
-function Playermanager:onJoin ()
-	bindKey(source, "z", "down", "chatbox", "Global")
+function Playermanager:onJoin (player, cmd)
+	bindKey(player, "z", "down", "chatbox", "Global")
+	
+	local lobby = Gamemode:getGamemodeFromID(1)
+	local gm = player:getGamemode()
+	if (gm) then
+		gm:removePlayer(player)
+	end
+	lobby:addPlayer(player)
 end
+addCommandHandler("haha", bind(Playermanager.onJoin, Playermanager))
 
 
 function Playermanager:onQuit ()
@@ -43,5 +52,13 @@ function Playermanager:onPublicChat (player, cmd, ...)
 	end
 end
 addCommandHandler("Global", bind(Playermanager.onPublicChat, Playermanager))
+
+function Playermanager:onGamemodeJoin (info)
+	outputDebugString("[Playermanager] "..source:getName().." has joined the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
+end
+
+function Playermanager:onGamemodeLeft (info)
+	outputDebugString("[Playermanager] "..source:getName().." has left the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
+end
 
 Playermanager:constructor()

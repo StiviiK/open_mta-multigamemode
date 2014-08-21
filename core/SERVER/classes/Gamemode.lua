@@ -35,7 +35,7 @@ setmetatable(Gamemode, {
 				}, {__index = Gamemode}
 			)
 		
-			Gamemode.registeredGamemodes[obj.Dimension] = obj;
+			Gamemode.registeredGamemodes[obj.ID] = obj;
 			
 			outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
 			
@@ -44,7 +44,7 @@ setmetatable(Gamemode, {
 			
 			return obj;
 		else
-			outputDebugString(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1], properties[2]))
+			outputDebugString(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1] or #Gamemode.registeredGamemodes + 1, properties[2]))
 			
 			return false;
 		end
@@ -126,6 +126,8 @@ function Gamemode:addPlayer (player)
 			self.PlayerCount = self.PlayerCount + 1
 			
 			self:sendMessage(("#0678ee* #0678ee%s #d9d9d9has joined the Gamemode (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
+		
+			triggerEvent("onPlayerGamemodeJoin", player, self:getInfo())
 		end
 	end
 end
@@ -141,6 +143,9 @@ function Gamemode:removePlayer (player)
 		-- Gamemode
 		self.Players[player] = nil;
 		self.PlayerCount = self.PlayerCount - 1
+		
+		-- Eventhandler
+		triggerEvent("onPlayerGamemodeLeft", player, self:getInfo())
 	else
 		-- Player
 		local gamemode = player:getGamemode()
@@ -150,6 +155,9 @@ function Gamemode:removePlayer (player)
 		-- Gamemode
 		gamemode.Players[player] = nil;
 		gamemode.PlayerCount = gamemode.PlayerCount - 1
+		
+		-- Eventhandler
+		triggerEvent("onPlayerGamemodeLeft", player, gamemode:getInfo())
 		
 		-- Special
 		gamemode = nil

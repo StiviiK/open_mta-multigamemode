@@ -16,7 +16,11 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	end
 end)
 
-Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
-Mapmanager:loadMap(TestGamemode, "mytestgamemode/testa.map")
+addEventHandler("onPlayerGamemodeJoin", root, function (info)
+	if (TestGamemode:isPlayerInGamemode(source)) then
+		outputDebugString("Testgamemode")
+	end
+end)
 
-outputChatBox("true")
+--Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
+--Mapmanager:loadMap(TestGamemode, "mytestgamemode/testa.map")

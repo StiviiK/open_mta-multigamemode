@@ -24,6 +24,17 @@
 		<!-- Files -->
 	<!-- --->
 	
+	<!-- Lobby -->
+		<!-- Shared -->
+		
+		<!-- Server -->
+		<script src="lobby/SERVER/Main.lua" type="server"/>
+		
+		<!-- Client -->
+		
+		<!-- Files -->
+	<!-- -->
+	
 	<!-- TestGamemode -->
 		<!-- Shared -->
 		

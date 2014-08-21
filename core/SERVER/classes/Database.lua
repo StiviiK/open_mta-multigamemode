@@ -13,7 +13,9 @@ end
 
 function Database:destructor ()
 	if (self:isConnected()) then
-		destroyElement(self.Connection)
+		if (self.Connection) then
+			destroyElement(self.Connection)
+		end
 	end
 end
 

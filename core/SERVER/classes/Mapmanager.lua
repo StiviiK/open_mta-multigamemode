@@ -3,11 +3,9 @@ Mapmanager = {}
 
 function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
-		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
-		return;
+		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
 	elseif (not fileExists(mapfile)) then
-		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expectet Mapfile at Argument 2]", 1)
-		return;
+		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expectet Mapfile at Argument 2]", 1)
 	end
 	
 	local file = fileOpen(mapfile)
@@ -17,8 +15,7 @@ function Mapmanager:loadMap (gm, mapfile)
 	fileClose(file)
 	
 	if (gm.Maps[mapfile] ~= nil) then
-		outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
-		return;
+		return outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
 	end
 	
 	local self = setmetatable({}, {__index = Mapmanager})

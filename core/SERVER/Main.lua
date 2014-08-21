@@ -4,8 +4,8 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 	end
 	
 --	delete(Gamemode)
---	delete(Playermanager)
---	delete(Database)
+	delete(Playermanager)
+	delete(Database)
 end)
 
 addEventHandler("onResourceStart", resourceRoot, function ()
