@@ -3,6 +3,7 @@ Playermanager = {};
 
 function Playermanager:constructor ()
 	-- Add the EventHandler Functions
+	self.onResourceStartFunc = bind(self.onResourceStart, self)
 	self.onJoinFunc = bind(self.onJoin, self)
 	self.onQuitFunc = bind(self.onQuit, self)
 	self.onChatFunc = bind(self.onChat, self)
@@ -10,6 +11,7 @@ function Playermanager:constructor ()
 	self.onGamemodeLeftFunc = bind(self.onGamemodeLeft, self)
 	
 	-- Add the EventHandlers
+	addEventHandler("onResourceStart", root, self.onResourceStartFunc)
 	addEventHandler("onPlayerJoin", root, self.onJoinFunc)
 	addEventHandler("onPlayerQuit", root, self.onQuitFunc)
 	addEventHandler("onPlayerChat", root, self.onChatFunc)
@@ -19,6 +21,7 @@ end
 
 function Playermanager:destructor ()
 	-- Remove the EventHandlers
+	removeEventHandler("onResourceStart", root, self.onResourceStartFunc)
 	removeEventHandler("onPlayerJoin", root, self.onJoinFunc)
 	removeEventHandler("onPlayerQuit", root, self.onQuitFunc)
 	removeEventHandler("onPlayerChat", root, self.onChatFunc)
@@ -26,11 +29,25 @@ function Playermanager:destructor ()
 	removeEventHandler("onPlayerGamemodeLeft", root, self.onGamemodeLeftFunc)
 	
 	-- Delete the EventHandler Functions
+	self.onResourceStartFunc = nil
 	self.onJoinFunc = nil
 	self.onQuitFunc = nil
 	self.onChatFunc = nil
 	self.onGamemodeJoinFunc = nil
 	self.onGamemodeLeftFunc = nil
+end
+
+function Playermanager:onResourceStart ()
+	for _, player in ipairs(getElementsByType("player")) do
+		bindKey(player, "z", "down", "chatbox", "Global")
+	
+		local lobby = Gamemode:getGamemodeFromID(1)
+		local gm = player:getGamemode()
+		if (gm) then
+			gm:removePlayer(player)
+		end
+		lobby:addPlayer(player)
+	end
 end
 
 function Playermanager:onJoin ()

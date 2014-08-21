@@ -5,7 +5,6 @@ function Lobby:onPlayerJoin (player)
 	player:sendMessage(("Willkommen %s"):format(getPlayerName(player)), 255, 0, 0, true)
 end
 
-
 addEventHandler("onPlayerGamemodeJoin", root, function ()
 	if (Lobby:isPlayerInGamemode(source)) then
 		Lobby:onPlayerJoin(source)

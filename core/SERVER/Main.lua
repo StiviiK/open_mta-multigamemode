@@ -12,5 +12,8 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 	outputDebugString("------ Stopping the Gamemode ------")
 end)
 
+
+
+-- On Gamemode start
 outputDebugString("------ Starting the Gamemode ------")
 --Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)

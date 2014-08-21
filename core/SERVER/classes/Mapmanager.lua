@@ -13,7 +13,7 @@ function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
 		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
 	elseif (not fileExists(mapfile)) then
-		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expectet Mapfile at Argument 2]", 1)
+		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2]", 1)
 	end
 	
 	local file = fileOpen(mapfile)
