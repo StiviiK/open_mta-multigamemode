@@ -13,14 +13,12 @@ end
 
 function Database:destructor ()
 	if (self:isConnected()) then
-		if (self.Connection) then
-			destroyElement(self.Connection)
-		end
+		destroyElement(self.Connection)
 	end
 end
 
 function Database:isConnected ()
-	return self.Connection ~= false;
+	return self.Connection ~= false and self.Connection ~= nil;
 end
 
 function Database:query (...)
