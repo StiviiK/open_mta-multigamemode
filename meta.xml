@@ -31,6 +31,7 @@
 		<script src="lobby/SERVER/Main.lua" type="server"/>
 		
 		<!-- Client -->
+		<script src="lobby/CLIENT/Main.lua" type="client"/>
 		
 		<!-- Files -->
 	<!-- -->
@@ -49,5 +50,6 @@
 	<aclrequest>
 		<right name="function.restartResource" access="true"/>
 		<right name="function.stopResource" access="true"/>
+		<right name="function.kickPlayer" access="true"/>
 	</aclrequest>
 </meta>

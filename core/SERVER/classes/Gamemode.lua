@@ -122,8 +122,8 @@ function Gamemode:getGamemodeFromID (id)
 end
 
 function Gamemode:addPlayer (player)
-	if (self.PlayerCount + 1 <= self.maxPlayers) then
-		if (player:getGamemode() ~= self) then
+	if (player:getGamemode() ~= self) then
+		if (self.PlayerCount + 1 <= self.maxPlayers) then
 			-- Player
 			player:setGamemode(self)
 			player:setDimension(self.Dimension)

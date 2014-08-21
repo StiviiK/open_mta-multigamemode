@@ -1,10 +1,21 @@
 Lobby = Gamemode{nil, "Lobby", "This is the Lobby", "StiviK", 0, getMaxPlayers(), 1, {0, 0, 0, 21}, {0, 0, 3, "cylinder", 1}} -- Register a new Gamemode
---Mapmanager:loadMap(Lobby, "mytestgamemode/testa.map")
+--Lobby:createMarker(1712.0999755859, -1639.9000244141, 19.200000762939, "cylinder", 1, 0, 4, 100)
+
+local marker = Lobby:createMarker(1726.93713, -1638.32935, 19.29, "cylinder", 1, 125, 0, 0)
+setElementInterior(marker, 18)
+addEventHandler("onMarkerHit", marker, function (hitele, dim)
+	if (getElementType(hitele) == "player" and dim) then
+		kickPlayer(hitele, "Server", "Du hast den Server erfolgreich verlassen.")
+	end
+end)
 
 function Lobby:onPlayerJoin (player)
-	player:setInterior(18)
-	player:setPosition(1717.84912, -1651.28259, 20.23014)
-	player:setRotation(0, 0, 223.45709228516)
+	spawnPlayer(player, 0, 0, 0)
+
+	setElementInterior(player, 18)
+	setElementPosition(player, 1717.84912, -1651.28259, 20.23014)
+	setElementRotation(player, 0, 0, 223.45709228516)
+	setElementAlpha(player, 200)
 end
 
 addEventHandler("onPlayerGamemodeJoin", root, function ()
