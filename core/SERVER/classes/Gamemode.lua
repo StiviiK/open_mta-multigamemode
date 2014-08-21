@@ -98,7 +98,7 @@ end
 function Gamemode:getFreeDimension ()
 	if (self == Gamemode) then
 		for dim = 1, 500 do
-			for i in pairs(self.registeredGamemodes) do
+			for i in ipairs(self.registeredGamemodes) do
 				if (self.registeredGamemodes[i].Dimension ~= dim) then
 					return dim;
 				end

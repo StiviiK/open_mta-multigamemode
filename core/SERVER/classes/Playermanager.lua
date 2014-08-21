@@ -33,18 +33,16 @@ function Playermanager:destructor ()
 	self.onGamemodeLeftFunc = nil
 end
 
-function Playermanager:onJoin (player, cmd)
-	bindKey(player, "z", "down", "chatbox", "Global")
+function Playermanager:onJoin ()
+	bindKey(source, "z", "down", "chatbox", "Global")
 	
 	local lobby = Gamemode:getGamemodeFromID(1)
-	local gm = player:getGamemode()
+	local gm = source:getGamemode()
 	if (gm) then
-		gm:removePlayer(player)
+		gm:removePlayer(source)
 	end
-	lobby:addPlayer(player)
+	lobby:addPlayer(source)
 end
-addCommandHandler("haha", bind(Playermanager.onJoin, Playermanager))
-
 
 function Playermanager:onQuit ()
 	local gamemode = source:getGamemode()

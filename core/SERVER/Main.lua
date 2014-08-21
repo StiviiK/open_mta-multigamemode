@@ -8,7 +8,7 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 	outputDebugString("[CALLING] Gamemodemanager: destructor")
 	--delete(Gamemode) -- Causes Error
 	Gamemode:destructor()
-
+	
 	outputDebugString("------ Stopping the Gamemode ------")
 end)
 

@@ -1,4 +1,4 @@
-Lobby = Gamemode{nil, "Lobby", "This is the Lobby", "StiviK", 0, 1024, 1, {0, 0, 0, 21}, {0, 0, 3, "cylinder", 1}} -- Register a new Gamemode
+Lobby = Gamemode{nil, "Lobby", "This is the Lobby", "StiviK", 0, 9999, 1, {0, 0, 0, 21}, {0, 0, 3, "cylinder", 1}} -- Register a new Gamemode
 --Mapmanager:loadMap(Lobby, "mytestgamemode/testa.map")
 
 function Lobby:onPlayerJoin (player)

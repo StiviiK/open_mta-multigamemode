@@ -11,6 +11,11 @@ TestGamemode = Gamemode{nil, "TestGamemode", "This is a test gamemode!", "StiviK
 addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	if (getElementType(ele) == "player") then
 		if (dim) then
+			local gm = ele:getGamemode()
+			if (gm) then
+				gm:removePlayer(ele)
+			end
+		
 			TestGamemode:addPlayer(ele)
 		end
 	end
