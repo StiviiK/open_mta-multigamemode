@@ -4,11 +4,6 @@
 	<oop>true</oop>
 	
 	<!-- Core -->
-		<!-- Language -->
-		<script src="core/SHARED/classes/Language.lua" type="server"/>
-		<script src="core/SHARED/langs/de.lua" type="server"/>
-		<script src="core/SHARED/langs/en.lua" type="server"/>
-		
 		<!-- Shared -->
 		<script src="core/SHARED/include/classlib.lua" type="shared"/>
 	

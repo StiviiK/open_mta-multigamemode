@@ -18,5 +18,8 @@ function Lobby:onPlayerJoin (player)
 	setElementAlpha(player, 200)
 end
 
-addEventHandler("onPlayerGamemodeJoin", Lobby.Element, function ()
+addEventHandler("onPlayerGamemodeJoin", root, function ()
+	if (Lobby:isPlayerInGamemode(source)) then
+		Lobby:onPlayerJoin(source)
+	end
 end)

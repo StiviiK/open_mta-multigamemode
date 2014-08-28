@@ -1,6 +1,1 @@
-<Permissions>
-	<group name="Everyone">
-		<right name="cmd.info" access="true"/> <!-- Basic CMD -->
-		<right name="event.MeinCoolesEvent" access="true"/> <!-- Basic Event -->
-	</group>
-</Permissions>
+<Permissions></Permissions>
