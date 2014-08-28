@@ -21,10 +21,8 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	end
 end)
 
-addEventHandler("onPlayerGamemodeJoin", root, function (info)
-	if (TestGamemode:isPlayerInGamemode(source)) then
-		outputDebugString("Testgamemode")
-	end
+addEventHandler("onPlayerGamemodeJoin", TestGamemode.Element, function (info)
+	outputDebugString("OKEY2")
 end)
 
 --Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")

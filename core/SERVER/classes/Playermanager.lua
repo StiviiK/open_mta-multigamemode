@@ -91,12 +91,12 @@ function Playermanager:onPublicChat (player, cmd, ...)
 end
 addCommandHandler("Global", bind(Playermanager.onPublicChat, Playermanager))
 
-function Playermanager:onGamemodeJoin (info)
-	outputDebugString("[Playermanager] "..source:getName().." has joined the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
+function Playermanager:onGamemodeJoin (player, info)
+	outputDebugString("[Playermanager] "..player:getName().." has joined the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
 end
 
-function Playermanager:onGamemodeLeft (info)
-	outputDebugString("[Playermanager] "..source:getName().." has left the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
+function Playermanager:onGamemodeLeft (player, info)
+	outputDebugString("[Playermanager] "..player:getName().." has left the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
 end
 
 Playermanager:constructor()
