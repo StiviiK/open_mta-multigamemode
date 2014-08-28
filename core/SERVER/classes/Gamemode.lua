@@ -20,6 +20,7 @@ setmetatable(Gamemode, {
 					PlayerCount = 0,
 					Blip = createBlip(unpack(properties[8])) or false,
 					Marker = createMarker(unpack(properties[9])) or false,
+					Element = createElement("Gamemode_Element", properties[1]),
 					Elements = {
 						["Ped"] = {},
 						["Vehicle"] = {},
@@ -135,10 +136,10 @@ function Gamemode:addPlayer (player)
 			self:sendMessage(("#0678ee* %s #d9d9d9has joined this room (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
 		
 			-- Call some Events
-			triggerEvent("onPlayerGamemodeJoin", player, self:getInfo())
+			triggerEvent("onPlayerGamemodeJoin", self.Element, player, self:getInfo())
 			
 			if (self.minPlayers == self.PlayerCount) then
-				triggerEvent("onGamemodeMinimumPlayerReached", root, self:getInfo())
+				triggerEvent("onGamemodeMinimumPlayerReached", self.Element, player, self:getInfo())
 			end
 		end
 	end
@@ -157,7 +158,7 @@ function Gamemode:removePlayer (player)
 		self.PlayerCount = self.PlayerCount - 1
 		
 		-- Eventhandler
-		triggerEvent("onPlayerGamemodeLeft", player, self:getInfo())
+		triggerEvent("onPlayerGamemodeLeft", self.Element, player, self:getInfo())
 	else
 		-- Player
 		local gamemode = player:getGamemode()
@@ -169,7 +170,7 @@ function Gamemode:removePlayer (player)
 		gamemode.PlayerCount = gamemode.PlayerCount - 1
 		
 		-- Eventhandler
-		triggerEvent("onPlayerGamemodeLeft", player, gamemode:getInfo())
+		triggerEvent("onPlayerGamemodeLeft", self.Element, player, gamemode:getInfo())
 		
 		-- Special
 		gamemode = nil
@@ -215,3 +216,15 @@ function Gamemode:sendMessage (msg, r, g, b, cc)
 		outputChatBox(msg, value, r, g, b, cc)
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+Language:getMessage("de_DE")
