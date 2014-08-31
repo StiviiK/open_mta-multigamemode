@@ -11,6 +11,7 @@
 		
 		<!-- Shared -->
 		<script src="core/SHARED/include/classlib.lua" type="shared"/>
+		<script src="core/SHARED/classes/RPC.lua" type="shared"/>
 	
 		<!-- Server -->
 		<script src="core/SERVER/Settings.lua" type="server"/>
