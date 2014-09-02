@@ -9,3 +9,8 @@ Settings.DATABASE_Settings 	= "share=1"
 addEvent("onPlayerGamemodeJoin", true)
 addEvent("onPlayerGamemodeLeft", true)
 addEvent("onGamemodeMinimumPlayerReached", true)
+
+-- Experimental
+RPC:addListeningEvent("onPlayerGamemodeJoin")
+RPC:addListeningEvent("onPlayerGamemodeLeft")
+RPC:addListeningEvent("onGamemodeMinimumPlayerReached")

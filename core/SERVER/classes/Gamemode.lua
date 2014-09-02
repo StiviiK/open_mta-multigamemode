@@ -137,9 +137,13 @@ function Gamemode:addPlayer (player)
 		
 			-- Call some Events
 			triggerEvent("onPlayerGamemodeJoin", self.Element, player, self:getInfo())
+			-- Experimental
+			RPC:callListener("onPlayerGamemodeJoin", self.Element, player, self:getInfo())
 			
 			if (self.minPlayers == self.PlayerCount) then
 				triggerEvent("onGamemodeMinimumPlayerReached", self.Element, player, self:getInfo())
+				-- Experimental
+				RPC:callListener("onGamemodeMinimumPlayerReached", self.Element, player, self:getInfo())
 			end
 		end
 	end
@@ -159,6 +163,8 @@ function Gamemode:removePlayer (player)
 		
 		-- Eventhandler
 		triggerEvent("onPlayerGamemodeLeft", self.Element, player, self:getInfo())
+		-- Experimental
+		RPC:callListener("onPlayerGamemodeLeft", self.Element, player, self:getInfo())
 	else
 		-- Player
 		local gamemode = player:getGamemode()
@@ -171,12 +177,14 @@ function Gamemode:removePlayer (player)
 		
 		-- Eventhandler
 		triggerEvent("onPlayerGamemodeLeft", self.Element, player, gamemode:getInfo())
+		-- Experimental
+		RPC:callListener("onPlayerGamemodeLeft", self.Element, player, gamemode:getInfo())
 		
 		-- Special
 		gamemode = nil
 	end
 	
-	self:sendMessage(("#0678ee* %s #d9d9d9has left this root(%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
+	self:sendMessage(("#0678ee* %s #d9d9d9has left this room (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)
 end
 
 function Gamemode:isPlayerInGamemode (player)

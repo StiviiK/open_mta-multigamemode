@@ -21,7 +21,7 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	end
 end)
 
-addEventHandler("onPlayerGamemodeJoin", TestGamemode.Element, function (info)
+RPC:addListener("onPlayerGamemodeJoin", TestGamemode.Element, function (info)
 	outputDebugString("OKEY2")
 end)
 

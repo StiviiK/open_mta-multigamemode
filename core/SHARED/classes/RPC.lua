@@ -59,7 +59,7 @@ function RPC:callListener (event, element, ...)
 			end
 		end
 		
-		for key, value in pairs(self.listeningEvents[event] or {}) do
+		for key, value in ipairs(self.listeningEvents[event] or {}) do
 			if (element == getRootElement()) then
 				pcall(value["func"], ...)
 			elseif (value["element"] == getRootElement()) then
@@ -112,9 +112,9 @@ function RPC:removeListener (event, element)
 	if (self == RPC) then
 		if (self.listeningEvents[event] ~= nil) then
 			if (element == getRootElement()) then
-				self.listeningEvents[event] = nil;
+				self.listeningEvents[event] = {};
 			else
-				for key, value in pairs(self.listeningEvents[event] or {}) do
+				for key, value in ipairs(self.listeningEvents[event] or {}) do
 					if (value["element"] == element) then
 						RPC.listeningEvents[event][key] = nil;
 					end
@@ -125,7 +125,7 @@ function RPC:removeListener (event, element)
 		end
 	elseif (instanceof(self, RPC)) then
 		if (self.element ~= getRootElement()) then
-			for key, value in pairs(RPC.listeningEvents[self.event] or {}) do
+			for key, value in ipairs(RPC.listeningEvents[self.event] or {}) do
 				if (value["element"] == self.element) then
 					RPC.listeningEvents[self.event][key] = nil;
 				end
@@ -137,11 +137,11 @@ function RPC:removeListener (event, element)
 end
 
 if (SERVER) then
-	RPC:addListeningEvent("test1")
-	event1 = RPC:addListener("test1", "f", function (arg1) outputChatBox("WORKS: "..tostring(arg1)) end)
-	event2 = RPC:addListener("test1", "tt", function (arg1) outputChatBox("HAHAHA: "..tostring(arg1)) end)
-	RPC:callListener("test1", root, "Bitch")
-	RPC:callListener("test1", root, "Bitch2")
+	--RPC:addListeningEvent("test1")
+	--event1 = RPC:addListener("test1", "f", function (arg1) outputChatBox("WORKS: "..tostring(arg1)) end)
+	--event2 = RPC:addListener("test1", "tt", function (arg1) outputChatBox("HAHAHA: "..tostring(arg1)) end)
+	--RPC:callListener("test1", root, "Bitch")
+	--RPC:callListener("test1", root, "Bitch2")
 end
 	
 --[[
