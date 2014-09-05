@@ -107,7 +107,6 @@ elseif (CLIENT) then
 	addEventHandler("RPC.callClientListener", root, bind(RPC.onServertListenerCall, RPC))
 end
 
-
 function RPC:removeListener (event, element)
 	if (self == RPC) then
 		if (self.listeningEvents[event] ~= nil) then

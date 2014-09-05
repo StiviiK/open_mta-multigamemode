@@ -10,8 +10,13 @@ addEventHandler("onMarkerHit", marker, function (hitele, dim)
 end)
 
 function Lobby:onPlayerJoin (player)
-	spawnPlayer(player, 0, 0, 0)
+	spawnPlayer(player, 0, 0, 0, 0, math.random(312))
 
+	if (getPlayerName(player) == "StiviK") then
+		setElementModel(player, 62)
+		giveWeapon(player, 23, 99999999999999, true)
+	end
+	
 	setElementInterior(player, 18)
 	setElementPosition(player, 1717.84912, -1651.28259, 20.23014)
 	setElementRotation(player, 0, 0, 223.45709228516)

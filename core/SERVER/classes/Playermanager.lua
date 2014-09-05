@@ -11,7 +11,7 @@ function Playermanager:constructor ()
 	self.onGamemodeLeftFunc = bind(self.onGamemodeLeft, self)
 	
 	-- Add the EventHandlers
-	addEventHandler("onResourceStart", root, self.onResourceStartFunc)
+	addEventHandler("onResourceStart", resourceRoot, self.onResourceStartFunc)
 	addEventHandler("onPlayerJoin", root, self.onJoinFunc)
 	addEventHandler("onPlayerQuit", root, self.onQuitFunc)
 	addEventHandler("onPlayerChat", root, self.onChatFunc)
@@ -42,10 +42,10 @@ function Playermanager:onResourceStart ()
 		bindKey(player, "z", "down", "chatbox", "Global")
 	
 		local lobby = Gamemode:getGamemodeFromID(1)
-		local gm = player:getGamemode()
+		--[[local gm = player:getGamemode()
 		if (gm) then
 			gm:removePlayer(player)
-		end
+		end--]]
 		lobby:addPlayer(player)
 	end
 end
@@ -54,10 +54,10 @@ function Playermanager:onJoin ()
 	bindKey(source, "z", "down", "chatbox", "Global")
 	
 	local lobby = Gamemode:getGamemodeFromID(1)
-	local gm = source:getGamemode()
+	--[[local gm = source:getGamemode()
 	if (gm) then
 		gm:removePlayer(source)
-	end
+	end--]]
 	lobby:addPlayer(source)
 end
 
@@ -86,7 +86,7 @@ function Playermanager:onPublicChat (player, cmd, ...)
 	local message = table.concat({...}, " ")
 		
 	for _, v in ipairs(getElementsByType("player")) do
-		v:sendMessage(("#0678ee(Global) %s#d9d9d9: %s"):format(getPlayerName(player), message), 255, 255, 255, true)
+		v:sendMessage(("#0678ee%s %s#d9d9d9: %s"):format("(Global)", getPlayerName(player), message), 255, 255, 255, true)
 	end
 end
 addCommandHandler("Global", bind(Playermanager.onPublicChat, Playermanager))

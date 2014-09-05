@@ -7,11 +7,11 @@
 --\\
 SERVER = triggerServerEvent == nil
 CLIENT = not SERVER
-DEBUG = DEBUG or false
+Settings.DEBUG = Settings.DEBUG or false
 
 function enew(element, class, ...)
 	-- DEBUG: Validate that we are not instantiating a class with pure virtual methods
-	if DEBUG then
+	if Settings.DEBUG then
 		for k, v in pairs(class) do
 			assert(v ~= pure_virtual, "Attempted to instanciate a class with an unimplemented pure virtual method ("..tostring(k)..")")
 		end
@@ -61,7 +61,7 @@ function new(class, ...)
 	assert(type(class) == "table", "first argument provided to new is not a table")
 	
 	-- DEBUG: Validate that we are not instantiating a class with pure virtual methods
-	if DEBUG then
+	if Settings.DEBUG then
 		for k, v in pairs(class) do
 			assert(v ~= pure_virtual, "Attempted to instanciate a class with an unimplemented pure virtual method ("..tostring(k)..")")
 		end
@@ -194,7 +194,7 @@ end
 
 function bind(func, ...)
 	if not func then
-		if DEBUG then
+		if Settings.DEBUG then
 			outputConsole(debug.traceback())
 		end
 		error("Bad function pointer @ bind. See console for more details")

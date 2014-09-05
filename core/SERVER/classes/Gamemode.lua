@@ -224,15 +224,3 @@ function Gamemode:sendMessage (msg, r, g, b, cc)
 		outputChatBox(msg, value, r, g, b, cc)
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-Language:getMessage("de_DE")
