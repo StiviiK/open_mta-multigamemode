@@ -24,5 +24,3 @@ end)
 RPC:addListener("onPlayerGamemodeJoin", TestGamemode.Element, function (info)
 	outputDebugString("OKEY2")
 end)
-
---Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")

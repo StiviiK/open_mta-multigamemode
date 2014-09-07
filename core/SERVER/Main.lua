@@ -10,6 +10,15 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 	Gamemode:destructor()
 	
 	outputDebugString("------ Stopping the Gamemode ------")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
+	outputDebugString("")
 end)
 
 

@@ -1,4 +1,4 @@
-if Settings.DEBUG then
+if DEBUG then
 	Debugging = {}
 	
 	function Debugging:constructor ()

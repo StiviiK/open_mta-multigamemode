@@ -7,9 +7,6 @@ Settings.DATABASE_Pass		= ""
 Settings.DATABASE_DBName	= "multi-sa"
 Settings.DATABASE_Settings	= "share=1"
 
--- Debugging
-Settings.DEBUG = true
-
 -- Custom Events
 addEvent("onPlayerGamemodeJoin", true)
 addEvent("onPlayerGamemodeLeft", true)
