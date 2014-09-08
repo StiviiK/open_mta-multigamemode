@@ -28,7 +28,6 @@
 		<script src="core/SERVER/classes/Mapmanager.lua" type="server"/>
 		
 		<!-- Client -->
-		<script src="core/CLIENT/classes/dxElements.lua" type="client" cache="false"/>
 		
 		<!-- Files -->
 	<!-- --->

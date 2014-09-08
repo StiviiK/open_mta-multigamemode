@@ -11,9 +11,11 @@ end
 
 function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
-		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
+		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
+		return;
 	elseif (not fileExists(mapfile)) then
-		return outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2]", 1)
+		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2]", 1)
+		return;
 	end
 	
 	local file = fileOpen(mapfile)
@@ -23,7 +25,8 @@ function Mapmanager:loadMap (gm, mapfile)
 	fileClose(file)
 	
 	if (gm.Maps[mapfile] ~= nil) then
-		return outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
+		outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
+		return;
 	end
 	
 	local self = setmetatable({}, {__index = Mapmanager})
@@ -57,10 +60,6 @@ function Mapmanager:loadMap (gm, mapfile)
 	
 	self.coroutine = coroutine.create(bind(self.createObjects, self))
 	coroutine.resume(self.coroutine)
-	
-	for i in pairs(gm.Maps) do
-		outputChatBox(i)
-	end
 	
 	return self;
 end

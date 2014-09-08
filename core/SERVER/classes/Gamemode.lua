@@ -5,15 +5,15 @@ Gamemode = {
 };
 
 setmetatable(Gamemode, {
-    __call = function (_, properties)
-		if (not Gamemode:getGamemodeFromID(properties[1] or #Gamemode.registeredGamemodes + 1) and (#Gamemode.registeredGamemodes < Gamemode.maxAllowedGamemodes)) then
+    __call = function (self, properties)
+		if (not self:getGamemodeFromID(properties[1] or #self.registeredGamemodes + 1) and (#self.registeredGamemodes < self.maxAllowedGamemodes)) then
 			local obj = setmetatable(
 				{
-					ID = properties[1] or #Gamemode.registeredGamemodes + 1,
+					ID = properties[1] or #self.registeredGamemodes + 1,
 					Name = properties[2] or "[WARNING] No Name given!",
 					Description = properties[3] or "No Description given!",
 					Author = properties[4],
-					Dimension = properties[5] or Gamemode:getFreeDimension(),
+					Dimension = properties[5] or self:getFreeDimension(),
 					Players = {},
 					maxPlayers = properties[6] or 16,
 					minPlayers = properties[7] or 1,
@@ -33,15 +33,12 @@ setmetatable(Gamemode, {
 						["RadarArea"] = {}
 					},
 					Maps = {}
-				}, {__index = Gamemode}
+				}, {__index = self}
 			)
 		
-			Gamemode.registeredGamemodes[obj.ID] = obj;
+			self.registeredGamemodes[obj.ID] = obj;
 			
 			outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
-			
-			addEventHandler("onMarkerHit", obj.Marker, function (hitelement)
-			end)
 			
 			return obj;
 		else

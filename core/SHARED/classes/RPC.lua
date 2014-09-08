@@ -46,10 +46,6 @@ function RPC:addListener (eventName, element, func)
 	return event;
 end
 
-function RPC:removeListener ()
-	-- self
-end
-
 function RPC:callListener (event, element, ...)
 	if (self == RPC) then
 		if (type(element) == "userdata" and getElementType(element) == "player") then
