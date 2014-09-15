@@ -18,14 +18,17 @@
 	
 		<!-- Server -->
 		<script src="core/SERVER/Settings.lua" type="server"/>
+		<script src="core/SERVER/DEV-Settings.lua" type="server"/>
 		<script src="core/SERVER/Main.lua" type="server"/>
-		<script src="core/SERVER/classes/Database.lua" type="server"/>
-		<script src="core/SERVER/classes/Player.lua" type="server"/>
-		<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
-		<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
-		<script src="core/SERVER/classes/Elementmanager.lua" type="server"/>
-		<script src="core/SERVER/classes/Permissionmanager.lua" type="server"/>
-		<script src="core/SERVER/classes/Mapmanager.lua" type="server"/>
+		<!-- The loading of the classes is managed in core/SERVER/Main.lua and 
+			<script src="core/SERVER/classes/Database.lua" type="server"/>
+			<script src="core/SERVER/classes/Player.lua" type="server"/>
+			<script src="core/SERVER/classes/Playermanager.lua" type="server"/>
+			<script src="core/SERVER/classes/Gamemode.lua" type="server"/>
+			<script src="core/SERVER/classes/Elementmanager.lua" type="server"/>
+			<script src="core/SERVER/classes/Permissionmanager.lua" type="server"/>
+			<script src="core/SERVER/classes/Mapmanager.lua" type="server"/>
+		-->
 		
 		<!-- Client -->
 		

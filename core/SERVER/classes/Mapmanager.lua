@@ -47,7 +47,7 @@ function Mapmanager:loadMap (gm, mapfile)
 				["rotY"] = xmlData["rotY"],
 				["rotZ"] = xmlData["rotZ"],
 				["id"] = xmlData["id"],
-				["collisions"] = (xmlData["collisions"] == "false" and false or true),
+				["collisions"] = (xmlData["collisions"] == "true" and true) or (xmlData["collisions"] == "false" and false),
 				["alpha"] = xmlData["alpha"],
 				["doublesided"] = (xmlData["doublesided"] == "true" and true) or (xmlData["doublesided"] == "false" and false),
 				["scale"] = xmlData["scale"],
