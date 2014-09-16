@@ -32,7 +32,7 @@ function enew(element, class, ...)
 			__pow = class.__pow;
 			__concat = class.__concat;		
 		})
-		
+	
 	oop.elementInfo[element] = instance
 	
 	local callDerivedConstructor;
@@ -196,6 +196,7 @@ function bind(func, ...)
 	if not func then
 		if DEBUG then
 			outputConsole(debug.traceback())
+			outputServerLog(debug.traceback())
 		end
 		error("Bad function pointer @ bind. See console for more details")
 	end
@@ -239,50 +240,21 @@ end
 -- Magic to allow MTA elements to be used as data storage
 -- e.g. localPlayer.foo = 12
 oop = {}
-oop.mta_metatable = {}
 oop.elementInfo = setmetatable({}, { __mode = "k" })
 oop.elementClasses = {}
 
-oop.getMTATypeMetatable = function(t)
-	local element = false
-	if t == "player" then return debug.getmetatable(localPlayer or getRandomPlayer())
-	elseif t == "vehicle" then element = createVehicle(411, 0, 0, 0)
-	elseif t == "colshape" then element = createColCircle(0, 0, 1)
-	elseif t == "element" then element = createElement("oopelement")
-	elseif t == "marker" then element = createMarker(0, 0, 0, "ring")
-	elseif t == "object" then element = createObject(1337, 0, 0, 0)
-	elseif t == "ped" then element = createPed(0, 0, 0, 0)
-	elseif t == "pickup" then element = createPickup(0, 0, 0, 0, 0)
-	elseif t == "radarArea" then element = createRadarArea(0, 0, 1, 1)
-	elseif t == "water" then element = createWater(0, 0, 0, 2, 2, 2, 4, 4, 4)
-	elseif t == "weapon" then element = createWeapon("m4", 0, 0, 0)
-	elseif SERVER then
-		if t == "team" then element = createTeam("oopteam") end
-	elseif CLIENT then
-		if t == "sound" then element = playSFX("feet", 1, 1) 
-		elseif t == "camera" then return debug.getmetatable(getCamera())
-		elseif t == "effect" then element = createEffect("fire", 0, 0, 0)
-			-- todo: check if GUI elements have OOP
-		end
-	end
-		
-		
-	assert(element, t)
-	
-	local mt = debug.getmetatable(element)
-	destroyElement(element)
-	
-	return mt
-end
-
 oop.prepareClass = function(name)
-	local mt = oop.mta_metatable[name]
+	local mt = debug.getregistry().mt[name]
+	
+	if not mt then
+		outputDebugString("No such class mt "..tostring(name))
+		return
+	end
 	
 	-- Store MTA's metafunctions
 	local __mtaindex = mt.__index
 	local __mtanewindex = mt.__newindex
 	local __set= mt.__set
-	
 	
 	mt.__index = function(self, key)
 		if not oop.handled then
@@ -299,6 +271,7 @@ oop.prepareClass = function(name)
 		oop.handled = false
 		return value
 	end
+	
 	
 	mt.__newindex = function(self, key, value)
 		if __set[key] ~= nil then
@@ -319,46 +292,72 @@ function registerElementClass(class, name)
 end
 
 oop.initClasses = function()
-	oop.mta_metatable["vehicle"] = oop.getMTATypeMetatable("vehicle")
-	oop.mta_metatable["colshape"] = oop.getMTATypeMetatable("colshape")
-	oop.mta_metatable["element"] = oop.getMTATypeMetatable("element")
-	oop.mta_metatable["marker"] = oop.getMTATypeMetatable("marker")
-	oop.mta_metatable["object"] = oop.getMTATypeMetatable("object")
-	oop.mta_metatable["ped"] = oop.getMTATypeMetatable("ped")
-	oop.mta_metatable["pickup"] = oop.getMTATypeMetatable("pickup")
-	oop.mta_metatable["radarArea"] = oop.getMTATypeMetatable("radarArea")
-	oop.mta_metatable["water"] = oop.getMTATypeMetatable("water")
-	--oop.mta_metatable["weapon"] = oop.getMTATypeMetatable("weapon")
-	
-	if SERVER then
-		oop.mta_metatable["team"] = oop.getMTATypeMetatable("team")
+	-- this has to match 
+	--	(Server) MTA10_Server\mods\deathmatch\logic\lua\CLuaMain.cpp
+	--	(Client) MTA10\mods\shared_logic\lua\CLuaMain.cpp
+	if SERVER then	
+		oop.prepareClass("ACL")
+		oop.prepareClass("ACLGroup")
+		oop.prepareClass("Account")
+		oop.prepareClass("Ban")
+		oop.prepareClass("Connection")
+		oop.prepareClass("QueryHandle")
+		oop.prepareClass("TextDisplay")
+		oop.prepareClass("TextItem")
+	elseif CLIENT then
+		oop.prepareClass("Projectile")
+		oop.prepareClass("Sound")
+		oop.prepareClass("Sound3D")
+		oop.prepareClass("Weapon")
+		oop.prepareClass("Effect")
+		oop.prepareClass("GuiElement")
+		oop.prepareClass("GuiWindow")
+		oop.prepareClass("GuiButton")
+		oop.prepareClass("GuiEdit")
+		oop.prepareClass("GuiLabel")
+		oop.prepareClass("GuiMemo")
+		oop.prepareClass("GuiStaticImage")
+		oop.prepareClass("GuiComboBox")
+		oop.prepareClass("GuiCheckBox")
+		oop.prepareClass("GuiRadioButton")
+		oop.prepareClass("GuiScrollPane")
+		oop.prepareClass("GuiScrollBar")
+		oop.prepareClass("GuiProgressBar")
+		oop.prepareClass("GuiGridList")
+		oop.prepareClass("GuiTabPanel")
+		oop.prepareClass("GuiTab")
+		oop.prepareClass("GuiFont")
+		oop.prepareClass("EngineCOL")
+		oop.prepareClass("EngineTXD")
+		oop.prepareClass("EngineDFF")
+		oop.prepareClass("DxMaterial")
+		oop.prepareClass("DxTexture")
+		oop.prepareClass("DxFont")
+		oop.prepareClass("DxShader")
+		oop.prepareClass("DxScreenSource")
+		oop.prepareClass("DxRenderTarget")
 	end
 	
-	if CLIENT then
-		oop.mta_metatable["sound"] = oop.getMTATypeMetatable("sound")
-		oop.mta_metatable["camera"] = oop.getMTATypeMetatable("camera")
-		oop.mta_metatable["effect"] = oop.getMTATypeMetatable("effect")
-	end
-	
-	for k, v in pairs(oop.mta_metatable) do
-		oop.prepareClass(k)
-	end
-	
-	if SERVER then
-		if getPlayerCount() >= 1 then
-			oop.initPlayerClass()
-		else
-			addEventHandler("onPlayerConnect", root, oop.initPlayerClass)
-		end
-	else
-		oop.initPlayerClass()
-	end
+	oop.prepareClass("Object")
+	oop.prepareClass("Ped")
+	oop.prepareClass("Pickup")
+	oop.prepareClass("Player")
+	oop.prepareClass("RadarArea")
+	oop.prepareClass("Vector2")
+	oop.prepareClass("Vector3")
+	oop.prepareClass("Vector4")
+	oop.prepareClass("Matrix")
+	oop.prepareClass("Element")
+	oop.prepareClass("Blip")
+	oop.prepareClass("ColShape")
+	oop.prepareClass("File")
+	oop.prepareClass("Marker")		
+	oop.prepareClass("Vehicle")
+	oop.prepareClass("Water")
+	oop.prepareClass("XML")
+	oop.prepareClass("Timer")
+	oop.prepareClass("Team")
+	oop.prepareClass("Weapon")
+	oop.prepareClass("Resource")
 end
-
-oop.initPlayerClass = function()
-	oop.mta_metatable["player"] = oop.getMTATypeMetatable("player")
-	removeEventHandler("onPlayerConnect", root, oop.initPlayerClass)
-	oop.prepareClass("player")
-end
-
 oop.initClasses()
