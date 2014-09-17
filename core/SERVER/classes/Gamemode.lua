@@ -136,6 +136,10 @@ function Gamemode:addPlayer (player)
 			triggerEvent("onPlayerGamemodeJoin", self.Element, player, self:getInfo())
 			-- Experimental
 			RPC:callListener("onPlayerGamemodeJoin", self.Element, player, self:getInfo())
+			-- Direct call
+			if rawget(self, "onPlayerJoin") then
+				rawget(self, "onPlayerJoin")(self, player, self:getInfo())
+			end
 			
 			if (self.minPlayers == self.PlayerCount) then
 				triggerEvent("onGamemodeMinimumPlayerReached", self.Element, player, self:getInfo())
@@ -179,6 +183,11 @@ function Gamemode:removePlayer (player)
 		
 		-- Special
 		gamemode = nil
+	end
+
+	-- Direct call
+	if rawget(self, "onPlayerJoin") then
+		rawget(self, "onPlayerLeft")(self, player, self:getInfo())
 	end
 	
 	self:sendMessage(("#0678ee* %s #d9d9d9has left this room (%d/%d) #0678ee*"):format(getPlayerName(player), self.PlayerCount, self.maxPlayers), 0, 0, 0, true)

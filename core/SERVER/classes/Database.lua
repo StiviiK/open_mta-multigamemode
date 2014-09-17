@@ -2,7 +2,8 @@
 Database = {};
 
 function Database:connect (host, user, pass, database, settings)
-	assert(type(host) == "string" and type(user) == "string" and type(pass) == "string" and type(database) == "string" and type(settings) == "string", "Bad Argument @ Database.connect [Invalid Arguments given!]")
+	--assert(type(host) == "string" and type(user) == "string" and type(pass) == "string" and type(database) == "string" and type(settings) == "string", "Bad Argument @ Database.connect [Invalid Arguments given!]")
+	Check("Database.connect", "string", host, "Host", "string", user, "Username", "string", pass, "Password", "string", database, "Database-Name", "string", settings, "Settings")
 	self.Connection = dbConnect("mysql", ("dbname=%s;host=%s"):format(database, host), user, pass, settings)
 	
 	if (self.Connection) then

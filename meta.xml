@@ -6,6 +6,7 @@
 	<!-- Core -->
 		<!-- Settings (Shared) -->
 		<script src="core/SHARED/Settings.lua" type="shared"/>
+		<script src="core/SHARED/util.lua" type="shared"/>
 		
 		<!-- Language -->
 		<script src="core/SHARED/classes/Language.lua" type="server"/>
