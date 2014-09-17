@@ -186,7 +186,7 @@ function Gamemode:removePlayer (player)
 	end
 
 	-- Direct call
-	if rawget(self, "onPlayerJoin") then
+	if rawget(self, "onPlayerLeft") then
 		rawget(self, "onPlayerLeft")(self, player, self:getInfo())
 	end
 	
