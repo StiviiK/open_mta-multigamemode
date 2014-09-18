@@ -64,10 +64,21 @@ function Check(funcname, ...)
     end
 end
 
+-- table.copy
+function table.copy(tab, recursive)
+    local ret = {}
+    for key, value in pairs(tab) do
+        if (type(value) == "table") and recursive then ret[key] = table.copy(value)
+        else ret[key] = value end
+    end
+    return ret
+end
+
 -- spairs (SortedPairs)
 function spairs (t, f)
-	Check("spairs", "table", t, "Table", "function", f, "Sorting-Function")
+	Check("spairs", "table", t, "Table", "function", f, "Sort-Function")	
 	
+	local t = table.copy(t)
 	table.sort(t, f)
 	
 	local index = 0
@@ -82,4 +93,17 @@ function spairs (t, f)
 			end
 		end
 	)
+end
+
+-- getLuaElementInfo
+function getLuaElementInfo (a)
+	Check("getFunctionName", {"string", "table", "function", "thread"}, a, "Argument #1")
+	
+	for name, func in pairs(_G) do
+		if func == a then
+			return name, "_G[\""..name.."\"]", type(a), tostring(a):gsub(type(a)..": ", "");
+		end
+	end
+	
+	return nil;
 end
