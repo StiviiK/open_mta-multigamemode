@@ -63,3 +63,23 @@ function Check(funcname, ...)
         end
     end
 end
+
+-- spairs (SortedPairs)
+function spairs (t, f)
+	Check("spairs", "table", t, "Table", "function", f, "Sorting-Function")
+	
+	table.sort(t, f)
+	
+	local index = 0
+	return ( 
+		function ()
+			while index <= table.getn(t) do
+				index = index + 1
+				
+				if index and t[index] then
+					return index, t[index];
+				end
+			end
+		end
+	)
+end
