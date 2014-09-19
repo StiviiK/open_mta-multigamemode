@@ -51,7 +51,7 @@ function Playermanager:onResourceStart ()
 end
 
 function Playermanager:onJoin ()
-	bindKey(source, "z", "down", "chatbox", "Global")
+	bindKey(source, "y", "down", "chatbox", "Global")
 	
 	local lobby = Gamemode:getGamemodeFromID(1)
 	--[[local gm = source:getGamemode()
@@ -78,7 +78,7 @@ function Playermanager:onChat (message, messageType)
 		elseif (messageType == 2) then
 		end
 	else
-		outputChatBox(("#0678ee%s #d9d9d9%s"):format("[Chat]", "You have to be in a Gamemode!"), source, 255, 255, 255, true)
+		outputChatBox("#0678ee[Chat] #d9d9d9You have to be in a Gamemode!", source, 255, 255, 255, true)
 	end
 end
 
@@ -86,7 +86,7 @@ function Playermanager:onPublicChat (player, cmd, ...)
 	local message = table.concat({...}, " ")
 		
 	for _, v in ipairs(getElementsByType("player")) do
-		v:sendMessage(("#0678ee%s %s#d9d9d9: %s"):format("(Global)", getPlayerName(player), message), 255, 255, 255, true)
+		v:sendMessage(("#8A0808*Global* #0678ee[%s] %s #d9d9d9: %s"):format(player:getGamemode():getInfo("Name"), getPlayerName(player), message), 255, 255, 255, true)
 	end
 end
 addCommandHandler("Global", bind(Playermanager.onPublicChat, Playermanager))
