@@ -18,19 +18,19 @@ setmetatable(Gamemode, {
 					maxPlayers = properties[6] or 16,
 					minPlayers = properties[7] or 1,
 					PlayerCount = 0,
-					Blip = createBlip(unpack(properties[8])) or false,
-					Marker = createMarker(unpack(properties[9])) or false,
+					Blip = (#properties[8] >= 3 and createBlip(unpack(properties[8]))) or false,
+					Marker = (#properties[9] >= 3 and createMarker(unpack(properties[9]))) or false,
 					Element = createElement("Gamemode_Element", properties[1]),
 					Elements = {
-						["Ped"] = {},
-						["Vehicle"] = {},
-						["Object"] = {},
-						["Pickup"] = {},
-						["Marker"] = {},
-						["ColShape"] = {},
-						["Blip"] = {},
-						["Ped"] = {},
-						["RadarArea"] = {}
+						["ped"] = {},
+						["vehicle"] = {},
+						["object"] = {},
+						["pickup"] = {},
+						["marker"] = {},
+						["colshape"] = {},
+						["blip"] = {},
+						["ped"] = {},
+						["radararea"] = {}
 					},
 					Maps = {}
 				}, {__index = self}
@@ -219,9 +219,14 @@ function Gamemode:getInfo (key)
 		Name = self.Name,
 		Description = self.Description,
 		Author = self.Author,
+		Dimension = self.Dimension,
+		Players = self.Players,
 		maxPlayers = self.maxPlayers,
 		minPlayers = self.minPlayers,
 		PlayerCount = self.PlayerCount,
+		Blip = self.Blip,
+		Marker = self.Marker,
+		Element = self.Element
 	}
 end
 

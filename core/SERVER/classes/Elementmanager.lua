@@ -1,12 +1,32 @@
 -- This is the Elementmanager for a MultiGamemode
 -- (it needs to be a part of the Gamemode-Class)
 
+function Gamemode:getElementsByType (type, startat)
+	-- Todo: At startat abillity
+	return self.Elements[type] or {};
+end
+
+function Gamemode:destroyElement (element)
+	if isElement(element) then -- Todo: Check if it is an Element in the Gamemode
+		for type, table in pairs(self.Elements) do
+			for index, ele in ipairs(table) do
+				if ele == element then
+					destroyElement(element)
+					return true
+				end
+			end
+		end
+	end
+	
+	return false
+end
+
 function Gamemode:createBlip (...)
 	local element = createBlip(...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Blip"], element)
+		table.insert(self.Elements["blip"], element)
 		return element;
 	else
 		return false;
@@ -18,11 +38,11 @@ function Gamemode:createBlipAttachedTo (element, ...)
 		setElementDimension(element, self.Dimension)
 	end
 	
-	local element = createBlipAttachedTo(...)
+	local element = createBlipAttachedTo(element, ...)
 	setElementDimension(element, self.Dimensio)
 		
 	if (element) then
-		table.insert(self.Elements["Blip"], element)
+		table.insert(self.Elements["blip"], element)
 		return element;
 	else
 		return false;
@@ -34,7 +54,7 @@ function Gamemode:createColCircle (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -46,7 +66,7 @@ function Gamemode:createColCuboid (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -58,7 +78,7 @@ function Gamemode:createColPolygon (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -70,7 +90,7 @@ function Gamemode:createColRectangle (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -82,7 +102,7 @@ function Gamemode:createColSphere (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -94,7 +114,7 @@ function Gamemode:createColTube (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["ColShape"], element)
+		table.insert(self.Elements["colshape"], element)
 		return element;
 	else
 		return false;
@@ -106,7 +126,7 @@ function Gamemode:createMarker (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Marker"], element)
+		table.insert(self.Elements["marker"], element)
 		return element;
 	else
 		return false;
@@ -118,7 +138,7 @@ function Gamemode:createObject (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Object"], element)
+		table.insert(self.Elements["object"], element)
 		return element;
 	else
 		return false;
@@ -130,7 +150,7 @@ function Gamemode:createPed (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Ped"], element)
+		table.insert(self.Elements["ped"], element)
 		return element;
 	else
 		return false;
@@ -142,7 +162,7 @@ function Gamemode:createPickup (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Pickup"], element)
+		table.insert(self.Elements["pickup"], element)
 		return element;
 	else
 		return false;
@@ -154,7 +174,7 @@ function Gamemode:createRadarArea (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["RadarArea"], element)
+		table.insert(self.Elements["radararea"], element)
 		return element;
 	else
 		return false;
@@ -166,7 +186,7 @@ function Gamemode:createVehicle (...)
 	setElementDimension(element, self.Dimension)
 	
 	if (element) then
-		table.insert(self.Elements["Vehicle"], element)
+		table.insert(self.Elements["vehicle"], element)
 		return element;
 	else
 		return false;
