@@ -28,6 +28,8 @@ outputDebugString("------ Starting the Gamemode ------")
 		outputDebugString("[STARTING] Mapmanager")
 		require("core/SERVER/classes/Mapmanager.lua")
 	end
+	
+	setGameType("Multigamemode by StiviK")
 outputDebugString("------ Startup finished ------")
 
 -- Stop
@@ -53,6 +55,5 @@ addEventHandler("onResourceStop", resourceRoot, function ()
 	
 	outputDebugString("------ End ------")
 end)
-
 
 --Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)

