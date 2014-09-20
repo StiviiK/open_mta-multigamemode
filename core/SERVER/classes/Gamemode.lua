@@ -1,53 +1,55 @@
--- This is the gamemode manager class for a MultiGamemode
-Gamemode = {
-	registeredGamemodes = {},
-	maxAllowedGamemodes = 16
-};
+Gamemode = {}
+-- Class Tables
+Gamemode.registeredGamemodes = {}
 
-setmetatable(Gamemode, {
-    __call = function (self, properties)
-		if (not self:getGamemodeFromID(properties[1] or #self.registeredGamemodes + 1) and (#self.registeredGamemodes < self.maxAllowedGamemodes)) then
-			local obj = setmetatable(
-				{
-					ID = properties[1] or #self.registeredGamemodes + 1,
-					Name = properties[2] or "[WARNING] No Name given!",
-					Description = properties[3] or "No Description given!",
-					Author = properties[4],
-					Dimension = properties[5] or self:getFreeDimension(),
-					Players = {},
-					maxPlayers = properties[6] or 16,
-					minPlayers = properties[7] or 1,
-					PlayerCount = 0,
-					Blip = (#properties[8] >= 3 and createBlip(unpack(properties[8]))) or false,
-					Marker = (#properties[9] >= 3 and createMarker(unpack(properties[9]))) or false,
-					Element = createElement("Gamemode_Element", properties[1]),
-					Elements = {
-						["ped"] = {},
-						["vehicle"] = {},
-						["object"] = {},
-						["pickup"] = {},
-						["marker"] = {},
-						["colshape"] = {},
-						["blip"] = {},
-						["ped"] = {},
-						["radararea"] = {}
-					},
-					Maps = {}
-				}, {__index = self}
-			)
+-- Metatable
+Gamemode.__metatable = false
+Gamemode.__call = function (self, properties)
+	if not self:getGamemodeFromID(properties[1] or #self.registeredGamemodes + 1) then
+		local obj = setmetatable(
+			{
+				ID = properties[1] or #self.registeredGamemodes + 1,
+				Name = properties[2] or "[WARNING] No Name given!",
+				Description = properties[3] or "No Description given!",
+				Author = properties[4],
+				Dimension = properties[5] or self:getFreeDimension(),
+				Players = {},
+				maxPlayers = properties[6] or 16,
+				minPlayers = properties[7] or 1,
+				PlayerCount = 0,
+				Blip = (#properties[8] >= 3 and createBlip(unpack(properties[8]))) or false,
+				Marker = (#properties[9] >= 3 and createMarker(unpack(properties[9]))) or false,
+				Element = createElement("Gamemode_Element", properties[1]),
+				Elements = {
+					["ped"] = {},
+					["vehicle"] = {},
+					["object"] = {},
+					["pickup"] = {},
+					["marker"] = {},
+					["colshape"] = {},
+					["blip"] = {},
+					["ped"] = {},
+					["radararea"] = {}
+				},
+				Maps = {}
+			}, {
+				__index = self,
+				__metatable = self.__metatable
+			}
+		)
 		
-			self.registeredGamemodes[obj.ID] = obj;
+		self.registeredGamemodes[obj.ID] = obj;
 			
-			outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
+		outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
 			
-			return obj;
-		else
-			outputDebugString(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1] or #Gamemode.registeredGamemodes + 1, properties[2]))
+		return obj;
+	else
+		outputDebugString(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1] or #Gamemode.registeredGamemodes + 1, properties[2]))
 			
-			return false;
-		end
-    end
-})
+		return false;
+	end
+end
+setmetatable(Gamemode, {__call = Gamemode.__call})
 
 function Gamemode:destructor ()
 	for _, gamemode in ipairs(Gamemode.registeredGamemodes) do
@@ -151,6 +153,7 @@ function Gamemode:addPlayer (player)
 end
 
 function Gamemode:removePlayer (player)
+	assert(player ~= nil, "Bad Argument @ Gamemode.removePlayer [Expectet Player at Argument 1, got "..type(player).."]")
 	assert(player:getGamemode() ~= nil, "Bad Argument @ Gamemode.removePlayer [Player isn't in a Gamemode!]")
 
 	if (player:getGamemode() == self) then
