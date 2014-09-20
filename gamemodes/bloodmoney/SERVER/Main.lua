@@ -1,0 +1,1 @@
+Bloodmoney = Gamemode{nil, "Bloodmoney", "Bloodmoney Gamemode (Battlefield Hardline)", "StiviK", nil, 32, 12, {}, {}}

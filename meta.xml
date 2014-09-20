@@ -48,6 +48,7 @@
 		<!-- Files -->
 			<!-- Gamemodes -->
 			<file src="lobby/FILES/images/gamemodes/basejump.jpg" />
+			<file src="lobby/FILES/images/gamemodes/bloodmoney.jpg" />
 			<file src="lobby/FILES/images/gamemodes/capture.jpg" />
 			<file src="lobby/FILES/images/gamemodes/copsandrobbers.jpg" />
 			<file src="lobby/FILES/images/gamemodes/heist.jpg" />
@@ -351,14 +352,17 @@
 		<!-- Basejump -->
 		<script src="gamemodes/basejump/SERVER/Main.lua" type="server" />
 		
+		<!-- Bloodmoney -->
+		<script src="gamemodes/bloodmoney/SERVER/Main.lua" type="server" />
+		
 		<!-- Capture -->
-		<script src="gamemodes/capture/SERVER/Main.lua" type="server" />
+		<!-- script src="gamemodes/capture/SERVER/Main.lua" type="server" / --> <!-- Much the same like Bloodmoney -->
 		
 		<!-- Cops'n'Robbers -->
 		<script src="gamemodes/copsandrobbers/SERVER/Main.lua" type="server" />
 		
 		<!-- Heist -->
-		<script src="gamemodes/heist/SERVER/Main.lua" type="server" />
+		<!-- script src="gamemodes/heist/SERVER/Main.lua" type="server" / --> <!-- No Idea :P -->
 		
 		<!-- Hunter -->
 		<script src="gamemodes/hunter/SERVER/Main.lua" type="server" />
