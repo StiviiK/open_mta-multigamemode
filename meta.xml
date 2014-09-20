@@ -49,7 +49,7 @@
 			<!-- Gamemodes -->
 			<file src="lobby/FILES/images/gamemodes/basejump.jpg" />
 			<file src="lobby/FILES/images/gamemodes/capture.jpg" />
-			<file src="lobby/FILES/images/gamemodes/copsnrobbers.jpg" />
+			<file src="lobby/FILES/images/gamemodes/copsandrobbers.jpg" />
 			<file src="lobby/FILES/images/gamemodes/heist.jpg" />
 			<file src="lobby/FILES/images/gamemodes/hunter.jpg" />
 			
@@ -365,7 +365,7 @@
 		<script src="gamemodes/capture/SERVER/Main.lua" type="server" />
 		
 		<!-- Cops'n'Robbers -->
-		<script src="gamemodes/copsnrobbers/SERVER/Main.lua" type="server" />
+		<script src="gamemodes/copsandrobbers/SERVER/Main.lua" type="server" />
 		
 		<!-- Heist -->
 		<script src="gamemodes/heist/SERVER/Main.lua" type="server" />
