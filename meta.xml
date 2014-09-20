@@ -5,8 +5,8 @@
 	
 	<!-- Core -->
 		<!-- Settings (Shared) -->
-		<script src="core/SHARED/Settings.lua" type="shared"/>
-		<script src="core/SHARED/util.lua" type="shared"/>
+		<script src="core/SHARED/Settings.lua" type="shared" cache="false"/>
+		<script src="core/SHARED/util.lua" type="shared" cache="false"/>
 		
 		<!-- Language -->
 		<script src="core/SHARED/classes/Language.lua" type="server"/>
@@ -14,8 +14,8 @@
 		<script src="core/SHARED/langs/en.lua" type="server"/>
 		
 		<!-- Shared -->
-		<script src="core/SHARED/include/classlib.lua" type="shared"/>
-		<script src="core/SHARED/classes/RPC.lua" type="shared"/>
+		<script src="core/SHARED/include/classlib.lua" type="shared" cache="false"/>
+		<script src="core/SHARED/classes/RPC.lua" type="shared" cache="false"/>
 	
 		<!-- Server -->
 		<script src="core/SERVER/Settings.lua" type="server"/>
@@ -46,17 +46,332 @@
 		<script src="lobby/CLIENT/Main.lua" type="client"/>
 		
 		<!-- Files -->
+			<!-- Gamemodes -->
+			<file src="lobby/FILES/images/gamemodes/basejump.jpg" />
+			<file src="lobby/FILES/images/gamemodes/capture.jpg" />
+			<file src="lobby/FILES/images/gamemodes/copsnrobbers.jpg" />
+			<file src="lobby/FILES/images/gamemodes/heist.jpg" />
+			<file src="lobby/FILES/images/gamemodes/hunter.jpg" />
+			
+			<!-- Account -->
+			<file src="lobby/FILES/images/account/default.jpg" />
+			<file src="lobby/FILES/images/account/skins/0.jpg" />
+			<file src="lobby/FILES/images/account/skins/1.jpg" />
+			<file src="lobby/FILES/images/account/skins/2.jpg" />
+			<file src="lobby/FILES/images/account/skins/7.jpg" />
+			<file src="lobby/FILES/images/account/skins/9.jpg" />
+			<file src="lobby/FILES/images/account/skins/10.jpg" />
+			<file src="lobby/FILES/images/account/skins/11.jpg" />
+			<file src="lobby/FILES/images/account/skins/12.jpg" />
+			<file src="lobby/FILES/images/account/skins/13.jpg" />
+			<file src="lobby/FILES/images/account/skins/14.jpg" />
+			<file src="lobby/FILES/images/account/skins/15.jpg" />
+			<file src="lobby/FILES/images/account/skins/16.jpg" />
+			<file src="lobby/FILES/images/account/skins/18.jpg" />
+			<file src="lobby/FILES/images/account/skins/19.jpg" />
+			<file src="lobby/FILES/images/account/skins/20.jpg" />
+			<file src="lobby/FILES/images/account/skins/21.jpg" />
+			<file src="lobby/FILES/images/account/skins/22.jpg" />
+			<file src="lobby/FILES/images/account/skins/23.jpg" />
+			<file src="lobby/FILES/images/account/skins/24.jpg" />
+			<file src="lobby/FILES/images/account/skins/25.jpg" />
+			<file src="lobby/FILES/images/account/skins/26.jpg" />
+			<file src="lobby/FILES/images/account/skins/27.jpg" />
+			<file src="lobby/FILES/images/account/skins/28.jpg" />
+			<file src="lobby/FILES/images/account/skins/29.jpg" />
+			<file src="lobby/FILES/images/account/skins/30.jpg" />
+			<file src="lobby/FILES/images/account/skins/31.jpg" />
+			<file src="lobby/FILES/images/account/skins/32.jpg" />
+			<file src="lobby/FILES/images/account/skins/33.jpg" />
+			<file src="lobby/FILES/images/account/skins/34.jpg" />
+			<file src="lobby/FILES/images/account/skins/35.jpg" />
+			<file src="lobby/FILES/images/account/skins/36.jpg" />
+			<file src="lobby/FILES/images/account/skins/37.jpg" />
+			<file src="lobby/FILES/images/account/skins/38.jpg" />
+			<file src="lobby/FILES/images/account/skins/39.jpg" />
+			<file src="lobby/FILES/images/account/skins/40.jpg" />
+			<file src="lobby/FILES/images/account/skins/41.jpg" />
+			<file src="lobby/FILES/images/account/skins/43.jpg" />
+			<file src="lobby/FILES/images/account/skins/44.jpg" />
+			<file src="lobby/FILES/images/account/skins/45.jpg" />
+			<file src="lobby/FILES/images/account/skins/46.jpg" />
+			<file src="lobby/FILES/images/account/skins/47.jpg" />
+			<file src="lobby/FILES/images/account/skins/48.jpg" />
+			<file src="lobby/FILES/images/account/skins/49.jpg" />
+			<file src="lobby/FILES/images/account/skins/50.jpg" />
+			<file src="lobby/FILES/images/account/skins/52.jpg" />
+			<file src="lobby/FILES/images/account/skins/53.jpg" />
+			<file src="lobby/FILES/images/account/skins/54.jpg" />
+			<file src="lobby/FILES/images/account/skins/55.jpg" />
+			<file src="lobby/FILES/images/account/skins/56.jpg" />
+			<file src="lobby/FILES/images/account/skins/57.jpg" />
+			<file src="lobby/FILES/images/account/skins/58.jpg" />
+			<file src="lobby/FILES/images/account/skins/59.jpg" />
+			<file src="lobby/FILES/images/account/skins/60.jpg" />
+			<file src="lobby/FILES/images/account/skins/61.jpg" />
+			<file src="lobby/FILES/images/account/skins/62.jpg" />
+			<file src="lobby/FILES/images/account/skins/63.jpg" />
+			<file src="lobby/FILES/images/account/skins/64.jpg" />
+			<file src="lobby/FILES/images/account/skins/66.jpg" />
+			<file src="lobby/FILES/images/account/skins/67.jpg" />
+			<file src="lobby/FILES/images/account/skins/68.jpg" />
+			<file src="lobby/FILES/images/account/skins/69.jpg" />
+			<file src="lobby/FILES/images/account/skins/70.jpg" />
+			<file src="lobby/FILES/images/account/skins/71.jpg" />
+			<file src="lobby/FILES/images/account/skins/72.jpg" />
+			<file src="lobby/FILES/images/account/skins/73.jpg" />
+			<file src="lobby/FILES/images/account/skins/75.jpg" />
+			<file src="lobby/FILES/images/account/skins/76.jpg" />
+			<file src="lobby/FILES/images/account/skins/77.jpg" />
+			<file src="lobby/FILES/images/account/skins/78.jpg" />
+			<file src="lobby/FILES/images/account/skins/79.jpg" />
+			<file src="lobby/FILES/images/account/skins/80.jpg" />
+			<file src="lobby/FILES/images/account/skins/81.jpg" />
+			<file src="lobby/FILES/images/account/skins/82.jpg" />
+			<file src="lobby/FILES/images/account/skins/83.jpg" />
+			<file src="lobby/FILES/images/account/skins/84.jpg" />
+			<file src="lobby/FILES/images/account/skins/85.jpg" />
+			<file src="lobby/FILES/images/account/skins/87.jpg" />
+			<file src="lobby/FILES/images/account/skins/88.jpg" />
+			<file src="lobby/FILES/images/account/skins/89.jpg" />
+			<file src="lobby/FILES/images/account/skins/90.jpg" />
+			<file src="lobby/FILES/images/account/skins/91.jpg" />
+			<file src="lobby/FILES/images/account/skins/92.jpg" />
+			<file src="lobby/FILES/images/account/skins/93.jpg" />
+			<file src="lobby/FILES/images/account/skins/94.jpg" />
+			<file src="lobby/FILES/images/account/skins/95.jpg" />
+			<file src="lobby/FILES/images/account/skins/96.jpg" />
+			<file src="lobby/FILES/images/account/skins/97.jpg" />
+			<file src="lobby/FILES/images/account/skins/98.jpg" />
+			<file src="lobby/FILES/images/account/skins/100.jpg" />
+			<file src="lobby/FILES/images/account/skins/101.jpg" />
+			<file src="lobby/FILES/images/account/skins/102.jpg" />
+			<file src="lobby/FILES/images/account/skins/103.jpg" />
+			<file src="lobby/FILES/images/account/skins/104.jpg" />
+			<file src="lobby/FILES/images/account/skins/105.jpg" />
+			<file src="lobby/FILES/images/account/skins/106.jpg" />
+			<file src="lobby/FILES/images/account/skins/107.jpg" />
+			<file src="lobby/FILES/images/account/skins/109.jpg" />
+			<file src="lobby/FILES/images/account/skins/110.jpg" />
+			<file src="lobby/FILES/images/account/skins/111.jpg" />
+			<file src="lobby/FILES/images/account/skins/112.jpg" />
+			<file src="lobby/FILES/images/account/skins/114.jpg" />
+			<file src="lobby/FILES/images/account/skins/115.jpg" />
+			<file src="lobby/FILES/images/account/skins/116.jpg" />
+			<file src="lobby/FILES/images/account/skins/117.jpg" />
+			<file src="lobby/FILES/images/account/skins/118.jpg" />
+			<file src="lobby/FILES/images/account/skins/120.jpg" />
+			<file src="lobby/FILES/images/account/skins/121.jpg" />
+			<file src="lobby/FILES/images/account/skins/122.jpg" />
+			<file src="lobby/FILES/images/account/skins/123.jpg" />
+			<file src="lobby/FILES/images/account/skins/124.jpg" />
+			<file src="lobby/FILES/images/account/skins/125.jpg" />
+			<file src="lobby/FILES/images/account/skins/126.jpg" />
+			<file src="lobby/FILES/images/account/skins/127.jpg" />
+			<file src="lobby/FILES/images/account/skins/128.jpg" />
+			<file src="lobby/FILES/images/account/skins/129.jpg" />
+			<file src="lobby/FILES/images/account/skins/130.jpg" />
+			<file src="lobby/FILES/images/account/skins/131.jpg" />
+			<file src="lobby/FILES/images/account/skins/132.jpg" />
+			<file src="lobby/FILES/images/account/skins/133.jpg" />
+			<file src="lobby/FILES/images/account/skins/134.jpg" />
+			<file src="lobby/FILES/images/account/skins/135.jpg" />
+			<file src="lobby/FILES/images/account/skins/136.jpg" />
+			<file src="lobby/FILES/images/account/skins/137.jpg" />
+			<file src="lobby/FILES/images/account/skins/138.jpg" />
+			<file src="lobby/FILES/images/account/skins/139.jpg" />
+			<file src="lobby/FILES/images/account/skins/140.jpg" />
+			<file src="lobby/FILES/images/account/skins/141.jpg" />
+			<file src="lobby/FILES/images/account/skins/142.jpg" />
+			<file src="lobby/FILES/images/account/skins/143.jpg" />
+			<file src="lobby/FILES/images/account/skins/144.jpg" />
+			<file src="lobby/FILES/images/account/skins/145.jpg" />
+			<file src="lobby/FILES/images/account/skins/146.jpg" />
+			<file src="lobby/FILES/images/account/skins/147.jpg" />
+			<file src="lobby/FILES/images/account/skins/148.jpg" />
+			<file src="lobby/FILES/images/account/skins/150.jpg" />
+			<file src="lobby/FILES/images/account/skins/151.jpg" />
+			<file src="lobby/FILES/images/account/skins/152.jpg" />
+			<file src="lobby/FILES/images/account/skins/153.jpg" />
+			<file src="lobby/FILES/images/account/skins/154.jpg" />
+			<file src="lobby/FILES/images/account/skins/155.jpg" />
+			<file src="lobby/FILES/images/account/skins/156.jpg" />
+			<file src="lobby/FILES/images/account/skins/157.jpg" />
+			<file src="lobby/FILES/images/account/skins/158.jpg" />
+			<file src="lobby/FILES/images/account/skins/159.jpg" />
+			<file src="lobby/FILES/images/account/skins/160.jpg" />
+			<file src="lobby/FILES/images/account/skins/162.jpg" />
+			<file src="lobby/FILES/images/account/skins/163.jpg" />
+			<file src="lobby/FILES/images/account/skins/164.jpg" />
+			<file src="lobby/FILES/images/account/skins/165.jpg" />
+			<file src="lobby/FILES/images/account/skins/167.jpg" />
+			<file src="lobby/FILES/images/account/skins/168.jpg" />
+			<file src="lobby/FILES/images/account/skins/169.jpg" />
+			<file src="lobby/FILES/images/account/skins/170.jpg" />
+			<file src="lobby/FILES/images/account/skins/171.jpg" />
+			<file src="lobby/FILES/images/account/skins/173.jpg" />
+			<file src="lobby/FILES/images/account/skins/175.jpg" />
+			<file src="lobby/FILES/images/account/skins/176.jpg" />
+			<file src="lobby/FILES/images/account/skins/177.jpg" />
+			<file src="lobby/FILES/images/account/skins/178.jpg" />
+			<file src="lobby/FILES/images/account/skins/179.jpg" />
+			<file src="lobby/FILES/images/account/skins/180.jpg" />
+			<file src="lobby/FILES/images/account/skins/181.jpg" />
+			<file src="lobby/FILES/images/account/skins/182.jpg" />
+			<file src="lobby/FILES/images/account/skins/183.jpg" />
+			<file src="lobby/FILES/images/account/skins/184.jpg" />
+			<file src="lobby/FILES/images/account/skins/185.jpg" />
+			<file src="lobby/FILES/images/account/skins/186.jpg" />
+			<file src="lobby/FILES/images/account/skins/187.jpg" />
+			<file src="lobby/FILES/images/account/skins/188.jpg" />
+			<file src="lobby/FILES/images/account/skins/189.jpg" />
+			<file src="lobby/FILES/images/account/skins/190.jpg" />
+			<file src="lobby/FILES/images/account/skins/191.jpg" />
+			<file src="lobby/FILES/images/account/skins/192.jpg" />
+			<file src="lobby/FILES/images/account/skins/193.jpg" />
+			<file src="lobby/FILES/images/account/skins/194.jpg" />
+			<file src="lobby/FILES/images/account/skins/195.jpg" />
+			<file src="lobby/FILES/images/account/skins/196.jpg" />
+			<file src="lobby/FILES/images/account/skins/197.jpg" />
+			<file src="lobby/FILES/images/account/skins/198.jpg" />
+			<file src="lobby/FILES/images/account/skins/199.jpg" />
+			<file src="lobby/FILES/images/account/skins/200.jpg" />
+			<file src="lobby/FILES/images/account/skins/201.jpg" />
+			<file src="lobby/FILES/images/account/skins/203.jpg" />
+			<file src="lobby/FILES/images/account/skins/205.jpg" />
+			<file src="lobby/FILES/images/account/skins/206.jpg" />
+			<file src="lobby/FILES/images/account/skins/207.jpg" />
+			<file src="lobby/FILES/images/account/skins/208.jpg" />
+			<file src="lobby/FILES/images/account/skins/209.jpg" />
+			<file src="lobby/FILES/images/account/skins/210.jpg" />
+			<file src="lobby/FILES/images/account/skins/211.jpg" />
+			<file src="lobby/FILES/images/account/skins/212.jpg" />
+			<file src="lobby/FILES/images/account/skins/213.jpg" />
+			<file src="lobby/FILES/images/account/skins/214.jpg" />
+			<file src="lobby/FILES/images/account/skins/215.jpg" />
+			<file src="lobby/FILES/images/account/skins/216.jpg" />
+			<file src="lobby/FILES/images/account/skins/217.jpg" />
+			<file src="lobby/FILES/images/account/skins/218.jpg" />
+			<file src="lobby/FILES/images/account/skins/219.jpg" />
+			<file src="lobby/FILES/images/account/skins/220.jpg" />
+			<file src="lobby/FILES/images/account/skins/221.jpg" />
+			<file src="lobby/FILES/images/account/skins/222.jpg" />
+			<file src="lobby/FILES/images/account/skins/223.jpg" />
+			<file src="lobby/FILES/images/account/skins/224.jpg" />
+			<file src="lobby/FILES/images/account/skins/225.jpg" />
+			<file src="lobby/FILES/images/account/skins/226.jpg" />
+			<file src="lobby/FILES/images/account/skins/227.jpg" />
+			<file src="lobby/FILES/images/account/skins/228.jpg" />
+			<file src="lobby/FILES/images/account/skins/229.jpg" />
+			<file src="lobby/FILES/images/account/skins/230.jpg" />
+			<file src="lobby/FILES/images/account/skins/231.jpg" />
+			<file src="lobby/FILES/images/account/skins/232.jpg" />
+			<file src="lobby/FILES/images/account/skins/234.jpg" />
+			<file src="lobby/FILES/images/account/skins/235.jpg" />
+			<file src="lobby/FILES/images/account/skins/236.jpg" />
+			<file src="lobby/FILES/images/account/skins/237.jpg" />
+			<file src="lobby/FILES/images/account/skins/238.jpg" />
+			<file src="lobby/FILES/images/account/skins/239.jpg" />
+			<file src="lobby/FILES/images/account/skins/240.jpg" />
+			<file src="lobby/FILES/images/account/skins/241.jpg" />
+			<file src="lobby/FILES/images/account/skins/242.jpg" />
+			<file src="lobby/FILES/images/account/skins/243.jpg" />
+			<file src="lobby/FILES/images/account/skins/244.jpg" />
+			<file src="lobby/FILES/images/account/skins/245.jpg" />
+			<file src="lobby/FILES/images/account/skins/246.jpg" />
+			<file src="lobby/FILES/images/account/skins/247.jpg" />
+			<file src="lobby/FILES/images/account/skins/248.jpg" />
+			<file src="lobby/FILES/images/account/skins/249.jpg" />
+			<file src="lobby/FILES/images/account/skins/250.jpg" />
+			<file src="lobby/FILES/images/account/skins/251.jpg" />
+			<file src="lobby/FILES/images/account/skins/252.jpg" />
+			<file src="lobby/FILES/images/account/skins/253.jpg" />
+			<file src="lobby/FILES/images/account/skins/254.jpg" />
+			<file src="lobby/FILES/images/account/skins/255.jpg" />
+			<file src="lobby/FILES/images/account/skins/256.jpg" />
+			<file src="lobby/FILES/images/account/skins/257.jpg" />
+			<file src="lobby/FILES/images/account/skins/258.jpg" />
+			<file src="lobby/FILES/images/account/skins/259.jpg" />
+			<file src="lobby/FILES/images/account/skins/260.jpg" />
+			<file src="lobby/FILES/images/account/skins/261.jpg" />
+			<file src="lobby/FILES/images/account/skins/262.jpg" />
+			<file src="lobby/FILES/images/account/skins/263.jpg" />
+			<file src="lobby/FILES/images/account/skins/264.jpg" />
+			<file src="lobby/FILES/images/account/skins/265.jpg" />
+			<file src="lobby/FILES/images/account/skins/266.jpg" />
+			<file src="lobby/FILES/images/account/skins/267.jpg" />
+			<file src="lobby/FILES/images/account/skins/268.jpg" />
+			<file src="lobby/FILES/images/account/skins/269.jpg" />
+			<file src="lobby/FILES/images/account/skins/270.jpg" />
+			<file src="lobby/FILES/images/account/skins/271.jpg" />
+			<file src="lobby/FILES/images/account/skins/272.jpg" />
+			<file src="lobby/FILES/images/account/skins/274.jpg" />
+			<file src="lobby/FILES/images/account/skins/275.jpg" />
+			<file src="lobby/FILES/images/account/skins/276.jpg" />
+			<file src="lobby/FILES/images/account/skins/277.jpg" />
+			<file src="lobby/FILES/images/account/skins/278.jpg" />
+			<file src="lobby/FILES/images/account/skins/279.jpg" />
+			<file src="lobby/FILES/images/account/skins/280.jpg" />
+			<file src="lobby/FILES/images/account/skins/281.jpg" />
+			<file src="lobby/FILES/images/account/skins/282.jpg" />
+			<file src="lobby/FILES/images/account/skins/283.jpg" />
+			<file src="lobby/FILES/images/account/skins/284.jpg" />
+			<file src="lobby/FILES/images/account/skins/285.jpg" />
+			<file src="lobby/FILES/images/account/skins/286.jpg" />
+			<file src="lobby/FILES/images/account/skins/287.jpg" />
+			<file src="lobby/FILES/images/account/skins/288.jpg" />
+			<file src="lobby/FILES/images/account/skins/289.jpg" />
+			<file src="lobby/FILES/images/account/skins/290.jpg" />
+			<file src="lobby/FILES/images/account/skins/291.jpg" />
+			<file src="lobby/FILES/images/account/skins/292.jpg" />
+			<file src="lobby/FILES/images/account/skins/293.jpg" />
+			<file src="lobby/FILES/images/account/skins/294.jpg" />
+			<file src="lobby/FILES/images/account/skins/295.jpg" />
+			<file src="lobby/FILES/images/account/skins/296.jpg" />
+			<file src="lobby/FILES/images/account/skins/297.jpg" />
+			<file src="lobby/FILES/images/account/skins/298.jpg" />
+			<file src="lobby/FILES/images/account/skins/299.jpg" />
+			<file src="lobby/FILES/images/account/skins/300.jpg" />
+			<file src="lobby/FILES/images/account/skins/301.jpg" />
+			<file src="lobby/FILES/images/account/skins/302.jpg" />
+			<file src="lobby/FILES/images/account/skins/303.jpg" />
+			<file src="lobby/FILES/images/account/skins/304.jpg" />
+			<file src="lobby/FILES/images/account/skins/305.jpg" />
+			<file src="lobby/FILES/images/account/skins/306.jpg" />
+			<file src="lobby/FILES/images/account/skins/307.jpg" />
+			<file src="lobby/FILES/images/account/skins/308.jpg" />
+			<file src="lobby/FILES/images/account/skins/309.jpg" />
+			<file src="lobby/FILES/images/account/skins/310.jpg" />
+			<file src="lobby/FILES/images/account/skins/311.jpg" />
+			<file src="lobby/FILES/images/account/skins/312.jpg" />
 	<!-- -->
 	
 	<!-- TestGamemode -->
 		<!-- Shared -->
 		
 		<!-- Server -->
-		<script src="mytestgamemode/init.lua" type="server"/>
+		<script src="gamemodes/mytestgamemode/init.lua" type="server"/>
 		
 		<!-- Client -->
 		
 		<!-- Files -->
+	<!-- -->
+	
+	<!-- Gamemodes -->
+		<!-- Basejump -->
+		<script src="gamemodes/basejump/SERVER/Main.lua" type="server" />
+		
+		<!-- Capture -->
+		<script src="gamemodes/capture/SERVER/Main.lua" type="server" />
+		
+		<!-- Cops'n'Robbers -->
+		<script src="gamemodes/copsnrobbers/SERVER/Main.lua" type="server" />
+		
+		<!-- Heist -->
+		<script src="gamemodes/heist/SERVER/Main.lua" type="server" />
+		
+		<!-- Hunter -->
+		<script src="gamemodes/hunter/SERVER/Main.lua" type="server" />
 	<!-- -->
 	
 	<aclrequest>
