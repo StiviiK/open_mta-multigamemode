@@ -109,39 +109,6 @@ function getLuaElementInfo (a)
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-function sortTable (a, b)
-    if getDistanceBetweenPoints3D(0, 0, 0, a[1], a[2], a[3]) < getDistanceBetweenPoints3D(0, 0, 0, b[1], b[2], b[3]) then 
-        return true;
-    else
-       return false;
-	end
-end 
-
-local points = {
-	{120, 55, 56},
-	{234, 55, 1},
-	{10, 100, 0},
-	{0, 0, 0},
-	{55, 5000, 5555},
-	{0, 5001, 34},
-	{5556, 0, 0}
-}
-
-for i, pos in spairs(points, sortTable) do
-	outputDebugString(i.." = "..pos[1]..", "..pos[2]..", "..pos[3])
-end
-
 --[[ FUCKING USELESS CRAP!
 newG = table.copy(_G)
 _G = setmetatable({}, {
