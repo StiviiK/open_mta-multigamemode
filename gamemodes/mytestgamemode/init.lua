@@ -13,8 +13,11 @@ addEventHandler("onMarkerHit", TestGamemode.Marker, function (ele, dim)
 	end
 end)
 
-RPC:addListener("onPlayerGamemodeJoin", TestGamemode.Element, function (info)
-	outputDebugString("OKEY2")
-end)
+function TestGamemode:onPlayerJoin (player)
+	Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
+end
 
---Mapmanager:loadMap(TestGamemode, "mytestgamemode/test.map")
+addCommandHandler("TestGamemode", function (player)
+	player:getGamemode():removePlayer(player)
+	TestGamemode:addPlayer(player)
+end)
