@@ -9,7 +9,7 @@ Example = Gamemode{nil, "Example", "Example Gamemode", "StiviK", nil, 16, 2, {},
 7: 2: benötigte Spieler anzahl damit der Gamemode weiter ausgeführt wird
 8: {}: Blip Argumente, müssen in einer Table sein! (hier eine leere Table damit kein Blip erstellt wird)
 9: {}: Marker Argumente, müssen in einer Table sein! (hier eine leere Table damit kein Marker erstellt wird)
---]] nil: so wird auch die Dimension automatisch zugewiesen
+--]]
 function Example:sayHelloToThePlayer (player) -- Dass ist jetzt eine Custom funktion, die lassen wir aufrufen wenn ein spieler den Gamemode betritt^
 	if isElement(player) then -- validieren wir ob es wirklich ein spieler ist
 		outputChatBox(("Guten Tag, %s! Wie geht's?"):format(getPlayerName(player)), player) -- senden wir ihm eine Nachricht!
