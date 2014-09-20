@@ -52,6 +52,7 @@
 			<file src="lobby/FILES/images/gamemodes/copsandrobbers.jpg" />
 			<file src="lobby/FILES/images/gamemodes/heist.jpg" />
 			<file src="lobby/FILES/images/gamemodes/hunter.jpg" />
+			<file src="lobby/FILES/images/gamemodes/unkown.jpg" />
 			
 			<!-- Account -->
 			<file src="lobby/FILES/images/account/default.jpg" />
@@ -344,17 +345,6 @@
 			<file src="lobby/FILES/images/account/skins/310.jpg" />
 			<file src="lobby/FILES/images/account/skins/311.jpg" />
 			<file src="lobby/FILES/images/account/skins/312.jpg" />
-	<!-- -->
-	
-	<!-- TestGamemode -->
-		<!-- Shared -->
-		
-		<!-- Server -->
-		<script src="gamemodes/mytestgamemode/init.lua" type="server"/>
-		
-		<!-- Client -->
-		
-		<!-- Files -->
 	<!-- -->
 	
 	<!-- Gamemodes -->

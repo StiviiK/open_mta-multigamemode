@@ -1,1 +1,1 @@
-CopsnRobbers = Gamemode{nil, "CopsnRobbers", "CopsnRobbers Gamemode", "StiviK", nil, 16, 4, {}, {}}
+CopsandRobbers = Gamemode{nil, "Cops'n'Robbers", "CopsanRobbers Gamemode", "StiviK", nil, 16, 4, {}, {}}

@@ -22,7 +22,3 @@ function Lobby:onPlayerJoin (player)
 	setElementRotation(player, 0, 0, 223.45709228516)
 	setElementAlpha(player, 200)
 end
-
-RPC:addListener("onPlayerGamemodeJoin", Lobby.Element, function (player)
-		Lobby:onPlayerJoin(player)
-end)
