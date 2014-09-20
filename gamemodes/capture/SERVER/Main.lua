@@ -1,0 +1,1 @@
+Capture = Gamemode{nil, "Capture", "Capture Gamemode", "StiviK", nil, 16, 4, {}, {}}

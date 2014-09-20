@@ -1,0 +1,1 @@
+Hunter = Gamemode{nil, "Hunter", "Hunter Gamemode", "StiviK", nil, 16, 2, {}, {}}
