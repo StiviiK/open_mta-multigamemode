@@ -1,7 +1,7 @@
 Ideen Sammlung:
 ================
 
-1. Am Anfang wenn man sich einen Charackter erstellt, kann man sich einen Skin auswählen und diesen hat man dann in jedem Gamemode.
+1. Am Anfang wenn man sich einen Charakter erstellt, kann man sich einen Skin auswählen und diesen hat man dann in jedem Gamemode.
 2. Mit den Leveln kann man bestimmte Items freischalten, z.B.
 	Waffen-Mods (DM, BloodMoney),
 	Car-Mods,
