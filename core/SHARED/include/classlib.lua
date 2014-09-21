@@ -5,9 +5,6 @@
 --// classlib
 --|| A library providing several tools to enhance OOP with MTA and Lua
 --\\
-SERVER = triggerServerEvent == nil
-CLIENT = not SERVER
-DEBUG = DEBUG or false
 
 function enew(element, class, ...)
 	-- DEBUG: Validate that we are not instantiating a class with pure virtual methods
