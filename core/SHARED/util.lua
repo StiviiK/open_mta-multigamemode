@@ -157,21 +157,6 @@ if CLIENT then
 		dxDrawRectangle ( absX+ancho,absY+sizeY-ancho,sizeX-ancho,ancho,color )
 		dxDrawRectangle ( absX+sizeX-ancho,absY+ancho,ancho,sizeY-ancho*2,color )   
 	end
-	
-		local screenWidth, screenHeight = guiGetScreenSize( )
-		local stopAngle = 0
- 
-		addEventHandler( "onClientRender", root,
-			function( )
-				if ( stopAngle < 360 ) then
-					stopAngle = stopAngle + 10
-				else
-					stopAngle = 0
-				end
-
-				dxDrawCircle( screenWidth / 2, screenHeight / 2, nil, nil, 30, nil, stopAngle )
-			end
-		)
 end
 
 
