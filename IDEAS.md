@@ -7,3 +7,10 @@ Ideen Sammlung:
 	- Car-Mods,
 	- Spezial Skins,
 	- Maps
+- Stats, d.h es soll alles aufgezeichnet werden z.B
+ 	- Spielzeit in jedem Gamemode
+ 	- Gesamt Spielzeit
+ 	- Eine K/D Ratio inbestimmten Gamemodes's (Bloodmoney)
+ 	- Wie oft man ein Spiel als erster Gewonnen hat 
+ 	- Wie viele Punktlandungen man hingelegt hat (Basejump)
+ 	- ...
