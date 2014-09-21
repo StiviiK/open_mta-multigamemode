@@ -14,3 +14,4 @@ Ideen Sammlung:
  	- Wie oft man ein Spiel als erster Gewonnen hat 
  	- Wie viele Punktlandungen man hingelegt hat (Basejump)
  	- ...
+- Erst wenn man einen Gamemode betritt, werden die Client Daten runtergeladen (Dewegen bekommt jeder Gamemode eine eigene Meta '/metafiles/meta_GAMEMODE.xml'
