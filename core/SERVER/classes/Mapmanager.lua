@@ -19,7 +19,7 @@ function Mapmanager:loadMap (gm, mapfile)
 	end
 	
 	local file = fileOpen(mapfile)
-	if (fileGetSize(file) == 0) then
+	if fileGetSize(file) == 0 then
 		assert(fileGetSize(file) > 0, "Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2, got empty File!]")
 	end
 	fileClose(file)
@@ -60,6 +60,10 @@ function Mapmanager:loadMap (gm, mapfile)
 	
 	self.coroutine = coroutine.create(bind(self.createObjects, self))
 	coroutine.resume(self.coroutine)
+
+	if fileExists(split(mapfile, ".")[1]..".mdf") then -- check if the .mdf (Map definition file) exists
+		outputDebugString(".mdf File found!")
+	end
 	
 	return self;
 end

@@ -1,3 +1,4 @@
+-- Example for Gamemodes
 Example = Gamemode{nil, "Example", "Example Gamemode", "StiviK", nil, 16, 2, {}, {}} -- Registrieren wir einen neuen Gamemode
 --[[ Registrier Argumente
 1: nil: so wird die ID automatisch zu gewiesen
@@ -20,7 +21,7 @@ function Example:onPlayerJoin (player) -- Diese Funktion wird von dem Gamemodema
 	Example:sayHelloToThePlayer(player) -- rufen wir unsere Funktion auf, die nur der Gamemode "Basejump" hat und aufrufen kann
 end
 
-addCommandHandler("joinBasejump", function (player)
+addCommandHandler("joinExample", function (player)
 	player:getGamemode():removePlayer(player) -- entfehren wir den Spieler aus seinem Aktuellen Gamemode
 	Example:addPlayer(player) -- jetzt setzen wir ihn in unseren Basejump Gamemode
 end)

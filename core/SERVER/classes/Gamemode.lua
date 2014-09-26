@@ -31,7 +31,8 @@ Gamemode.__call = function (self, properties)
 					["ped"] = {},
 					["radararea"] = {}
 				},
-				Maps = {}
+				Maps = {},
+				tmp = {}
 			}, {
 				__index = self,
 				__metatable = self.__metatable

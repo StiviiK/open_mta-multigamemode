@@ -28,6 +28,10 @@ outputDebugString("------ Starting the Gamemode ------")
 		outputDebugString("[STARTING] Mapmanager")
 		require("core/SERVER/classes/Mapmanager.lua")
 	end
+		if devSettings.startup["Downloadmanager"] then
+		outputDebugString("[STARTING] Downloadmanager")
+		require("core/SERVER/classes/Downloadmanager.lua")
+	end
 	
 	setGameType("Multigamemode by StiviK")
 outputDebugString("------ Startup finished ------")
