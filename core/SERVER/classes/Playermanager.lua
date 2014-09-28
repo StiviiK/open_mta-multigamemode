@@ -1,18 +1,17 @@
 -- This is the playermanager class for a MultiGamemode
 Playermanager = {};
+addEvent("onClientReady", true)
 
 function Playermanager:constructor ()
 	-- Add the EventHandler Functions
-	self.onResourceStartFunc = bind(self.onResourceStart, self)
-	self.onJoinFunc = bind(self.onJoin, self)
+	self.onReadyFunc = bind(self.onPlayerReady, self)
 	self.onQuitFunc = bind(self.onQuit, self)
 	self.onChatFunc = bind(self.onChat, self)
 	self.onGamemodeJoinFunc = bind(self.onGamemodeJoin, self)
 	self.onGamemodeLeftFunc = bind(self.onGamemodeLeft, self)
 	
 	-- Add the EventHandlers
-	addEventHandler("onResourceStart", resourceRoot, self.onResourceStartFunc)
-	addEventHandler("onPlayerJoin", root, self.onJoinFunc)
+	addEventHandler("onClientReady", root, self.onReadyFunc)
 	addEventHandler("onPlayerQuit", root, self.onQuitFunc)
 	addEventHandler("onPlayerChat", root, self.onChatFunc)
 	addEventHandler("onPlayerGamemodeJoin", root, self.onGamemodeJoinFunc)
@@ -21,8 +20,7 @@ end
 
 function Playermanager:destructor ()
 	-- Remove the EventHandlers
-	removeEventHandler("onResourceStart", root, self.onResourceStartFunc)
-	removeEventHandler("onPlayerJoin", root, self.onJoinFunc)
+	removeEventHandler("onClientReady", root, self.onReadyFunc)
 	removeEventHandler("onPlayerQuit", root, self.onQuitFunc)
 	removeEventHandler("onPlayerChat", root, self.onChatFunc)
 	removeEventHandler("onPlayerGamemodeJoin", root, self.onGamemodeJoinFunc)
@@ -37,28 +35,9 @@ function Playermanager:destructor ()
 	self.onGamemodeLeftFunc = nil
 end
 
-function Playermanager:onResourceStart ()
-	for _, player in ipairs(getElementsByType("player")) do
-		bindKey(player, "z", "down", "chatbox", "Global")
-	
-		local lobby = Gamemode:getGamemodeFromID(1)
-		--[[local gm = player:getGamemode()
-		if (gm) then
-			gm:removePlayer(player)
-		end--]]
-		lobby:addPlayer(player)
-	end
-end
-
-function Playermanager:onJoin ()
+function Playermanager:onPlayerReady (player)
 	bindKey(source, "y", "down", "chatbox", "Global")
-	
-	local lobby = Gamemode:getGamemodeFromID(1)
-	--[[local gm = source:getGamemode()
-	if (gm) then
-		gm:removePlayer(source)
-	end--]]
-	lobby:addPlayer(source)
+    Gamemode:getGamemodeFromID(1):addPlayer(player)
 end
 
 function Playermanager:onQuit ()

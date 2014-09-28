@@ -107,8 +107,6 @@ function Gamemode:getFreeDimension ()
 	return false;
 end
 
-fileFlush()
-
 function Gamemode:getGamemodeFromID (id)
 	if (self == Gamemode) then
 		for _, gamemode in pairs(self.registeredGamemodes) do

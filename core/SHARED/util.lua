@@ -14,12 +14,12 @@ function require (file)
 					local status, errmsg = pcall(f)
 						
 					if (not status) then
-					    error(errmsg, 0)
+                        error(errmsg, 3)
 					end
 
 					return true;
 				else
-					error(errmsg, 0)
+                    error(errmsg, 3)
 				end
 			else
 				fileClose(file)

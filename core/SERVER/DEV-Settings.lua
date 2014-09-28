@@ -9,5 +9,6 @@ devSettings.startup = {
 	["Gamemodemanager"] 	 = true,
 	["Elementmanager"]       = true,
 	["Permissionmanager"]    = true,
-	["Mapmanager"]           = true
+	["Mapmanager"]           = true,
+    ["Downloadmanager"]      = true
 }

@@ -1,9 +1,53 @@
 Downloadmanager = {}
+Downloadmanager.cache = {}
 
 function Downloadmanager.verifyFiles (...)
-	triggerServerEvent("testEvent2", root, ...)
-end
-addEvent("testEvent1", true)
-addEventHandler("testEvent1", root, Downloadmanager.verifyFiles)
+    local oldArgs = {...}
+    local newArgs = {{}, oldArgs[2], ...}
 
-triggerServerEvent("onClientReady", root)
+    for _, v in ipairs(oldArgs[1]) do
+        if not fileExists(v[1]) then
+            outputDebugString(v[1])
+
+            table.insert(newArgs[1], v[1])
+        else
+            local file = fileOpen(v[1])
+            local data = md5(fileRead(file, fileGetSize(file)))
+            fileClose(file)
+
+            if data ~= v[2] then
+                outputDebugString(v[1])
+
+                table.insert(newArgs[1], v[1])
+            end
+        end
+    end
+
+	triggerServerEvent("Downloadmanager.startDownload", root, unpack(newArgs))
+end
+addEvent("Downloadmanager.verifyFiles", true)
+addEventHandler("Downloadmanager.verifyFiles", root, Downloadmanager.verifyFiles)
+
+function Downloadmanager.prepareClient ()
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+triggerServerEvent("onClientReady", localPlayer, getLocalPlayer())

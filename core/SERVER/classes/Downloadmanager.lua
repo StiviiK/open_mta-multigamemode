@@ -1,5 +1,9 @@
 Downloadmanager = {}
 
+-- Custom Events
+addEvent("Downloadmanager.startDownload", true)
+addEvent("Donwloadmanager.onPlayerDownloadFinish", true)
+
 function Downloadmanager:new (meta, gamemode)
 	Check("Downloadmanager.new", "string", meta, "Meta-File")
 	if not fileExists(meta) then
@@ -9,21 +13,18 @@ function Downloadmanager:new (meta, gamemode)
 	local self = setmetatable({
 		gamemodeID = gamemode:getInfo("ID"),
 		Meta = xmlLoadFile(meta),
-		c_Files = {}, -- Client Files
 		c_tempFiles = {}, -- File Path storage for the client verification
-		c_Data = {
-			currCount = 0, -- Only necessary for the Client
-			compCount = 0,
-			currSize = 0, -- Only necessary for the Client
-			compSize = 0
-		}
 	}, {__index = Downloadmanager})
 	
 	for i in ipairs(xmlNodeGetChildren(self.Meta)) do
 		local child = xmlFindChild(self.Meta, "file", i - 1)
 		if child then
-			local xmlData = xmlNodeGetAttributes(child)
-			table.insert(self.c_tempFiles, xmlData["src"])
+            local xmlData = xmlNodeGetAttributes(child)
+            if fileExists(xmlData["src"]) then
+                local file = fileOpen(xmlData["src"])
+                table.insert(self.c_tempFiles, {xmlData["src"], md5(fileRead(file, fileGetSize(file)))})
+                fileClose(file)
+            end
 		end
 	end
 	
@@ -33,51 +34,76 @@ function Downloadmanager:new (meta, gamemode)
 end
 
 function Downloadmanager:sendToClient (client)
-	triggerClientEvent(client, "testEvent1", root, self.c_tempFiles, self.gamemodeID)
+	triggerClientEvent(client, "Downloadmanager.verifyFiles", client, self.c_tempFiles, self.gamemodeID)
 end
 
-function Downloadmanager.downloadFile (c_tempFiles, gamemodeID)
+function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 	local gamemode = Gamemode:getGamemodeFromID(gamemodeID)
 	local self = gamemode.tmp["fileManager"]
-	gamemode.tmp["fileManager"] = nil -- Delete the tmp Data
+    local playerInstance = setmetatable({ -- i know, it is not completely necessary but now it is safer :)
+        cache = c_tempFiles,
+        filesToDownload = {},
+        c_Data = {
+            ["compSize"] = 0,
+            ["compCount"] = 0
+        },
+        player = client,
+    }, {__index = self})
 
-	self.c_tempFiles = c_tempFiles
-	
-	for _, v in ipairs(self.c_tempFiles) do
+	for _, v in ipairs(c_tempFiles) do
 		if fileExists(v) then
 			local file = fileOpen(v)
 			local size = fileGetSize(file)
 			local data = fileRead(file, size)
 			
 			if data ~= nil then
-				self.c_Data["compSize"] = self.c_Data["compSize"] + size
-				self.c_Data["compCount"] = self.c_Data["compCount"] + 1
+                playerInstance.c_Data["compSize"] = playerInstance.c_Data["compSize"] + size
+                playerInstance.c_Data["compCount"] = playerInstance.c_Data["compCount"] + 1
 		
-				table.insert(self.c_Files, {
-					v,
-					data,
-					size
+				table.insert(playerInstance.filesToDownload, {
+                    base64Encode(v),
+                    base64Encode(data),
+                    base64Encode(size)
 				})
 			end
 			
 			fileClose(file)
 		end
-	end
-	
-	triggerClientEvent(client, "Downloadmanager_prepareDownload", client, self.c_Data)
-	
-	for _, v in ipairs(self.c_Files) do
-		triggerLatentClientEvent(client, "", 750000, false, client, v)
-	end
-	
-	addEventHandler("onPlayerQuit", client, function ()
-		for _, handle in ipairs(getLatentEventHandles(source)) do 
-			cancelLatentEvent(source, handle)
-		end
-	end)
+    end
+    playerInstance.cache = nil
+
+    if select('#', unpack(playerInstance.filesToDownload)) > 0 then
+        triggerClientEvent(playerInstance.player, "Downloadmanager.prepareDownload", playerInstance.player, playerInstance.c_Data)
+
+        for _, v in ipairs(playerInstance.filesToDownload) do
+            --triggerLatentClientEvent(playerInstance.player, "", 750000, false, client, v)
+        end
+
+
+
+
+        playerInstance.onFinishFunc = bind(Downloadmanager.onDownloadFinish, playerInstance)
+        addEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
+
+        addEventHandler("onPlayerQuit", playerInstance.player, function ()
+            for _, handle in ipairs(getLatentEventHandles(source)) do
+                cancelLatentEvent(source, handle)
+            end
+
+            removeEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
+        end)
+    else
+        if rawget(gamemode, "onPlayerDownloadFinished") then
+           rawget(gamemode, "onPlayerDownloadFinished")(gamemode, playerInstance.player)
+        end
+    end
 end
-addEvent("testEvent2", true)
-addEventHandler("testEvent2", root, Downloadmanager.downloadFile)
+addEventHandler("Downloadmanager.startDownload", root, Downloadmanager.startDownload)
+
+function Downloadmanager:onDownloadFinish ()
+    -- self == Playerinstance (Downloadmanager) from the player who finished downloading
+    outputDebugString(Gamemode:getGamemodeFromID(self.gamemodeID):getInfo("Name"))
+end
 
 --[[
 	if fileExists(xmlData["src"]) then
