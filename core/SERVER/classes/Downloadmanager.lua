@@ -43,7 +43,7 @@ function Downloadmanager.downloadFile (c_tempFiles, gamemodeID)
 
 	self.c_tempFiles = c_tempFiles
 	
-	for i, v in ipairs(self.c_tempFiles) do
+	for _, v in ipairs(self.c_tempFiles) do
 		if fileExists(v) then
 			local file = fileOpen(v)
 			local size = fileGetSize(file)
@@ -66,7 +66,7 @@ function Downloadmanager.downloadFile (c_tempFiles, gamemodeID)
 	
 	triggerClientEvent(client, "Downloadmanager_prepareDownload", client, self.c_Data)
 	
-	for i, v in ipairs(self.c_Files) do
+	for _, v in ipairs(self.c_Files) do
 		triggerLatentClientEvent(client, "", 750000, false, client, v)
 	end
 	
