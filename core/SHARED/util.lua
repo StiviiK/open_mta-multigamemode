@@ -10,21 +10,21 @@ function require (file)
 			
 			if fileGetSize(file) > 0 then
 				local f, errmsg = loadstring(fileRead(file, fileGetSize(file)), fileName)
-					if (f) then			
-						local status, errmsg = pcall(f)
+				if (f) then
+					local status, errmsg = pcall(f)
 						
-						if (not status) then
-							error(errmsg, 0)
-						end
-						
-						return true;
-					else
-						error(errmsg, 0)
+					if (not status) then
+					    error(errmsg, 0)
 					end
+
+					return true;
 				else
-					fileClose(file)
-					error("Error @ 'require' [Got empty file!]", 2)
+					error(errmsg, 0)
 				end
+			else
+				fileClose(file)
+				error("Error @ 'require' [Got empty file!]", 2)
+			end
 		else
 			error("Error @ 'require' [File not found!]", 2)
 		end

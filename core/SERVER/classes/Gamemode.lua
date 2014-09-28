@@ -76,12 +76,9 @@ function Gamemode:unregister ()
 		end
 	end
 	
-	for key, value in pairs(self) do
+	for key, _ in pairs(self) do
 		self[key] = nil; -- Delete the complete gamemode data
-	end
-	
-	return {}; 
-	-- return a emtpy table because if you overide the gamemode varriable with the return of this function all gamemode functions also will be removed!
+    end
 end
 
 function Gamemode:isValid (gamemode)
@@ -109,6 +106,8 @@ function Gamemode:getFreeDimension ()
 	
 	return false;
 end
+
+fileFlush()
 
 function Gamemode:getGamemodeFromID (id)
 	if (self == Gamemode) then
