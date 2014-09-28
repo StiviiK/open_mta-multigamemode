@@ -2,18 +2,18 @@ Downloadmanager = {}
 Downloadmanager.cache = {}
 
 function Downloadmanager.verifyFiles (...)
-    local oldArgs = {...}
-    local newArgs = {{}, oldArgs[2], ...}
+	local oldArgs = {...}
+	local newArgs = {{}, oldArgs[2], ...}
 
-    for _, v in ipairs(oldArgs[1]) do
-        if not fileExists(v[1]) then
-            outputDebugString(v[1])
+	for _, v in ipairs(oldArgs[1]) do
+		if not fileExists(v[1]) then
+			outputDebugString(v[1])
 
-            table.insert(newArgs[1], v[1])
-        else
-            local file = fileOpen(v[1])
-            local data = md5(fileRead(file, fileGetSize(file)))
-            fileClose(file)
+			table.insert(newArgs[1], v[1])
+		else
+			local file = fileOpen(v[1])
+			local data = md5(fileRead(file, fileGetSize(file)))
+			fileClose(file)
 
             if data ~= v[2] then
                 outputDebugString(v[1])

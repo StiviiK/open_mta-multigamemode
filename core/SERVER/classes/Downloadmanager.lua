@@ -38,17 +38,17 @@ function Downloadmanager:sendToClient (client)
 end
 
 function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
-	local gamemode = Gamemode:getGamemodeFromID(gamemodeID)
-	local self = gamemode.tmp["fileManager"]
+    local gamemode = Gamemode:getGamemodeFromID(gamemodeID)
+    local self = gamemode.tmp["fileManager"]
     local playerInstance = setmetatable({ -- i know, it is not completely necessary but now it is safer :)
-        cache = c_tempFiles,
-        filesToDownload = {},
-        c_Data = {
-            ["compSize"] = 0,
-            ["compCount"] = 0
-        },
-        player = client,
-    }, {__index = self})
+		cache = c_tempFiles,
+		filesToDownload = {},
+		c_Data = {
+			["compSize"] = 0,
+			["compCount"] = 0
+		},
+		player = client,
+	}, {__index = self})
 
 	for _, v in ipairs(c_tempFiles) do
 		if fileExists(v) then
@@ -57,13 +57,13 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 			local data = fileRead(file, size)
 			
 			if data ~= nil then
-                playerInstance.c_Data["compSize"] = playerInstance.c_Data["compSize"] + size
-                playerInstance.c_Data["compCount"] = playerInstance.c_Data["compCount"] + 1
+				playerInstance.c_Data["compSize"] = playerInstance.c_Data["compSize"] + size
+				playerInstance.c_Data["compCount"] = playerInstance.c_Data["compCount"] + 1
 		
 				table.insert(playerInstance.filesToDownload, {
-                    base64Encode(v),
-                    base64Encode(data),
-                    base64Encode(size)
+					base64Encode(v),
+					base64Encode(data),
+					base64Encode(size)
 				})
 			end
 			
