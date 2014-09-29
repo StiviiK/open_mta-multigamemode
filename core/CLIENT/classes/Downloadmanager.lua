@@ -12,7 +12,7 @@ function Downloadmanager.verifyFiles (...)
 			table.insert(newArgs[1], v[1])
 		else
 			local file = fileOpen(v[1])
-			local data = md5(fileRead(file, fileGetSize(file)))
+			local data = file:md5()
 			fileClose(file)
 
             if data ~= v[2] then

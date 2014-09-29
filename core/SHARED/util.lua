@@ -6,10 +6,10 @@ function require (file)
 	if type(file) == "string" then
 		if fileExists(file) then
 			local fileName = file
-			local file = fileOpen(fileName, true)
+			local file = fileOpen(fileName)
 			
-			if fileGetSize(file) > 0 then
-				local f, errmsg = loadstring(fileRead(file, fileGetSize(file)), fileName)
+			if file:getSize() > 0 then
+				local f, errmsg = loadstring(file:read(), fileName)
 				if (f) then
 					local status, errmsg = pcall(f)
 						
