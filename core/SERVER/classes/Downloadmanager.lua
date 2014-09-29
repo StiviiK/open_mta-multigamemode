@@ -19,12 +19,12 @@ function Downloadmanager:new (meta, gamemode)
 	for i in ipairs(xmlNodeGetChildren(self.Meta)) do
 		local child = xmlFindChild(self.Meta, "file", i - 1)
 		if child then
-            local xmlData = xmlNodeGetAttributes(child)
-            if fileExists(xmlData["src"]) then
-                local file = fileOpen(xmlData["src"])
-                table.insert(self.c_tempFiles, {xmlData["src"], md5(fileRead(file, fileGetSize(file)))})
-                fileClose(file)
-            end
+			local xmlData = xmlNodeGetAttributes(child)
+			if fileExists(xmlData["src"]) then
+				local file = fileOpen(xmlData["src"])
+				table.insert(self.c_tempFiles, {xmlData["src"], md5(fileRead(file, fileGetSize(file)))})
+				fileClose(file)
+			end
 		end
 	end
 	
@@ -92,7 +92,7 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 
             removeEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
         end)
-    else
+	else
         if rawget(gamemode, "onPlayerDownloadFinished") then
            rawget(gamemode, "onPlayerDownloadFinished")(gamemode, playerInstance.player)
         end
