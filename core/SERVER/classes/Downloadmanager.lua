@@ -17,7 +17,7 @@ function Downloadmanager:new (meta, gamemode)
 	}, {__index = Downloadmanager})
 	
 	for i in ipairs(xmlNodeGetChildren(self.Meta)) do
-		local child = xmlFindChild(self.Meta, "file", i - 1)
+		local child = xmlFindChild(self.Meta, "transferfile", i - 1)
 		if child then
 			local xmlData = xmlNodeGetAttributes(child)
 			if fileExists(xmlData["src"]) then
