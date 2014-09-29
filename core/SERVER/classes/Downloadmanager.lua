@@ -21,7 +21,7 @@ function Downloadmanager:new (meta, gamemode)
 		if child then
 			local xmlData = xmlNodeGetAttributes(child)
 			if fileExists(xmlData["src"]) then
-                local file = fileOpen(xmlData["src"])
+        			local file = fileOpen(xmlData["src"])
 				table.insert(self.c_tempFiles, {xmlData["src"], file:md5()})
 				fileClose(file)
 			end
@@ -52,9 +52,9 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 
 	for _, v in ipairs(playerInstance.cache) do
 		if fileExists(v) then
-            local file = fileOpen(v)
-            local size = file:getSize()
-            local data = file:base64()
+            		local file = fileOpen(v)
+        		local size = file:getSize()
+        		local data = file:base64()
 			--local file = fileOpen(v)
 			--local size = fileGetSize(file)
 			--local data = fileRead(file, size)
