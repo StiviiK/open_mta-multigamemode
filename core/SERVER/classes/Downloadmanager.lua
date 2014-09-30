@@ -40,7 +40,7 @@ end
 function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
     local gamemode = Gamemode:getGamemodeFromID(gamemodeID)
     local self = gamemode.tmp["fileManager"]
-    local playerInstance = setmetatable({ -- i know, it is not completely necessary but now it is safer :)
+	local playerInstance = setmetatable({ -- i know, it is not completely necessary but now it is safer :)
 		cache = c_tempFiles,
 		filesToDownload = {},
 		c_Data = {
