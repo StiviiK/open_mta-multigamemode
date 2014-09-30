@@ -33,3 +33,26 @@ function Player:setGamemodeData (data, value)
 
 	return false
 end
+
+function Player:triggerEvent (...)
+	return triggerClientEvent(self, ...);
+end
+
+function Player:triggerLatenEvent (...)
+	return triggerLatentClientEvent(self, ...);
+end
+
+function Player:cancelLatentEvent (...)
+	return cancelLatentEvent(self, ...);
+end
+
+function Player:getLatentEventHandles ()
+	return getLatentEventHandles(self);
+end
+
+function Player:outputDebug (...)
+	local arg = {...}
+	outputDebugString(("[%s] %s"):format(self:getName(), arg[1]), 0, 0, 125, 255)
+end
+
+--getRandomPlayer():outputDebug("[TEST] Hallo", 0, 255, 3, 125)

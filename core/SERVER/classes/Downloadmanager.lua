@@ -76,36 +76,40 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
     playerInstance.cache = nil
 
 	if select('#', unpack(playerInstance.filesToDownload)) > 0 then
-		triggerClientEvent(playerInstance.player, "Downloadmanager.prepareDownload", playerInstance.player, playerInstance.c_Data)
+		playerInstance.player:outputDebug(("[Downloadmanager] Preparing to download the Gamemode-Files (Gamemode: %s)\n"):format(gamemode:getInfo("Name")))
+		--playerInstance.player:triggerEvent("Downloadmanager.prepareDownload", playerInstance.player, playerInstance.c_Data)
 
 		for _, v in ipairs(playerInstance.filesToDownload) do
-			--triggerLatentClientEvent(playerInstance.player, "", 750000, false, client, v)
+			--playerInstance.player:triggerLatenEvent("", 750000, false, client, v)
 		end
-
-
-
 
 		playerInstance.onFinishFunc = bind(Downloadmanager.onDownloadFinish, playerInstance)
 		addEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
-
+		
 		addEventHandler("onPlayerQuit", playerInstance.player, function ()
-			for _, handle in ipairs(getLatentEventHandles(source)) do
-				cancelLatentEvent(source, handle)
+			for _, handle in ipairs(source:getLatentEventHandles()) do
+				source:cancelLatentEvent(handle)
 			end
 
 			removeEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
 		end)
-	else
-		if rawget(gamemode, "onPlayerDownloadFinished") then
-			rawget(gamemode, "onPlayerDownloadFinished")(gamemode, playerInstance.player)
-		end
+    else
+        playerInstance:onDownloadFinish()
     end
 end
 addEventHandler("Downloadmanager.startDownload", root, Downloadmanager.startDownload)
 
 function Downloadmanager:onDownloadFinish ()
-    -- self == Playerinstance (Downloadmanager) from the player who finished downloading
-    outputDebugString(Gamemode:getGamemodeFromID(self.gamemodeID):getInfo("Name"))
+	-- self == Playerinstance (Downloadmanager) from the player who finished downloading
+	local gamemode = self.player:getGamemode()
+	
+	if select('#', unpack(self.filesToDownload)) > 0 then
+		client:outputDebug(("[Downloadmanager] The download has been completed successfully (Gamemode: %s)"):format(gamemode:getInfo("Name")), 0, 0, 125, 255)
+	end
+	
+    if rawget(gamemode, "onPlayerDownloadFinished") then
+        rawget(gamemode, "onPlayerDownloadFinished")(self.player:getGamemode(), self.player)
+    end
 end
 
 --[[
