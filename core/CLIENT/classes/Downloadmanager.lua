@@ -3,7 +3,7 @@ Downloadmanager.cache = {}
 
 function Downloadmanager.verifyFiles (...)
 	local oldArgs = {...}
-	local newArgs = {{}, oldArgs[2], ...}
+	local newArgs = {{}, oldArgs[2]}
 
 	for _, v in ipairs(oldArgs[1]) do
 		if not fileExists(v[1]) then
