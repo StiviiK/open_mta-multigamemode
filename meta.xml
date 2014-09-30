@@ -37,6 +37,10 @@
 		<script src="core/CLIENT/classes/Version.lua" type="client" cache="false" />
 		
 		<!-- Files -->
+		<file src="gamemodes\lobby\FILES\images\github\github.png" />
+		<file src="gamemodes\lobby\FILES\images\github\octocat1.png" />
+		<file src="gamemodes\lobby\FILES\images\github\octocat2.png" />
+		<file src="gamemodes\lobby\FILES\images\github\octocat3.png" />
 	<!-- --->
 	
 	<!-- Lobby -->
