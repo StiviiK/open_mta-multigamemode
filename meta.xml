@@ -32,7 +32,9 @@
 		-->
 		
 		<!-- Client -->
+		<script src="core/CLIENT/Main.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/Downloadmanager.lua" type="client" cache="false" />
+		<script src="core/CLIENT/classes/Version.lua" type="client" cache="false" />
 		
 		<!-- Files -->
 	<!-- --->
