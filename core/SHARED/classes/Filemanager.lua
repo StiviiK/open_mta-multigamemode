@@ -18,10 +18,10 @@ function File:create (path)
 
     return false;
 end
-function File:open (f)
+function File:open (f, ...)
     if fileExists(f) then
         local obj = setmetatable({
-            handle = File.backup.fileOpen(f)
+            handle = File.backup.fileOpen(f, ...)
         }, {
             __index = self
         })
