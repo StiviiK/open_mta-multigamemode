@@ -75,30 +75,30 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
     end
     playerInstance.cache = nil
 
-    if select('#', unpack(playerInstance.filesToDownload)) > 0 then
-        triggerClientEvent(playerInstance.player, "Downloadmanager.prepareDownload", playerInstance.player, playerInstance.c_Data)
+	if select('#', unpack(playerInstance.filesToDownload)) > 0 then
+		triggerClientEvent(playerInstance.player, "Downloadmanager.prepareDownload", playerInstance.player, playerInstance.c_Data)
 
-        for _, v in ipairs(playerInstance.filesToDownload) do
-            --triggerLatentClientEvent(playerInstance.player, "", 750000, false, client, v)
-        end
-
-
+		for _, v in ipairs(playerInstance.filesToDownload) do
+			--triggerLatentClientEvent(playerInstance.player, "", 750000, false, client, v)
+		end
 
 
-        playerInstance.onFinishFunc = bind(Downloadmanager.onDownloadFinish, playerInstance)
-        addEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
 
-        addEventHandler("onPlayerQuit", playerInstance.player, function ()
-            for _, handle in ipairs(getLatentEventHandles(source)) do
-                cancelLatentEvent(source, handle)
-            end
 
-            removeEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
-        end)
+		playerInstance.onFinishFunc = bind(Downloadmanager.onDownloadFinish, playerInstance)
+		addEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
+
+		addEventHandler("onPlayerQuit", playerInstance.player, function ()
+			for _, handle in ipairs(getLatentEventHandles(source)) do
+				cancelLatentEvent(source, handle)
+			end
+
+			removeEventHandler("Donwloadmanager.onPlayerDownloadFinish", playerInstance.player, playerInstance.onFinishFunc)
+		end)
 	else
-        if rawget(gamemode, "onPlayerDownloadFinished") then
-           rawget(gamemode, "onPlayerDownloadFinished")(gamemode, playerInstance.player)
-        end
+		if rawget(gamemode, "onPlayerDownloadFinished") then
+			rawget(gamemode, "onPlayerDownloadFinished")(gamemode, playerInstance.player)
+		end
     end
 end
 addEventHandler("Downloadmanager.startDownload", root, Downloadmanager.startDownload)
