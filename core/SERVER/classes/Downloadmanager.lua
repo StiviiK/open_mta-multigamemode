@@ -52,9 +52,9 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 
 	for _, v in ipairs(playerInstance.cache) do
 		if fileExists(v) then
-            local file = fileOpen(v)
-        	local size = file:getSize()
-        	local data = file:base64()
+			local file = fileOpen(v)
+			local size = file:getSize()
+			local data = file:base64()
 			--local file = fileOpen(v)
 			--local size = fileGetSize(file)
 			--local data = fileRead(file, size)
@@ -71,7 +71,6 @@ function Downloadmanager.startDownload (c_tempFiles, gamemodeID)
 			end
 			
 			fileClose(file)
-            error(file:getSize())
 		end
     end
     playerInstance.cache = nil
