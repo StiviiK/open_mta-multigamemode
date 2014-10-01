@@ -1,4 +1,4 @@
-Multigamemode-SA
+open MTA:Multigamemode
 ================
 
 This is my first object-oriented Project in LUA and also my first Multigamemode in MultiTheftAuto SA.
