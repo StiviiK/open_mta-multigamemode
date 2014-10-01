@@ -33,7 +33,7 @@ outputDebugString("------ Starting the Gamemode ------")
 		require("core/SERVER/classes/Downloadmanager.lua")
 	end
 	
-	setGameType("Multigamemode by StiviK")
+	setGameType("open_mta-multigamemode "..(VERSION or "[unknown build]"))
 outputDebugString("------ Startup finished ------")
 
 -- Stop

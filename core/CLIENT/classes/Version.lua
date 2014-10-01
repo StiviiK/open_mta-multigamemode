@@ -1,7 +1,7 @@
 Version = {}
 
 function Version:constructor ()
-	self.ver_label = guiCreateLabel(screenW - 255, screenH - 30, 250, 18, "Open MTA:Multigamemode "..(VERSION or "unknown"), false)
+	self.ver_label = guiCreateLabel(screenW - 251, screenH - 30, 250, 18, "Open MTA:Multigamemode "..(VERSION or "[unknown build]"), false)
 	guiSetAlpha(self.ver_label, 0.53)
 	guiLabelSetHorizontalAlign(self.ver_label, "right", false)
 end
