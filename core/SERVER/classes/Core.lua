@@ -55,5 +55,11 @@ function Core:destructor ()
 end
 
 function Core:isClasspresent (class)
-	return table.find(Core, class) ~= nil;
+	for i, v in ipairs(self.startedClasses) do
+		if v[1] == class then
+			return true;
+		end
+	end
+	
+	return false;
 end
