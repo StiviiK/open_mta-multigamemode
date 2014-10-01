@@ -3,7 +3,7 @@ Core = {}
 function Core:constructor ()
 	outputDebugString("------ Starting the core... ------")
 	
-	-- we need immediately the global core e.g table.insert(core.startedClasses, ...) --> Hacky ;)
+	-- we need immediately the global core e.g table.insert(core.startedClasses, ...)
 	core = self
 	
 	-- set the game type
