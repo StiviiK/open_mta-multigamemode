@@ -17,6 +17,7 @@ function Core:constructor ()
 			require(data[2])
 		end
 	end
+	Core:removeClass(Gamemode)
 
 	-- connected to the database
 	if self:isClasspresent(Database) then
@@ -62,4 +63,19 @@ function Core:isClasspresent (class)
 	end
 	
 	return false;
+end
+
+function Core:removeClass (class)
+	for i, v in ipairs(self.startedClasses) do
+		if v[1] == class then
+			outputDebugString(("[Core] [STOPPING] %s"):format(v[2]))
+			self.startedClasses[i] = nil
+		end
+	end
+	
+	for i, v in pairs(_G) do
+		if v == class then
+			_G[i] = nil
+		end
+	end
 end
