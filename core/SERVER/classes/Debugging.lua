@@ -1,5 +1,6 @@
 if DEBUG then
 	Debugging = {}
+	table.insert(core.startedClasses, {Debugging, "Debuggingclass"})
 	
 	function Debugging:constructor ()
 	end

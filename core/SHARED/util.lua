@@ -160,6 +160,25 @@ if CLIENT then
 end
 
 
+function table.find(tab, value)
+	for k, v in pairs(tab) do
+		if v == value then
+			return k
+		end
+	end
+	return nil
+end
+
+function table.findAll(tab, value)
+	local result = {}
+	for k, v in pairs(tab) do
+		if v == value then
+			table.insert(result, k)
+		end
+	end
+	return result
+end
+
 --[[ FUCKING USELESS CRAP!
 newG = table.copy(_G)
 _G = setmetatable({}, {

@@ -1,5 +1,6 @@
 -- This is the Database manager class for a MultiGamemode
 Database = {};
+table.insert(core.startedClasses, {Database, "Databasemanager"})
 
 function Database:connect (host, user, pass, database, settings)
 	--assert(type(host) == "string" and type(user) == "string" and type(pass) == "string" and type(database) == "string" and type(settings) == "string", "Bad Argument @ Database.connect [Invalid Arguments given!]")
@@ -36,4 +37,12 @@ end
 
 function Database:execute (...)
 	return self.Connection:exec(...);
+end
+
+function Database:disconnect ()
+	if self.Connection ~= nil then
+		return destroyElement(self.Connection);
+	end
+	
+	return false;
 end

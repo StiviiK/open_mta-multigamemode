@@ -4,7 +4,10 @@
 	<oop>true</oop>
 	
 	<!-- Core -->
-		<!-- Settings (Shared) -->
+		<!-- Core classes -->
+		<script src="core/SERVER/classes/Core.lua" type="server" />
+	
+		<!-- Settings (Shared) --> 
 		<script src="core/SHARED/Settings.lua" type="shared" cache="false"/>
 		<script src="core/SHARED/util.lua" type="shared" cache="false"/>
 		

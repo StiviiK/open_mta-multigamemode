@@ -1,5 +1,6 @@
 -- This is the mapmanager for a MultiGamemode
 Mapmanager = {}
+table.insert(core.startedClasses, {Mapmanager, "Mapmanager"})
 
 function Mapmanager:destructor ()
 	for _, gamemode in ipairs(Gamemode.registeredGamemodes) do

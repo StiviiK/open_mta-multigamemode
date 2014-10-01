@@ -1,4 +1,5 @@
 Downloadmanager = {}
+table.insert(core.startedClasses, {Downloadmanager, "Donwloadmanager"})
 
 -- Custom Events
 addEvent("Downloadmanager.startDownload", true)

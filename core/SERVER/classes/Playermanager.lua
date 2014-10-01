@@ -1,5 +1,6 @@
 -- This is the playermanager class for a MultiGamemode
 Playermanager = {};
+table.insert(core.startedClasses, {Playermanager, "Playermanager"})
 addEvent("onClientReady", true)
 
 function Playermanager:constructor ()
