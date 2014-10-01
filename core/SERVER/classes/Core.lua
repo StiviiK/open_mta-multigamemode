@@ -17,7 +17,7 @@ function Core:constructor ()
 			require(data[2])
 		end
 	end
-	
+
 	-- connected to the database
 	if self:isClasspresent(Database) then
 		Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)
@@ -28,6 +28,7 @@ function Core:constructor ()
 end
 
 function Core:destructor ()
+	if self ~= core then return end
 	outputDebugString("------ Stopping the core... ------")
 	
 	-- disconnect from the database
@@ -54,5 +55,5 @@ function Core:destructor ()
 end
 
 function Core:isClasspresent (class)
-	return self.startedClasses[class] ~= nil;
+	return table.find(Core, class) ~= nil;
 end
