@@ -1,2 +1,2 @@
 Voicemanager = {};
-table.insert(core.startedClasses, Voicemanager)
+table.insert(core.startedClasses, {Voicemanager, "Voicemanager"})

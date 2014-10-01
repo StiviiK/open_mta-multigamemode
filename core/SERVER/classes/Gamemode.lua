@@ -4,6 +4,7 @@ table.insert(core.startedClasses, {Gamemode, "Gamemodemanager"})
 Gamemode.registeredGamemodes = {}
 
 -- Metatable
+Gamemode.__metatable = false
 Gamemode.__call = function (self, properties)
 	if not self:getGamemodeFromID(properties[1] or #self.registeredGamemodes + 1) then
 		local obj = setmetatable(
@@ -35,7 +36,7 @@ Gamemode.__call = function (self, properties)
 				tmp = {}
 			}, {
 				__index = self,
-				--__metatable = self.__metatable
+				__metatable = self.__metatable
 			}
 		)
 		
