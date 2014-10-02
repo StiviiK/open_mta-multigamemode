@@ -6,7 +6,7 @@ end
 Main.onStartup()
 
 function Main.onStop ()
-	core:destructor()
+	core:destructor() 
 end
 addEventHandler("onResourceStop", resourceRoot, Main.onStop, true, "low-9999")
 

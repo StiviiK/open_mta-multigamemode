@@ -36,20 +36,25 @@ function Core:destructor ()
 		Database:disconnect()
 	end
 	
-	-- delete all loaded classes
-	for k, class in ipairs(self.startedClasses) do
-		outputDebugString(("[Core] [STOPPING] %s"):format(class[2]))
-		if class[1] ~= Gamemode then -- CHANGE!
-			delete(class[1])
-		else
-			Gamemode:destructor()
+	self.sortBackwards = function (a, b)
+		if table.find(self.startedClasses, a) > table.find(self.startedClasses, b) then
+			return true
 		end
+		
+		return false;
+	end
+	
+	-- delete all loaded classes
+	for k, class in spairs(self.startedClasses, self.sortBackwards) do
+		outputDebugString(("[Core] [STOPPING] %s"):format(class[2]))
+		Core:removeClass(class[1], false)
+		self.startedClasses[k] = nil
 	end
 	
 	-- delete the core
 	self.destructor = false
-	delete(Core)
 	core = nil
+	Core:removeClass(Core)
 	
 	outputDebugString("------ The core has been stopped... ------")
 end
@@ -64,19 +69,40 @@ function Core:isClasspresent (class)
 	return false;
 end
 
-function Core:removeClass (class)
-	if self:isClasspresent(class) then
-		for i, v in ipairs(self.startedClasses) do
-			if v[1] == class then
-				outputDebugString(("[Core] [STOPPING] %s"):format(v[2]))
-				self.startedClasses[i] = nil
+function Core:removeClass (class, direct)
+	--if self:isClasspresent(class) then
+		if rawget(class, "destructor") then
+			rawget(class, "destructor")(class)
+		end
+	
+		if (direct or true) then
+			for i, v in ipairs(self.startedClasses) do
+				if v[1] == class then
+					outputDebugString(("[Core] [STOPPING] %s"):format(v[2]))
+					self.startedClasses[i] = nil
+				end
 			end
 		end
 		
 		for i, v in pairs(_G) do
 			if v == class then
-				_G[i] = nil
+				--_G[i] = nil
+				if type(_G[i]) == "table" then
+					for _i, v in pairs(_G[i]) do
+						if isElement(v) then
+							destroyElement(v)
+						elseif isTimer(v) then
+							killTimer(v)
+						end
+						
+						_G[i][_i] = nil
+					end
+					
+					_G[i] = nil
+				else
+					_G[i] = nil
+				end
 			end
 		end
-	end
+	--end
 end
