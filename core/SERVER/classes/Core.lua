@@ -75,7 +75,7 @@ function Core:removeClass (class, direct)
 			rawget(class, "destructor")(class)
 		end
 	
-		if (direct  ~= nil) or true then
+		if direct then
 			for i, v in ipairs(self.startedClasses) do
 				if v[1] == class then
 					outputDebugString(("[Core] [STOPPING] %s"):format(v[2]))
