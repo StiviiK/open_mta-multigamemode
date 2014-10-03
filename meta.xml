@@ -38,12 +38,16 @@
 		<script src="core/CLIENT/Main.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/Downloadmanager.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/Version.lua" type="client" cache="false" />
+		<script src="core/CLIENT/classes/maskShader.lua" type="client" cache="false" />
 		
 		<!-- Files -->
-		<file src="gamemodes\lobby\FILES\images\github\github.png" />
-		<file src="gamemodes\lobby\FILES\images\github\octocat1.png" />
-		<file src="gamemodes\lobby\FILES\images\github\octocat2.png" />
-		<file src="gamemodes\lobby\FILES\images\github\octocat3.png" />
+		<file src="core\FILES\shader\mask\maskShader.fx"/>
+		<file src="core\FILES\shader\mask\mask_round.png"/>			
+		
+		<file src="gamemodes\lobby\FILES\images\github\github.png"/>
+		<file src="gamemodes\lobby\FILES\images\github\octocat1.png"/>
+		<file src="gamemodes\lobby\FILES\images\github\octocat2.png"/>
+		<file src="gamemodes\lobby\FILES\images\github\octocat3.png"/>
 	<!-- --->
 	
 	<!-- Lobby -->
