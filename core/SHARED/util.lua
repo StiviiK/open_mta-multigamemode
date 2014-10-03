@@ -181,6 +181,12 @@ function table.findAll(tab, value)
 	return result
 end
 
+function getMainTime()
+	local time = getRealTime();
+
+	return (('%02d:%02d'):format(time.hour,time.minute));
+end
+
 --[[ FUCKING USELESS CRAP!
 newG = table.copy(_G)
 _G = setmetatable({}, {
