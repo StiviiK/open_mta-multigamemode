@@ -187,6 +187,13 @@ function getMainTime()
 	return (('%02d:%02d'):format(time.hour,time.minute));
 end
 
+function math.round(number, decimals, method)
+    decimals = decimals or 0
+    local factor = 10 ^ decimals
+    if (method == "ceil" or method == "floor") then return math[method](number * factor) / factor
+    else return tonumber(("%."..decimals.."f"):format(number)) end
+end
+
 --[[ FUCKING USELESS CRAP!
 newG = table.copy(_G)
 _G = setmetatable({}, {

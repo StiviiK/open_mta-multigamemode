@@ -7,7 +7,7 @@ function maskShader:create (image, mask)
 	obj.maskShader = dxCreateShader("core/FILES/shader/mask/maskShader.fx")
 	
 	if not obj.maskShader then
-		error("\n[Shader] Could not create the maskShader.", 2)
+		error("\n[Shader] Could not create the maskShader. Please user debugscript 3!", 2)
 	elseif not obj.imageTex then
 		error("\n[Shader] Could not create the imageTexture.", 2)
 	elseif not obj.maskTex then
