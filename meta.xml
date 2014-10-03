@@ -39,10 +39,12 @@
 		<script src="core/CLIENT/classes/Downloadmanager.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/Version.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/maskShader.lua" type="client" cache="false" />
+		<script src="core/CLIENT/forms/form_defaultHUD.lua" type="client" cache="false" />
 		
 		<!-- Files -->
 		<file src="core\FILES\shader\mask\maskShader.fx"/>
-		<file src="core\FILES\shader\mask\mask_round.png"/>			
+		<file src="core\FILES\shader\mask\mask_round.png"/>
+		<file src="core\FILES\shader\mask\mask_full.png"/>
 		
 		<file src="gamemodes\lobby\FILES\images\github\github.png"/>
 		<file src="gamemodes\lobby\FILES\images\github\octocat1.png"/>
