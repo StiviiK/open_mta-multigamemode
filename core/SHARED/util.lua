@@ -159,6 +159,15 @@ if CLIENT then
 		dxDrawRectangle ( absX+ancho,absY+sizeY-ancho,sizeX-ancho,ancho,color )
 		dxDrawRectangle ( absX+sizeX-ancho,absY+ancho,ancho,sizeY-ancho*2,color )   
 	end
+	
+	function isCursorOverRectangle (x, y, w, h)
+		local cX, cY = getCursorPosition()
+		if isCursorShowing() then
+			return ((cX*screenW > x) and (cX*screenW < x + w)) and ( (cY*screenH > y) and (cY*screenH < y + h));
+		else
+			return false;
+		end
+	end
 end
 
 
