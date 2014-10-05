@@ -17,8 +17,8 @@
 		<!-- Shared -->
 		<script src="core/SHARED/include/classlib.lua" type="shared" cache="false"/>
 		<script src="core/SHARED/classes/RPC.lua" type="shared" cache="false"/>
-        	<script src="core/SHARED/classes/Filemanager.lua" type="shared" cache="false"/>
-		 <script src="core/SHARED/classes/POParser.lua" type="shared" cache="false"/>
+		<script src="core/SHARED/classes/Filemanager.lua" type="shared" cache="false"/>
+		<script src="core/SHARED/classes/POParser.lua" type="shared" cache="false"/>
 	
 		<!-- Server -->
 		<script src="core/SERVER/Settings.lua" type="server"/>
