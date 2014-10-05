@@ -6,7 +6,7 @@
     <transferfile src="gamemodes/lobby/FILES/images/gamemodes/copsandrobbers.jpg" />
     <transferfile src="gamemodes/lobby/FILES/images/gamemodes/heist.jpg" />
     <transferfile src="gamemodes/lobby/FILES/images/gamemodes/hunter.jpg" />
-    <transferfile src="gamemodes/lobby/FILES/images/gamemodes/unkown.jpg" />
+    <transferfile src="gamemodes/lobby/FILES/images/gamemodes/unknown.jpg" />
     
     <!-- Account -->
     <transferfile src="gamemodes/lobby/FILES/images/account/default.jpg" />
