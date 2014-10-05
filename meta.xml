@@ -73,16 +73,19 @@
 		<script src="gamemodes/bloodmoney/SERVER/Main.lua" type="server" />
 		
 		<!-- Capture -->
-		<!-- script src="gamemodes/capture/SERVER/Main.lua" type="server" / --> <!-- Much the same like Bloodmoney -->
+		<script src="gamemodes/capture/SERVER/Main.lua" type="server" /> <!-- Much the same like Bloodmoney -->
 		
 		<!-- Cops'n'Robbers -->
 		<script src="gamemodes/copsandrobbers/SERVER/Main.lua" type="server" />
 		
 		<!-- Heist -->
-		<!-- script src="gamemodes/heist/SERVER/Main.lua" type="server" / --> <!-- No Idea :P -->
+		<script src="gamemodes/heist/SERVER/Main.lua" type="server" /> <!-- No Idea :P -->
 		
 		<!-- Hunter -->
 		<script src="gamemodes/hunter/SERVER/Main.lua" type="server" />
+		
+		<!-- LastTeamStanding -->
+		<script src="gamemodes/lastteamstanding/SERVER/Main.lua" type="server"/>
 	<!-- -->
 	
 	<aclrequest>
