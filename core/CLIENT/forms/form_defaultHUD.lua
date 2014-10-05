@@ -20,8 +20,8 @@ function form_defaultHUD:render ()
 
 	self.skin:update("gamemodes/lobby/FILES/images/account/skins/"..getElementModel(localPlayer)..".jpg", false)
 	
-	dxSetRenderTarget(self.renderTarget, true)
-		dxSetBlendMode("modulate_add")
+	--dxSetRenderTarget(self.renderTarget, true)
+		--dxSetBlendMode("modulate_add")
 	
 		self.skin:render(20*px, 20*px, 100*px, 100*px)
 		dxDrawText(getMainTime(), 124*px, 20*py, 196*px, 47*py, tocolor(255, 255, 255, 255), 2.00*px, "sans", "left", "top", false, false, false, false, false)
@@ -29,7 +29,7 @@ function form_defaultHUD:render ()
 		dxDrawText(localPlayer.name, 196*px, 29*py, 306*px, 47*py, tocolor(255, 255, 255, 255), 1.00*py, "sans", "left", "center", true, false, false, false, false)
 		dxDrawRectangle(124*px, 66*py, 182*px, 14*py, tocolor(0, 0, 0, 137), false)
 		dxDrawRectangle(124*px, 66*py, ((182 / localPlayer.percentEXP) * 100)*px, 14*py, tocolor(254, 138, 0, 189), false)
-		dxDrawText(("Level: %s"):format(localPlayer.level), 124*px, 52*py, 306*px, 66*py, tocolor(255, 255, 255, 255), 1.00*py, "default-bold", "left", "bottom", true, false, false, false, false)
+		dxDrawText(("Level: %s"):format(localPlayer.level), 124*px, 52*py, 306*px, 66*py, tocolor(255, 255, 255, 255), 1.00*py, "sans", "left", "bottom", true, false, false, false, false)
 		dxDrawText(("%s / %s EXP"):format(localPlayer.currEXP, localPlayer.nextlvlEXP), 124*px, 66*py, 306*px, 80*py, tocolor(255, 254, 254, 255), 0.80*py, "default-bold", "center", "center", false, false, false, false, false)
 		dxDrawText("", 124*px, 80*py, 306*px, 94*py, tocolor(255, 254, 254, 255), 0.80*py, "default-bold", "center", "center", false, false, false, false, false) -- "+ 3999 EXP"
 		dxDrawRectangle(124*px, 84*py, 182*px, 14*py, tocolor(0, 0, 0, 137), false)
@@ -40,10 +40,10 @@ function form_defaultHUD:render ()
 		--dxDrawRectangle(124, 102, (182 * localPlayer.armor) / 100, 14, tocolor(0, 36, 96, 189), false)
 		--dxDrawText(("%s %s"):format(localPlayer.armor, "%"), 124, 102, 306, 116, tocolor(255, 254, 254, 255), 0.80, "default-bold", "center", "center", false, false, false, false, false)
 	
-		dxSetBlendMode("blend")
-	dxSetRenderTarget()
+		--dxSetBlendMode("blend")
+	--dxSetRenderTarget()
 	
-	dxDrawImage(0, 0, 305*px, 120*py, self.renderTarget, 0, 0, 0, tocolor(255, 255, 255, 255))
+	--dxDrawImage(0, 0, 305*px, 120*py, self.renderTarget, 0, 0, 0, tocolor(255, 255, 255, 255))
 end
 
 function form_defaultHUD:destroy ()
