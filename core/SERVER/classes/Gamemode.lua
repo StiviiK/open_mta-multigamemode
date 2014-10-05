@@ -42,11 +42,11 @@ Gamemode.__call = function (self, properties)
 		
 		self.registeredGamemodes[obj.ID] = obj;
 			
-		outputDebugString(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
+		outputDebug(("[Gamemodemanager] Registered a new Gamemode: '%s' (ID: %d)"):format(obj.Name, obj.ID))
 			
 		return obj;
 	else
-		outputDebugString(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1] or #Gamemode.registeredGamemodes + 1, properties[2]))
+		outputDebug(("[Gamemodemanager] Can't register a new Gamemode! (ID: %d, Name: %s)"):format(properties[1] or #Gamemode.registeredGamemodes + 1, properties[2]))
 			
 		return false;
 	end
@@ -61,7 +61,7 @@ end
 
 function Gamemode:unregister ()
 	Gamemode.registeredGamemodes[self.ID] = nil; -- remove the gamemode in the registeredGamemodes Table
-	outputDebugString(("[Gamemodemanager] Unregistered Gamemode: %s (ID: %d)"):format(self.Name, self.ID))
+	outputDebug(("[Gamemodemanager] Unregistered Gamemode: %s (ID: %d)"):format(self.Name, self.ID))
 
 	if (self.Blip and isElement(self.Blip)) then
 		destroyElement(self.Blip)

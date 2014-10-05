@@ -7,7 +7,7 @@ function Downloadmanager.verifyFiles (...)
 
 	for _, v in ipairs(oldArgs[1]) do
 		if not fileExists(v[1]) then
-			outputDebugString(v[1])
+			outputDebug(v[1])
 
 			table.insert(newArgs[1], v[1])
 		else
@@ -16,7 +16,7 @@ function Downloadmanager.verifyFiles (...)
 			fileClose(file)
 
             if data ~= v[2] then
-                outputDebugString(v[1])
+                outputDebug(v[1])
 
                 table.insert(newArgs[1], v[1])
             end

@@ -17,7 +17,7 @@ function maskShader:create (image, mask)
 	dxSetShaderValue(obj.maskShader, "ScreenTexture", obj.imageTex)
 	dxSetShaderValue(obj.maskShader, "MaskTexture", obj.maskTex)
 	
-	outputDebugString("[Shader] The maskShader was successfully created.")
+	outputDebug("[Shader] The maskShader was successfully created.")
 	return obj;
 end
 
@@ -44,7 +44,7 @@ end
 function maskShader:destroy ()
 	if self.maskShader then
 		destroyElement(self.maskShader)
-		outputDebugString("[Shader] The maskShader was successfully destroyed.")
+		outputDebug("[Shader] The maskShader was successfully destroyed.")
 	end
 	if self.imageTex then
 		destroyElement(self.imageTex)

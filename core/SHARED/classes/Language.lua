@@ -1,5 +1,5 @@
 Language = {}
 
 function Language:getMessage (lang)
-	outputDebugString(tostring(lang)..", "..tostring(id))
+	outputDebug(tostring(lang)..", "..tostring(id))
 end

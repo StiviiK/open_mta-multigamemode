@@ -8,7 +8,7 @@ function Database:connect (host, user, pass, database, settings)
 	self.Connection = dbConnect("mysql", ("dbname=%s;host=%s"):format(database, host), user, pass, settings)
 	
 	if (self.Connection) then
-		outputDebugString("Database Connection failed! Stopping resource...")
+		outputDebug("Database Connection failed! Stopping resource...")
 		stopResource(getThisResource())
 	end
 end
@@ -28,7 +28,7 @@ function Database:query (...)
 	local arg1, arg2, arg3 = query:poll(-1)
 	
 	if (not arg1) then
-		outputDebugString(("[Database] Query failed! Errormessage: %s [%d]"):format(arg3, arg2))
+		outputDebug(("[Database] Query failed! Errormessage: %s [%d]"):format(arg3, arg2))
 		return false;
 	end
 	

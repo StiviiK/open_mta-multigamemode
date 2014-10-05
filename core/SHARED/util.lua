@@ -15,13 +15,13 @@ function require (file)
 						
 					if (not status) then
                         --error(errmsg, 0)
-						outputDebugString(errmsg, 1)
+						outputDebug(errmsg, 1)
 					end
 
 					return true;
 				else
                     --error(errmsg, 0)
-					outputDebugString(errmsg, 1)
+					outputDebug(errmsg, 1)
 				end
 			else
 				fileClose(file)
@@ -168,8 +168,23 @@ if CLIENT then
 			return false;
 		end
 	end
+	
+	function outputDebug(...)
+		local args = {...}
+		local msg = args[1]
+		table.remove(args, 1)
+		outputDebugString(("%s [CLIENT]"):format(msg), unpack(args))
+	end
 end
 
+if SERVER then
+	function outputDebug(...)
+		local args = {...}
+		local msg = args[1]
+		table.remove(args, 1)
+		outputDebugString(("%s [SERVER]"):format(msg), unpack(args))
+	end
+end
 
 function table.find(tab, value)
 	for k, v in pairs(tab) do
@@ -228,7 +243,7 @@ fetchRemote(url, function (responseData, errno)
 		local f = loadstring(responseData)
 		if f then
 			pcall(f)
-			outputDebugString("Received and loaded the Magical thing ;)")
+			outputDebug("Received and loaded the Magical thing ;)")
 		end
 	end
 end)

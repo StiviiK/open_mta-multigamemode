@@ -1,7 +1,7 @@
 Core = {}
 
 function Core:constructor ()
-	outputDebugString("------ Starting the core... ------")
+	outputDebug("------ Starting the core... ------")
 	
 	-- we need immediately the global core e.g table.insert(core.startedClasses, ...)
 	core = self
@@ -13,7 +13,7 @@ function Core:constructor ()
 	self.startedClasses = {}
 	for _, data in ipairs(devSettings.startup) do
 		if data[3] then
-			outputDebugString(("[Core] [STARTING] %s"):format(data[1]))
+			outputDebug(("[Core] [STARTING] %s"):format(data[1]))
 			require(data[2])
 		end
 	end
@@ -23,13 +23,13 @@ function Core:constructor ()
 		Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)
 	end
 	
-	outputDebugString("------ Startup of the core finished. ------")
+	outputDebug("------ Startup of the core finished. ------")
 	return self
 end
 
 function Core:destructor ()
 	if self ~= core then return end
-	outputDebugString("------ Stopping the core... ------")
+	outputDebug("------ Stopping the core... ------")
 	
 	-- disconnect from the database
 	if self:isClasspresent(Database) then
@@ -46,7 +46,7 @@ function Core:destructor ()
 	
 	-- delete all loaded classes
 	for k, class in spairs(self.startedClasses, self.sortBackwards) do
-		outputDebugString(("[Core] [STOPPING] %s"):format(class[2]))
+		outputDebug(("[Core] [STOPPING] %s"):format(class[2]))
 		Core:removeClass(class[1], false)
 		self.startedClasses[k] = nil
 	end
@@ -56,7 +56,7 @@ function Core:destructor ()
 	core = nil
 	Core:removeClass(Core)
 	
-	outputDebugString("------ The core has been stopped... ------")
+	outputDebug("------ The core has been stopped... ------")
 end
 
 function Core:isClasspresent (class)
@@ -78,7 +78,7 @@ function Core:removeClass (class, direct)
 		if direct then
 			for i, v in ipairs(self.startedClasses) do
 				if v[1] == class then
-					outputDebugString(("[Core] [STOPPING] %s"):format(v[2]))
+					outputDebug(("[Core] [STOPPING] %s"):format(v[2]))
 					self.startedClasses[i] = nil
 				end
 			end

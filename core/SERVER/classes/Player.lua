@@ -52,7 +52,7 @@ end
 
 function Player:outputDebug (...)
 	local arg = {...}
-	outputDebugString(("[%s] %s"):format(self:getName(), arg[1]), 0, 0, 125, 255)
+	outputDebug(("[%s] %s"):format(self:getName(), arg[1]), 0, 0, 125, 255)
 end
 
 --getRandomPlayer():outputDebug("[TEST] Hallo", 0, 255, 3, 125)

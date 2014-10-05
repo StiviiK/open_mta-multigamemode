@@ -12,10 +12,10 @@ end
 
 function Mapmanager:loadMap (gm, mapfile)
 	if (not Gamemode:isValid(gm)) then
-		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
+		outputDebug("Bad Argument @ Mapmanager.loadMap [Expected Gamemode at Argument 1]", 1)
 		return;
 	elseif (not fileExists(mapfile)) then
-		outputDebugString("Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2]", 1)
+		outputDebug("Bad Argument @ Mapmanager.loadMap [Expected Mapfile at Argument 2]", 1)
 		return;
 	end
 	
@@ -26,7 +26,7 @@ function Mapmanager:loadMap (gm, mapfile)
 	fileClose(file)
 	
 	if (gm.Maps[mapfile] ~= nil) then
-		outputDebugString("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
+		outputDebug("@ Mapmanager.loadMap this Map have allready been loaded! ["..mapfile.."]", 1)
 		return;
 	end
 	
@@ -63,7 +63,7 @@ function Mapmanager:loadMap (gm, mapfile)
 	coroutine.resume(self.coroutine)
 
 	if fileExists(split(mapfile, ".")[1]..".mdf") then -- check if the .mdf (Map definition file) exists
-		outputDebugString(".mdf File found!")
+		outputDebug(".mdf File found!")
 	end
 	
 	return self;
@@ -73,7 +73,7 @@ function Mapmanager:createObjects ()
 	--assert(#self.Objects == 0, "Attempt to create 0 Objects @ Mapmanager.createObjects")
 	local gamemode = Gamemode:getGamemodeFromID(self.GamemodeID)
 	if (gamemode) then
-		outputDebugString("[Mapmanager] Creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Map: "..self.MapName..")")
+		outputDebug("[Mapmanager] Creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Map: "..self.MapName..")")
 		self.tmpCounter = 0
 		self.startTick = getTickCount()
 		
@@ -99,7 +99,7 @@ function Mapmanager:createObjects ()
 			end
 		end
 		
-		outputDebugString("[Mapmanager] Finished creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
+		outputDebug("[Mapmanager] Finished creating "..#self.Objects.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
 	end
 end
 
@@ -110,7 +110,7 @@ function Mapmanager:unloadMap ()
 				local ObjCount = #self.Objects
 				local gamemode = Gamemode:getGamemodeFromID(self.GamemodeID)
 				
-				outputDebugString("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (ID: "..gamemode:getInfo("ID")..")")
+				outputDebug("[Mapmanager] Removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (ID: "..gamemode:getInfo("ID")..")")
 				
 				self.startTick = getTickCount()
 				self.tmpCounter = 0
@@ -130,15 +130,15 @@ function Mapmanager:unloadMap ()
 				
 				gamemode.Maps[self.MapName] = nil
 				
-				outputDebugString("[Mapmanager] Finished removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
+				outputDebug("[Mapmanager] Finished removing "..ObjCount.." Objects for Gamemode: "..gamemode:getInfo("Name").." (Took "..math.floor(getTickCount() - self.startTick).."ms)")
 			end
 			
 			self.coroutine = coroutine.create(self.removeFunction)
 			coroutine.resume(self.coroutine)
 		else
-			outputDebugString("Bad Argument @ Mapmanager.unloadMap [got empty MapTable]", 1)
+			outputDebug("Bad Argument @ Mapmanager.unloadMap [got empty MapTable]", 1)
 		end
 	else
-		outputDebugString("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Objects).."]", 1)
+		outputDebug("Bad Argument @ Mapmanager.unloadMap [Expected MapTable, got "..type(self.Objects).."]", 1)
 	end
 end
