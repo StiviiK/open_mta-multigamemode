@@ -171,18 +171,27 @@ if CLIENT then
 	
 	function outputDebug(...)
 		local args = {...}
-		local msg = args[1]
-		table.remove(args, 1)
-		outputDebugString(("%s [CLIENT]"):format(msg), unpack(args))
+		if DEBUG then
+			local msg = args[1]
+			table.remove(args, 1)
+			outputDebugString(("%s [CLIENT]"):format(msg), unpack(args))
+		else
+			outputDebugString(unpack(args))
+		end
 	end
 end
 
 if SERVER then
 	function outputDebug(...)
 		local args = {...}
-		local msg = args[1]
-		table.remove(args, 1)
-		outputDebugString(("%s [SERVER]"):format(msg), unpack(args))
+	
+		if DEBUG then
+			local msg = args[1]
+			table.remove(args, 1)
+			outputDebugString(("%s [SERVER]"):format(msg), unpack(args))
+		else
+			outputDebugString(unpack(args))
+		end
 	end
 end
 
@@ -216,6 +225,17 @@ function math.round(number, decimals, method)
     local factor = 10 ^ decimals
     if (method == "ceil" or method == "floor") then return math[method](number * factor) / factor
     else return tonumber(("%."..decimals.."f"):format(number)) end
+end
+
+function convertNumber ( number )  
+	local formatted = number  
+	while true do      
+		formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')    
+		if ( k==0 ) then      
+			break   
+		end  
+	end  
+	return formatted
 end
 
 --[[ FUCKING USELESS CRAP!
