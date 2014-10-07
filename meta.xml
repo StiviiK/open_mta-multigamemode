@@ -43,7 +43,6 @@
 		<script src="core/CLIENT/classes/maskShader.lua" type="client" cache="false" />
 		<script src="core/CLIENT/classes/dxUtil.lua" type="client" cache="false" />
 		<script src="core/CLIENT/forms/form_defaultHUD.lua" type="client" cache="false" />
-		<script src="core/CLIENT/forms/form_Cursomovement.lua" type="client" cache="false" />
 		
 		<!-- Files -->
 		<file src="core\FILES\shader\mask\maskShader.fx"/>
