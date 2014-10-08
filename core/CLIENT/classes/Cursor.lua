@@ -3,14 +3,15 @@ Cursor = {}
 function Cursor:constructor ()
 	showCursor(true)
 
-	self.currX   = self.currX or -500;
-	self.currY   = self.currY or -500; 
-	self.newX    = self.newX or -500;
-	self.newY    = self.newY or -500; 
-	self.offX    = self.offX or 0;
-	self.offX    = self.offX or 0; 
+	self.currX   = -500;
+	self.currY   = -500; 
+	self.newX    = -500;
+	self.newY    = -500; 
+	self.offX    = 0;
+	self.offX    = 0; 
 	self.bound   = self.bound or false
 	self.pressed = false;
+	self.currElement = nil;
 	
 	self.renderFunc      = self.renderFunc or bind(self.render, self);
 	self.onCursoMoveFunc = self.onCursoMoveFunc or bind(self.onCursoMove, self);
@@ -23,10 +24,19 @@ function Cursor:constructor ()
 				self.currX, self.currY = getCursorPosition();
 				self.currX, self.currY = self.currX * screenW, self.currY * screenH;
 				self.newX, self.newY   = self.currX, self.currY;
+		
+				for i, v in ipairs(dxMoveable.elements or {}) do
+					if isCursorOverRectangle(v.posX, v.posY, v.w, v.h) then
+						v.cursorOffX, v.cursorOffY = v.posX - self.currX, v.posY - self.currY
+						self.currElement = v				
+						break;
+					end
+				end
 					
 				addEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
 			else
 				self.pressed = false;
+				self.currElement = nil;
 					
 				removeEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
 			end
@@ -47,7 +57,7 @@ function Cursor:render ()
 	if isCursorShowing() then
 		self.offX, self.offY = self.newX - self.currX, self.newY - self.currY
 		
-		if DEBUG then
+		if DEBUG ~= true then
 			dxDrawLine(self.currX, self.currY, self.currX + self.offX, self.newY - self.offY, tocolor(125, 0, 0, 255), 3) -- offX
 			dxDrawText(("%s"):format(self.offX), self.currX, self.currY, self.currX + self.offX, self.newY - self.offY, tocolor(125, 0, 0, 255), 1.00, "default-bold", "center", "bottom")
 			dxDrawLine(self.newX, self.newY, self.newX, self.newY - self.offY, tocolor(0, 0, 125, 255), 3) -- offY
@@ -63,8 +73,8 @@ function Cursor:render ()
 				dxDrawText(("(%s, %s)"):format(self.newX, self.newY), self.newX, self.newY + 20, self.newX, self.newY + 20, tocolor(255, 254, 254, 138), 1.00, "default-bold", "center", "bottom")
 			end
 		end
-		
-		dxDrawText(("offX: %s, offY: %s"):format(self.offX, self.offY), 0, 881*py, 238*px, 900*py, tocolor(255, 254, 254, 138), 1.00, "default", "left", "bottom", false, false, false, false, false)
+																							-- 238*px
+		dxDrawText(("offX: %s, offY: %s"):format(self.offX, self.offY), screenW/2, 881*py, screenW/2, 900*py, tocolor(255, 254, 254, 138), 1.00, "default", "center", "bottom", false, false, false, false, false)
 	end
 end
 

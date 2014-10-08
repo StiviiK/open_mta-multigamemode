@@ -238,6 +238,37 @@ function convertNumber ( number )
 	return formatted
 end
 
+function sizeFormat (size)
+	local size = tostring(size)
+	if size:len() >= 4 then		
+		if size:len() >= 7 then
+			if size:len() >= 9 then
+				local returning = tostring(size/(1024*1024*1024))
+				returning = returning:sub(1, 4)				
+				return returning.." GB";
+			else	
+				local returning = tostring(size/(1024*1024))
+				returning = returning:sub(1, 4)			
+				
+				return returning.." MB";
+			end
+		else				
+			local returning = tostring(size/1024)
+			returning = returning:sub(1, 4)			
+			if returning:sub(4, 4) == "." then
+				returning = returning:sub(1, 3)
+			elseif returning:sub(3, 3) == "." then
+				returning = returning:sub(1, 2)
+			elseif returning:sub(2, 2) == "." then
+				returning = returning:sub(1, 1)
+			end
+			return returning.." KB";
+		end
+	else
+		return size.." B";
+	end
+end
+
 --[[ FUCKING USELESS CRAP!
 newG = table.copy(_G)
 _G = setmetatable({}, {
