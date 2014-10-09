@@ -26,7 +26,7 @@ function Cursor:constructor ()
 				self.currX, self.currY = self.currX * screenW, self.currY * screenH;
 				self.newX, self.newY   = self.currX, self.currY;
 		
-				for i, v in pairs(dxMoveable.elements or {}) do
+				for i, v in ipairs(dxMoveable.elements or {}) do
 					if isCursorOverRectangle(v.posX, v.posY, v.w, v.h) then
 						v.cursorOffX, v.cursorOffY = v.posX - self.currX, v.posY - self.currY
 						self.currElement = v				
