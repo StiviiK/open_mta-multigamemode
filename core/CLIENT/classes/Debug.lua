@@ -5,7 +5,7 @@ if DEBUG then
 		localPlayer.dxStatus = dxGetStatus()
 		localPlayer.NetworkStats = getNetworkStats()
 		
-		dxSetRenderTarget(Debug.renderTarget.renderTarget, true)
+		dxSetRenderTarget(Debug.DebugWindow1.renderTarget, true)
 			dxSetBlendMode("modulate_add")
 			
 			dxDrawRectangle(0, 0, 259, 254, tocolor(0, 0, 0, 155), false)
@@ -24,7 +24,8 @@ if DEBUG then
 		
 			dxSetBlendMode("blend")
 		dxSetRenderTarget()
-		dxDrawImage(Debug.renderTarget.posX, Debug.renderTarget.posY, 259, 254, Debug.renderTarget.renderTarget)
+
+		dxDrawImage(Debug.DebugWindow1.posX, Debug.DebugWindow1.posY, Debug.DebugWindow1.w, Debug.DebugWindow1.h, Debug.DebugWindow1.renderTarget)
 
 		--[[dxDrawRectangle(1312, 80, 258, 254, tocolor(0, 0, 0, 155), false)
 		dxDrawText("Debug Informations", 1322, 90, 1560, 118, tocolor(255, 255, 255, 255), 1.00, "pricedown", "center", "center", false, false, true, false, false)
@@ -41,10 +42,25 @@ if DEBUG then
 		dxDrawText(("Packets loss: %s%s"):format(localPlayer.NetworkStats["packetlossLastSecond"], "%"), 1321, 310, 1560, 328, tocolor(255, 255, 255, 255), 1.00, "default-bold", "left", "center", true, false, false, false, false)
 		--]]
 	
-		dxSetRenderTarget(Debug.renderTarget2.renderTarget, true)
+		dxSetRenderTarget(Debug.DebugWindow2.renderTarget, true)
+			dxSetBlendMode("modulate_add")
+			
 			dxDrawRectangle(0, 0, 259, 254, tocolor(0, 0, 0, 155))
+			dxDrawRectangle(10, 6, 238, 37, tocolor(0, 0, 0, 151), false)
+			dxDrawText("Player Informations", 10, 10, 248, 38, tocolor(255, 255, 255, 255), 1.00, "pricedown", "center", "center", true, false, false, false, false)
+			
+			dxDrawText("Name: StiviK", 10, 48, 247, 66, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Health: 100%", 10, 66, 247, 84, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Armor: 0%", 10, 84, 247, 102, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Skin: 56", 10, 102, 247, 120, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Position: 0, 0, 0", 10, 120, 247, 138, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Interrior: 16", 10, 138, 247, 156, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Diemension: 1", 10, 156, 247, 174, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			dxDrawText("Ping: 2ms", 10, 174, 247, 192, tocolor(254, 254, 254, 255), 1.00, "default-bold", "left", "center", false, false, false, false, false)
+			
+			dxSetBlendMode("blend")
 		dxSetRenderTarget()
-		dxDrawImage(Debug.renderTarget2.posX, Debug.renderTarget2.posY, 259, 254, Debug.renderTarget2.renderTarget)
+		dxDrawImage(Debug.DebugWindow2.posX, Debug.DebugWindow2.posY, 259, 254, Debug.DebugWindow2.renderTarget)
 	
 		guiSetText(Version.debug_label, ("Debugging-Mode: %s (%s FPS)"):format(DEBUG and "enabled" or "disabled", localPlayer:getFPS()))
 	end
@@ -54,10 +70,13 @@ if DEBUG then
 			self.renderTarget.posX, self.renderTarget.posY = tonumber(posX), tonumber(posY)
 		end)
 		
-		self.renderTarget = dxMoveable:createMoveable(259, 254, true)
-		self.renderTarget2 = dxMoveable:createMoveable(259, 254, true)
-		self.renderTarget.posX, self.renderTarget.posY = screenW - 269, 10
-		--self.renderTarget = dxCreateRenderTarget(259, 254, true)
+		self.DebugWindow1 = dxMoveable:createMoveable(259, 254, true)
+		self.DebugWindow2 = dxMoveable:createMoveable(259, 254, true)
+		
+		self.DebugWindow1.posX, self.DebugWindow1.posY = screenW - 269, 10
+		--Debug.DebugWindow1.w, Debug.DebugWindow1.h = Debug.DebugWindow1.w/1.2, Debug.DebugWindow1.h/1.2
+		--self.DebugWindow2.posX, self.DebugWindow2.posY = screenW - 269, 274
+
 		addEventHandler("onClientRender", root, self.renderInformations)
 		
 		Version.debug_label = guiCreateLabel(1, screenH - 15, 500, 18, ("Debugging-Mode: %s ([unknown] FPS)"):format(DEBUG and "enabled" or "disabled"), false)

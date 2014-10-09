@@ -9,9 +9,10 @@ function Cursor:constructor ()
 	self.newY    = -500; 
 	self.offX    = 0;
 	self.offX    = 0; 
-	self.bound   = self.bound or false
+	self.bound   = self.bound or false;
 	self.pressed = false;
 	self.currElement = nil;
+	self.active  = true;
 	
 	self.renderFunc      = self.renderFunc or bind(self.render, self);
 	self.onCursoMoveFunc = self.onCursoMoveFunc or bind(self.onCursoMove, self);
@@ -25,7 +26,7 @@ function Cursor:constructor ()
 				self.currX, self.currY = self.currX * screenW, self.currY * screenH;
 				self.newX, self.newY   = self.currX, self.currY;
 		
-				for i, v in ipairs(dxMoveable.elements or {}) do
+				for i, v in pairs(dxMoveable.elements or {}) do
 					if isCursorOverRectangle(v.posX, v.posY, v.w, v.h) then
 						v.cursorOffX, v.cursorOffY = v.posX - self.currX, v.posY - self.currY
 						self.currElement = v				
@@ -57,7 +58,7 @@ function Cursor:render ()
 	if isCursorShowing() then
 		self.offX, self.offY = self.newX - self.currX, self.newY - self.currY
 		
-		if DEBUG ~= true then
+		if DEBUG then
 			dxDrawLine(self.currX, self.currY, self.currX + self.offX, self.newY - self.offY, tocolor(125, 0, 0, 255), 3) -- offX
 			dxDrawText(("%s"):format(self.offX), self.currX, self.currY, self.currX + self.offX, self.newY - self.offY, tocolor(125, 0, 0, 255), 1.00, "default-bold", "center", "bottom")
 			dxDrawLine(self.newX, self.newY, self.newX, self.newY - self.offY, tocolor(0, 0, 125, 255), 3) -- offY
@@ -83,6 +84,8 @@ function Cursor:destructor ()
 
 	removeEventHandler("onClientRender", root, self.renderFunc)
 	removeEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
+	
+	self.active  = false;
 end
 
 bindKey("F2", "down", function ()

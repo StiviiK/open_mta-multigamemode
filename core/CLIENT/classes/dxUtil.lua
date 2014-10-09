@@ -23,7 +23,7 @@ function dxMoveable:createMoveable (w, h, b)
 		addEventHandler("onClientRender", root, dxMoveable.renderFunc)
 	end
 	
-	table.insert(dxMoveable.elements, self)
+	table.insert(dxMoveable.elements, 1, self)
 	
 	return self;
 end
@@ -43,35 +43,39 @@ function dxMoveable:destroyElement ()
 	
 	if table.getn(dxMoveable.elements) == 0 then
 		removeEventHandler("onClientRender", root, dxMoveable.renderFunc)
+		dxMoveable.renderFunc = nil
 	end
 end
 
 function dxMoveable:render ()
-	local currElement = nil
-	for i, v in ipairs(self.elements or {}) do
-		if isCursorOverRectangle(v.posX, v.posY, v.w , v.h) then
-			--error("YEAH")
-			currElement = v
-			break;
-		end
-	end
-
-	currElement = Cursor.currElement or currElement
-	
-	if currElement then
-		if Cursor.currElement == currElement then
-			currElement.alpha = 150
-			currElement.tempposX, currElement.tempposY = Cursor.newX + currElement.cursorOffX, Cursor.newY + currElement.cursorOffY
-			
-			if (currElement.tempposX - 10 >= 0) and (currElement.tempposX + 10 <= (screenW - currElement.w)) and (currElement.tempposY - 10 >= 0) and (currElement.tempposY + 10 <= (screenH - currElement.h)) then
-				currElement.posX, currElement.posY = currElement.tempposX, currElement.tempposY
-			end
-		else
-			if currElement.alpha == 150 then
-				currElement.alpha = 100
+	if Cursor.active then
+		local currElement = nil
+		for i, v in ipairs(self.elements or {}) do
+			if isCursorOverRectangle(v.posX, v.posY, v.w , v.h) then
+				--error("YEAH")
+				currElement = v
+				break;
 			end
 		end
 		
-		dxDrawRectangle(currElement.posX - 10, currElement.posY - 10, currElement.w + 20, currElement.h + 20, tocolor(255, 255, 255, currElement.alpha))
+
+		currElement = Cursor.currElement or currElement
+		
+		if currElement then
+			if Cursor.currElement == currElement then
+				currElement.alpha = 150
+				currElement.tempposX, currElement.tempposY = Cursor.newX + currElement.cursorOffX, Cursor.newY + currElement.cursorOffY
+				
+				if (currElement.tempposX - 10 >= 0) and (currElement.tempposX + 10 <= (screenW - currElement.w)) and (currElement.tempposY - 10 >= 0) and (currElement.tempposY + 10 <= (screenH - currElement.h)) then
+					currElement.posX, currElement.posY = currElement.tempposX, currElement.tempposY
+				end
+			else
+				if currElement.alpha == 150 then
+					currElement.alpha = 100
+				end
+			end
+			
+			dxDrawRectangle(currElement.posX - 10, currElement.posY - 10, currElement.w + 20, currElement.h + 20, tocolor(255, 255, 255, currElement.alpha))
+		end
 	end
 end
