@@ -29,7 +29,7 @@ function Cursor:constructor ()
 				for i, v in ipairs(dxMoveable.elements or {}) do
 					if isCursorOverRectangle(v.posX, v.posY, v.w, v.h) then
 						v.cursorOffX, v.cursorOffY = v.posX - self.currX, v.posY - self.currY
-						self.currElement = v				
+						self.currElement = v
 						break;
 					end
 				end
@@ -38,6 +38,10 @@ function Cursor:constructor ()
 			else
 				self.pressed = false;
 				self.currElement = nil;
+				
+				if getCursorAlpha() == 0 then
+					setCursorAlpha(255)
+				end
 					
 				removeEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
 			end
@@ -74,22 +78,28 @@ function Cursor:render ()
 				dxDrawText(("(%s, %s)"):format(self.newX, self.newY), self.newX, self.newY + 20, self.newX, self.newY + 20, tocolor(255, 254, 254, 138), 1.00, "default-bold", "center", "bottom")
 			end
 		end
-																							-- 238*px
+
 		dxDrawText(("offX: %s, offY: %s"):format(self.offX, self.offY), screenW/2, 881*py, screenW/2, 900*py, tocolor(255, 254, 254, 138), 1.00, "default", "center", "bottom", false, false, false, false, false)
 	end
 end
 
 function Cursor:destructor ()
-	showCursor(false)
+	for i, v in ipairs(dxMoveable.elements) do
+		if not ((v.posX >= 0) and (v.posX <= (screenW - v.w)) and (v.posY >= 0) and (v.posY <= (screenH - v.h))) then
+			error("[dxMoveable] Some Elements collide with the Screenborder!")
+		end
+	end
 
-	removeEventHandler("onClientRender", root, self.renderFunc)
-	removeEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
-	
-	self.active  = false;
+		showCursor(false)
+
+		removeEventHandler("onClientRender", root, self.renderFunc)
+		removeEventHandler("onClientCursorMove", root, self.onCursoMoveFunc)
+		
+		self.active  = false;
 end
 
 bindKey("F2", "down", function ()
-	if isCursorShowing() then
+	if isCursorShowing() and Cursor.active then
 		Cursor:destructor()
 	else
 		Cursor:constructor()
