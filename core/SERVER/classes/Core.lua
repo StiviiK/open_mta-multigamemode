@@ -6,12 +6,15 @@ function Core:constructor ()
 	-- we need immediately the global core e.g table.insert(core.startedClasses, ...)
 	core = self
 	
+	-- set the fps limit
+	setFPSLimit(50)
+	
 	-- set the game type
 	setGameType(getResourceName(getThisResource()).." "..(VERSION or "[unknown build]"))
 	
 	-- starting the classes
 	self.startedClasses = {}
-	for _, data in ipairs(devSettings.startup) do
+	for _, data in ipairs(classes.server) do
 		if data[3] then
 			outputDebug(("[Core] [STARTING] %s"):format(data[1]))
 			require(data[2])
