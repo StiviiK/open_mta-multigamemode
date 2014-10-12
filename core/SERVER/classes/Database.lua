@@ -6,21 +6,21 @@ function Database:connect (host, user, pass, database, settings)
 	--assert(type(host) == "string" and type(user) == "string" and type(pass) == "string" and type(database) == "string" and type(settings) == "string", "Bad Argument @ Database.connect [Invalid Arguments given!]")
 	Check("Database.connect", "string", host, "Host", "string", user, "Username", "string", pass, "Password", "string", database, "Database-Name", "string", settings, "Settings")
 	self.Connection = dbConnect("mysql", ("dbname=%s;host=%s"):format(database, host), user, pass, settings)
-	
-	if (self.Connection) then
+
+	if (not self.Connection) then
 		outputDebug("Database Connection failed! Stopping resource...")
 		stopResource(getThisResource())
 	end
 end
 
 function Database:destructor ()
-	if (self:isConnected()) then
+	if self:isConnected()  then
 		destroyElement(self.Connection)
 	end
 end
 
 function Database:isConnected ()
-	return self.Connection ~= false and self.Connection ~= nil;
+	return type(self.Connection) == "userdata";
 end
 
 function Database:query (...)
@@ -37,12 +37,4 @@ end
 
 function Database:execute (...)
 	return self.Connection:exec(...);
-end
-
-function Database:disconnect ()
-	if self.Connection ~= nil then
-		return destroyElement(self.Connection);
-	end
-	
-	return false;
 end
