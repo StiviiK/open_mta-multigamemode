@@ -83,8 +83,8 @@ end
 
 
 
-
-
+-- Work in Progress...
+--[[
 dxElements = {
 	elements = {}
 }
@@ -160,12 +160,12 @@ function dxElements:createWindow (tcolor)
 	self.tcolor = tcolor or tocolor(0, 125, 0, 180)
 
 	self.toDraw = {
-		--[[
+		
 		[ElementID] = {
 			{"ElementType", args...},
 			{"ElementType", args...},
 		}
-		--]]
+		
 		{
 			{"rectangle", 0, 0, self.w, self.h, self.color, self.postgui},
 			{"rectangle", 0, 0, self.w, 17, self.tcolor, self.postgui},
@@ -181,3 +181,4 @@ function dxElements:createWindow (tcolor)
 end
 
 --local window = dxElements:createElement("window", "Test-Window", 100, 100, 250, 250, tocolor(0, 0, 0, 200), false, tocolor(0, 125, 0, 180))
+--]]
