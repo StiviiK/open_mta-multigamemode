@@ -38,7 +38,15 @@ end
 
 function Playermanager:onPlayerReady (player)
 	bindKey(source, "y", "down", "chatbox", "Global")
-    Gamemode:getGamemodeFromID(1):addPlayer(player)
+	bindKey(source, "x", "down", "chatbox", "Private")
+   
+	if Core:isClasspresent(Statistics) then
+		if Statistics:isClasspresent(Statistics_Playerdata) then
+			Statistics_Playerdata:addPlayer(player)
+		end
+	end
+	
+	Gamemode:getGamemodeFromID(1):addPlayer(player)
 end
 
 function Playermanager:onQuit ()
@@ -53,7 +61,8 @@ function Playermanager:onChat (message, messageType)
 	
 	if (source:getGamemode()) then
 		if (messageType == 0) then
-			source:getGamemode():sendMessage(("#0678ee%s#d9d9d9: %s"):format(getPlayerName(source), message), 255, 255, 255, true)
+			--source:getGamemode():sendMessage(("#0678ee%s#d9d9d9: %s"):format(getPlayerName(source), message), 255, 255, 255, true)
+			source:getGamemode():sendMessage(("#8A0808[#0678ee%s #FE8A00=> #0678ee%s#8A0808] #0678ee%s#d9d9d9: %s"):format(getPlayerName(source), source:getGamemode():getInfo("Name"), getPlayerName(source), message), 255, 255, 255, true)
 		elseif (messageType == 1) then
 		elseif (messageType == 2) then
 		end
@@ -62,14 +71,28 @@ function Playermanager:onChat (message, messageType)
 	end
 end
 
-function Playermanager:onPublicChat (player, cmd, ...)
+function Playermanager:onPublicChat (player, _, ...)
 	local message = table.concat({...}, " ")
 		
 	for _, v in ipairs(getElementsByType("player")) do
-		v:sendMessage(("#8A0808*Global* #0678ee[%s] %s #d9d9d9: %s"):format(player:getGamemode():getInfo("Name"), getPlayerName(player), message), 255, 255, 255, true)
+		--v:sendMessage(("#8A0808*Global* #0678ee[%s] %s#d9d9d9: %s"):format(player:getGamemode():getInfo("Name"), getPlayerName(player), message), 255, 255, 255, true)
+		v:sendMessage(("#8A0808[#0678ee%s #FE8A00=> #0678ee%s#8A0808] #0678ee%s#d9d9d9: %s"):format(getPlayerName(player), "Global", getPlayerName(player), message), 255, 255, 255, true)
 	end
 end
 addCommandHandler("Global", bind(Playermanager.onPublicChat, Playermanager))
+
+function Playermanager:onPrivateChat (player, _, target, ...)
+	local message = table.concat({...}, " ")
+	
+	local target = getPlayerFromName(target)
+	if target then
+		if target ~= player then
+			player:sendMessage(("#8A0808[#0678eeme #FE8A00=> #0678ee%s#8A0808] #0678ee%s#d9d9d9: %s"):format(getPlayerName(target), getPlayerName(player), message), 255, 255, 255, true)
+			target:sendMessage(("#8A0808[#0678ee%s #FE8A00=> #0678eeme#8A0808] #0678ee%s#d9d9d9: %s"):format(getPlayerName(player), getPlayerName(player), message), 255, 255, 255, true)
+		end
+	end
+end
+addCommandHandler("Private", bind(Playermanager.onPrivateChat, Playermanager))
 
 function Playermanager:onGamemodeJoin (player, info)
 	outputDebug("[Playermanager] "..player:getName().." has joined the Gamemode '"..info.Name.."' (ID: "..info.ID..") ("..info.PlayerCount.."/"..info.maxPlayers..")")
