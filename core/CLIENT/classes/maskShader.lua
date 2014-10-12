@@ -2,7 +2,13 @@ maskShader = {}
 
 function maskShader:create (image, mask)
 	local obj = setmetatable({}, {__index = self})
-	obj.imageTex = dxCreateTexture(image or "gamemodes/lobby/FILES/images/account/default.jpg")
+	
+	if type(image) == "string" then
+		obj.imageTex = dxCreateTexture(image or "gamemodes/lobby/FILES/images/account/default.jpg")
+	else
+		obj.imageTex = image
+	end
+	
 	obj.maskTex = dxCreateTexture(mask or "core/FILES/shader/mask/mask.png")
 	obj.maskShader = dxCreateShader("core/FILES/shader/mask/maskShader.fx")
 	
@@ -23,8 +29,12 @@ end
 
 function maskShader:update (image, mask)
 	if image ~= false then
-		destroyElement(self.imageTex)
-		self.imageTex = dxCreateTexture(image or "gamemodes/lobby/FILES/images/account/default.jpg")
+		if type(image) == "string" then
+			destroyElement(self.imageTex)
+			self.imageTex = dxCreateTexture(image or "gamemodes/lobby/FILES/images/account/default.jpg")
+		else
+			self.imageTex = image
+		end
 	end
 	if mask ~= false then
 		destroyElement(self.maskTex)
