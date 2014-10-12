@@ -19,11 +19,13 @@ function Core:constructor ()
 			outputDebug(("[Core] [STARTING] %s"):format(data[1]))
 			require(data[2])
 		end
-	end
-
-	-- connected to the database
-	if self:isClasspresent(Database) then
-		Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)
+		
+		-- connected to the database
+		if data[1] == "Databasemanager" then
+			if self:isClasspresent(Database) then
+				Database:connect(Settings.DATABASE_Host, Settings.DATABASE_Name, Settings.DATABASE_Pass, Settings.DATABASE_DBName, Settings.DATABASE_Settings)
+			end
+		end
 	end
 	
 	outputDebug("------ Startup of the core finished. ------")
@@ -33,11 +35,6 @@ end
 function Core:destructor ()
 	if self ~= core then return end
 	outputDebug("------ Stopping the core... ------")
-	
-	-- disconnect from the database
-	if self:isClasspresent(Database) then
-		Database:disconnect()
-	end
 	
 	self.sortBackwards = function (a, b)
 		if table.find(self.startedClasses, a) > table.find(self.startedClasses, b) then
@@ -73,7 +70,7 @@ function Core:isClasspresent (class)
 end
 
 function Core:removeClass (class, direct)
-	--if self:isClasspresent(class) then
+	if self:isClasspresent(class) then
 		if rawget(class, "destructor") then
 			rawget(class, "destructor")(class)
 		end
@@ -107,5 +104,5 @@ function Core:removeClass (class, direct)
 				end
 			end
 		end
-	--end
+	end
 end
