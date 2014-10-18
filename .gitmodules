@@ -1,3 +1,0 @@
-[submodule "core/SHARED/include/lua_utils"]
-	path = core/SHARED/include/lua_utils
-	url = git://github.com/StiviiK/lua_utils
